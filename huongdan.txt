@@ -1,0 +1,33 @@
+AID gồm 2 phần là RID (5 bytes) và PIX(0-11 bytes), phần RID giữa Project và Applet là bắt buộc
+
+/*mac dinh*/
+getBuffer() // truy xuat bo dem APDU
+	byte[] buf = apdu.getBuffer(); (lay 5 byte dau tien)
+setIncomingAndReceive // de doc du lieu vao bo dem APDU (dat JCRE vao che do nhan di lieu)
+	apdu.setIncomingAndReceive();
+receuveBytes: doi voi du lieu dai ket hop voi setIncomingAndReceive
+
+
+
+
+setOutgoing => chi ra rang bay gio no muon gui du lieu
+	short le = apdu.setOutgoing();
+setOutgoingLength => thong bao cho may chu so byte se gui'
+	apdu.setOutgoingLength((short)(5))
+sendBytes => gui du lieu
+	apdu.sendBytes((short)0,(short)len);
+
+
+setOutgoingAndSend  (la thang ket hop giua setOutgoing, setOutgoingLength, sendBytes)
+	len2= (short)ngaysinh.length;
+	Util.arrayCopy(ngaysinh,(short)0, buf, (short)0,len2);
+	apdu.setOutgoingAndSend((short)0,len2);
+
+
+1 short chiếm 2 byte (chiếm 2 ô)
+getBuffer() là sao chiếu đếm bộ nhớ đệm apdu
+setIncomingAndReceive(là cho ta lấy dc độ dài data)
+Util.setShort(buf,(short)3,byteRead); là set lại short thứ 3 (từ là từ ô 3->4 vì short 
+chiếm 2 byte) ta thay đổi byteRead vào
+JCRE: môi trường thực thi java card (có thể gọi hệ điều hành của thẻ)
+nguyên tử trong quá trình cập nhập mà bị lỗi sẽ bị quay lại về thằng ban đầu

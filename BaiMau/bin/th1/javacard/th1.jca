@@ -1,0 +1,278 @@
+// converted by version 1.3
+// on Thu May 05 08:51:54 VET 2022
+
+.package th1 {
+	.aid 0x11:0x22:0x33:0x44:0x55;
+	.version 1.0;
+
+	.imports {
+		0xA0:0x0:0x0:0x0:0x62:0x1:0x1 1.3;		//javacard/framework
+		0xA0:0x0:0x0:0x0:0x62:0x0:0x1 1.0;		//java/lang
+	}
+
+	.applet {
+		0x11:0x22:0x33:0x44:0x55:0x0 th1;
+		0x11:0x22:0x33:0x44:0x55:0x1 th2;
+	}
+
+	.constantPool {
+		// 0
+		staticMethodRef 0.3.0()V;		// javacard/framework/Applet.<init>()V
+		// 1
+		classRef th1;
+		// 2
+		staticMethodRef th1/<init>()V;
+		// 3
+		virtualMethodRef 0.3.2([BSB)V;		// register([BSB)V
+		// 4
+		virtualMethodRef 0.3.3()Z;		// selectingApplet()Z
+		// 5
+		virtualMethodRef 0.10.1()[B;		// getBuffer()[B
+		// 6
+		virtualMethodRef 0.10.6()S;		// setIncomingAndReceive()S
+		// 7
+		virtualMethodRef 0.10.7()S;		// setOutgoing()S
+		// 8
+		staticMethodRef 0.16.6([BSS)S;		// javacard/framework/Util.setShort([BSS)S
+		// 9
+		virtualMethodRef 0.10.9(S)V;		// setOutgoingLength(S)V
+		// 10
+		virtualMethodRef 0.10.4(SS)V;		// sendBytes(SS)V
+		// 11
+		classRef th2;
+		// 12
+		staticMethodRef th2/<init>()V;
+		// 13
+		virtualMethodRef 0.3.2([BSB)V;		// register([BSB)V
+		// 14
+		virtualMethodRef 0.3.3()Z;		// selectingApplet()Z
+		// 15
+		staticMethodRef 0.16.1([BS[BSS)S;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+		// 16
+		staticMethodRef 0.7.1(S)V;		// javacard/framework/ISOException.throwIt(S)V
+	}
+
+	.class public th1 0 extends 0.3 {		// extends javacard/framework/Applet
+
+		.publicMethodTable 7 {
+			equals(Ljava/lang/Object;)Z;
+			register()V;
+			register([BSB)V;
+			selectingApplet()Z;
+			deselect()V;
+			getShareableInterfaceObject(Ljavacard/framework/AID;B)Ljavacard/framework/Shareable;;
+			select()Z;
+			process(Ljavacard/framework/APDU;)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public <init>()V 0 {
+			.stack 1;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 0;		// javacard/framework/Applet.<init>()V
+					return;
+		}
+
+		.method public static install([BSB)V 1 {
+			.stack 5;
+			.locals 0;
+
+				L0:	new 1;		// th1/th1
+					dup;
+					invokespecial 2;		// th1/th1.<init>()V
+					aload_0;
+					sload_1;
+					sconst_1;
+					sadd;
+					aload_0;
+					sload_1;
+					baload;
+					invokevirtual 3;		// register([BSB)V
+					return;
+		}
+
+		.method public process(Ljavacard/framework/APDU;)V 7 {
+			.stack 3;
+			.locals 3;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_0;
+					invokevirtual 4;		// selectingApplet()Z
+					ifeq L2;
+				L1:	return;
+				L2:	aload_1;
+					invokevirtual 5;		// getBuffer()[B
+					astore_2;
+				L3:	aload_1;
+					invokevirtual 6;		// setIncomingAndReceive()S
+					sstore_3;
+				L4:	aload_1;
+					invokevirtual 7;		// setOutgoing()S
+					sstore 4;
+				L5:	aload_2;
+					sconst_3;
+					sload_3;
+					invokestatic 8;		// javacard/framework/Util.setShort([BSS)S
+					pop;
+					aload_1;
+					bspush 10;
+					invokevirtual 9;		// setOutgoingLength(S)V
+					aload_1;
+					sconst_0;
+					bspush 10;
+					invokevirtual 10;		// sendBytes(SS)V
+					return;
+		}
+
+	}
+
+	.class public th2 1 extends 0.3 {		// extends javacard/framework/Applet
+
+		.publicMethodTable 7 {
+			equals(Ljava/lang/Object;)Z;
+			register()V;
+			register([BSB)V;
+			selectingApplet()Z;
+			deselect()V;
+			getShareableInterfaceObject(Ljavacard/framework/AID;B)Ljavacard/framework/Shareable;;
+			select()Z;
+			process(Ljavacard/framework/APDU;)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public <init>()V 0 {
+			.stack 1;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 0;		// javacard/framework/Applet.<init>()V
+					return;
+		}
+
+		.method public static install([BSB)V 1 {
+			.stack 5;
+			.locals 0;
+
+				L0:	new 11;		// th1/th2
+					dup;
+					invokespecial 12;		// th1/th2.<init>()V
+					aload_0;
+					sload_1;
+					sconst_1;
+					sadd;
+					aload_0;
+					sload_1;
+					baload;
+					invokevirtual 13;		// register([BSB)V
+					return;
+		}
+
+		.method public process(Ljavacard/framework/APDU;)V 7 {
+			.stack 5;
+			.locals 8;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_0;
+					invokevirtual 14;		// selectingApplet()Z
+					ifeq L2;
+				L1:	return;
+				L2:	aload_1;
+					invokevirtual 5;		// getBuffer()[B
+					astore_2;
+				L3:	aload_1;
+					invokevirtual 6;		// setIncomingAndReceive()S
+					sstore_3;
+				L4:	aload_2;
+					sconst_1;
+					baload;
+					slookupswitch L12 1 0 L5;
+				L5:	bspush 7;
+					newarray 11;
+					dup;
+					sconst_0;
+					bspush 76;
+					bastore;
+					dup;
+					sconst_1;
+					bspush 65;
+					bastore;
+					dup;
+					sconst_2;
+					bspush 73;
+					bastore;
+					dup;
+					sconst_3;
+					bspush 72;
+					bastore;
+					dup;
+					sconst_4;
+					bspush 73;
+					bastore;
+					dup;
+					sconst_5;
+					bspush 69;
+					bastore;
+					dup;
+					bspush 6;
+					bspush 85;
+					bastore;
+					astore 4;
+				L6:	sconst_3;
+					newarray 11;
+					dup;
+					sconst_0;
+					bspush 10;
+					bastore;
+					dup;
+					sconst_1;
+					bspush 10;
+					bastore;
+					dup;
+					sconst_2;
+					bspush 90;
+					bastore;
+					astore 5;
+				L7:	aload 4;
+					arraylength;
+					sstore 6;
+				L8:	aload 5;
+					arraylength;
+					sstore 7;
+				L9:	sload 6;
+					sload 7;
+					sadd;
+					sstore 8;
+				L10:	aload_1;
+					invokevirtual 7;		// setOutgoing()S
+					sstore 9;
+				L11:	aload_1;
+					bspush 20;
+					invokevirtual 9;		// setOutgoingLength(S)V
+					aload 4;
+					sconst_2;
+					aload_2;
+					sconst_4;
+					sconst_4;
+					invokestatic 15;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_1;
+					sconst_0;
+					bspush 20;
+					invokevirtual 10;		// sendBytes(SS)V
+					goto L13;
+				L12:	sspush 27904;
+					invokestatic 16;		// javacard/framework/ISOException.throwIt(S)V
+				L13:	return;
+		}
+
+	}
+
+}
