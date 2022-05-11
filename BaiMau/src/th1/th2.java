@@ -25,7 +25,7 @@ public class th2 extends Applet
 		switch (buf[ISO7816.OFFSET_INS])
 		{
 		case (byte)0x00:
-			byte[] name ={'L','A','I','H','I','E','U'};
+			byte[] name ={11,22,33,44,55,66,77};
 			byte[] birthday = {10,10,90};
 			
 			short nameLen = (short)name.length;

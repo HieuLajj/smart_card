@@ -3,6 +3,10 @@
 <PKG name="th1" aid="11 22 33 44 55" major="1" minor="0">
 <APPLET aid="11 22 33 44 55 00" instanceaid="" parameter="" authority="" privileges="" index="18016" name="th1"/>
 <APPLET aid="11 22 33 44 55 01" instanceaid="" parameter="" authority="" privileges="" index="-31416" name="th2"/>
+<APPLET aid="11 22 33 44 55 02" instanceaid="" parameter="" authority="" privileges="" index="7760" name="th1_baitap"/>
+<APPLET aid="11 22 33 44 55 03" instanceaid="" parameter="" authority="" privileges="" index="10584" name="th2_baitapj"/>
+<APPLET aid="11 22 33 44 55 11" instanceaid="" parameter="" authority="" privileges="" index="16616" name="th3_baitap"/>
+<APPLET aid="11 22 33 44 55 12" instanceaid="" parameter="" authority="" privileges="" index="8952" name="th4_lencahoten"/>
 </PKG>
 <Libs/>
 </USER>

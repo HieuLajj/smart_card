@@ -1,10 +1,9 @@
-AID gồm 2 phần là RID (5 bytes) và PIX(0-11 bytes), phần RID giữa Project và Applet là bắt buộc
-
+------------------------------TH1-----------------------------
 /*mac dinh*/
 getBuffer() // truy xuat bo dem APDU
 	byte[] buf = apdu.getBuffer(); (lay 5 byte dau tien)
 setIncomingAndReceive // de doc du lieu vao bo dem APDU (dat JCRE vao che do nhan di lieu)
-	apdu.setIncomingAndReceive();
+	apdu.setIncomingAndReceive();  short byteRead = (short)(apdu.setIncomingAndReceive());
 receuveBytes: doi voi du lieu dai ket hop voi setIncomingAndReceive
 
 
@@ -31,3 +30,20 @@ Util.setShort(buf,(short)3,byteRead); là set lại short thứ 3 (từ là từ
 chiếm 2 byte) ta thay đổi byteRead vào
 JCRE: môi trường thực thi java card (có thể gọi hệ điều hành của thẻ)
 nguyên tử trong quá trình cập nhập mà bị lỗi sẽ bị quay lại về thằng ban đầu
+
+//Util.arrayCopy(name,(short)2, buf,(short)4,nameLen);
+Util.arrayCopy(name,(short)2, buf,(short)4,(short)4);
+			
+// copy du lieu cua thang name vao buf
+// du lieu copy se duoc luu tu short 4 ( tuc bat dau in tu thang short 5)cua thang buf
+// nameLen do dai chuoi nhan vao
+
+short a = buf[ISO7816.OFFSET_P1]
+-----------------------------------------TH2---------------------------
+new đối tượng kiên tục -> có tính nguyên tử (ở trên có giải thích)
+
+cac doi tuong tam thoi: CLEAR_ON_RESET và CLEAR_ON_DESELECT 
+CLEAR_ON_DESELECT (không chọn sẽ tự động xóa) cũng giống CLEAR_ON_RESET nhưng có bổ 
+sung đặc điểm tường lửa
+byte[] buffer = JCSystem.makeTransientByteArray(Buffer_length, JCSystem.CLEAR_ON_DESELECT);
+
