@@ -1,0 +1,10 @@
+//Test script for Applet 'Smartcard_congtyabc'
+
+powerup;
+// Select Smartcard_congtyabc //aid/1122334455/F4
+0x00 0xA4 0x04 0x00 0X06 0X11 0X22 0X33 0X44 0X55 0XF5 0x7F;
+
+//Send the APDU here
+//0x80 0xCA 0x00 0x00 <length> <data> 0x7F;
+
+powerdown;

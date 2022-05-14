@@ -91,7 +91,7 @@ public class MainFrom extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        button_unlock = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
@@ -148,25 +148,25 @@ public class MainFrom extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addGap(56, 56, 56)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(219, Short.MAX_VALUE)
+                .addContainerGap(188, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addContainerGap())
+                .addGap(44, 44, 44))
         );
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Manager", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 20))); // NOI18N
 
-        jButton2.setText("Unlock Card");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        button_unlock.setText("Unlock Card");
+        button_unlock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                button_unlockActionPerformed(evt);
             }
         });
 
@@ -192,7 +192,7 @@ public class MainFrom extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(jButton2)
+                .addComponent(button_unlock)
                 .addGap(42, 42, 42)
                 .addComponent(jButton5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -206,7 +206,7 @@ public class MainFrom extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(button_unlock)
                     .addComponent(jButton5)
                     .addComponent(jButton6)
                     .addComponent(jButton7))
@@ -440,9 +440,26 @@ public class MainFrom extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_text_sw1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void button_unlockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_unlockActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        System.err.println("UnClock");
+        byte lengthDataField = 1;      //do dai du lieu gui vao applet, RID, PIX
+        byte maxDataBytesExpected =10; // du lieu mong doi nhan vao (Le)
+        byte[] cmd ={(byte)0x00,(byte)0x11,(byte)0x00,(byte)0x00};
+        host.setTheAPDUCommands(cmd);     //set APDU header
+        host.setTheDataLength(lengthDataField);
+        
+        byte[] data ={(byte)0x7F};
+        host.setTheDataIn(data);
+        host.setExpctdByteLength(maxDataBytesExpected);
+        setTheCommandAPDUOnGUI(cmd, data,lengthDataField, maxDataBytesExpected);              
+        host.exchangeTheAPDUWithSimulator();
+        host.decodeStatus();
+        host.decodeDataOut();
+        setTheResponseAPDUOnGUI(maxDataBytesExpected);
+        
+                
+    }//GEN-LAST:event_button_unlockActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
@@ -465,7 +482,7 @@ public class MainFrom extends javax.swing.JFrame {
         byte[] cmnds = {(byte)0x00, (byte)0xA4, instParamtr1, instParamtr2};       
         host.setTheAPDUCommands(cmnds);
         host.setTheDataLength(lengthDataField);
-        byte[] data = {(byte)0x7C, (byte)0x0F, (byte)0x1B, (byte)0x01, (byte)0x88, (byte)0x01};
+        byte[] data = {(byte)0x11, (byte)0x22, (byte)0x33, (byte)0x44, (byte)0x55, (byte)0x01};
         host.setTheDataIn(data);
         host.setExpctdByteLength(maxDataBytesExpected);
         setTheCommandAPDUOnGUI(cmnds, data,lengthDataField, maxDataBytesExpected);
@@ -515,8 +532,8 @@ public class MainFrom extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton button_close;
     private javax.swing.JButton button_connect;
+    private javax.swing.JButton button_unlock;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
