@@ -16,6 +16,7 @@ public class MainFrom extends javax.swing.JFrame {
     private JavaCardHostApp host;
     private JFrame frame;
     static byte counter;
+    private boolean input = false;
     /**
      * Creates new form MainFrom
      */
@@ -92,7 +93,7 @@ public class MainFrom extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         button_unlock = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        button_init = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -170,10 +171,10 @@ public class MainFrom extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Init Card");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        button_init.setText("Init Card");
+        button_init.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                button_initActionPerformed(evt);
             }
         });
 
@@ -194,7 +195,7 @@ public class MainFrom extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(button_unlock)
                 .addGap(42, 42, 42)
-                .addComponent(jButton5)
+                .addComponent(button_init)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton6)
                 .addGap(44, 44, 44)
@@ -207,7 +208,7 @@ public class MainFrom extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(button_unlock)
-                    .addComponent(jButton5)
+                    .addComponent(button_init)
                     .addComponent(jButton6)
                     .addComponent(jButton7))
                 .addContainerGap(32, Short.MAX_VALUE))
@@ -461,9 +462,13 @@ public class MainFrom extends javax.swing.JFrame {
                 
     }//GEN-LAST:event_button_unlockActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void button_initActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_initActionPerformed
+         if (input == false) {
+            TaoTheMoi fkt = new TaoTheMoi();
+            fkt.setVisible(true);
+            fkt.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        }
+    }//GEN-LAST:event_button_initActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
@@ -532,9 +537,9 @@ public class MainFrom extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton button_close;
     private javax.swing.JButton button_connect;
+    private javax.swing.JButton button_init;
     private javax.swing.JButton button_unlock;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
