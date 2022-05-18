@@ -1,0 +1,417 @@
+// converted by version 1.3
+// on Tue May 17 23:34:30 VET 2022
+
+.package helloworld {
+	.aid 0x11:0x22:0x33:0x44:0x55;
+	.version 1.0;
+
+	.imports {
+		0xA0:0x0:0x0:0x0:0x62:0x1:0x1 1.2;		//javacard/framework
+	}
+
+	.applet {
+		0x11:0x22:0x33:0x44:0x55:0x0 hi;
+	}
+
+	.constantPool {
+		// 0
+		instanceFieldRef byte[] hi/ten;
+		// 1
+		instanceFieldRef byte[] hi/ngaysinh4;
+		// 2
+		instanceFieldRef byte[] hi/ngaysinh2;
+		// 3
+		instanceFieldRef short hi/len3;
+		// 4
+		classRef hi;
+		// 5
+		staticMethodRef hi/<init>()V;
+		// 6
+		virtualMethodRef 0.3.2([BSB)V;		// javacard/framework/Applet.register([BSB)V
+		// 7
+		virtualMethodRef 0.3.3()Z;		// javacard/framework/Applet.selectingApplet()Z
+		// 8
+		virtualMethodRef 0.10.1()[B;		// javacard/framework/APDU.getBuffer()[B
+		// 9
+		virtualMethodRef 0.10.6()S;		// javacard/framework/APDU.setIncomingAndReceive()S
+		// 10
+		staticMethodRef 0.16.1([BS[BSS)S;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+		// 11
+		staticMethodRef 0.3.0()V;		// javacard/framework/Applet.<init>()V
+		// 12
+		virtualMethodRef 0.10.8(SS)V;		// javacard/framework/APDU.setOutgoingAndSend(SS)V
+		// 13
+		staticMethodRef 0.7.1(S)V;		// javacard/framework/ISOException.throwIt(S)V
+	}
+
+	.class public hi 0 extends 0.3 {		// extends javacard/framework/Applet
+
+		.fields {
+			 byte[] ten 0;		// [B
+			 byte[] ngaysinh4 1;		// [B
+			 byte[] ngaysinh2 2;		// [B
+			 short len 3;		// S
+			 short len2 4;		// S
+			 short len3 5;		// S
+			public static final byte INS_INIT_0x00 = 0;		// B
+			public static final byte INS_GET_ALL_INFO_0x02 = 2;		// B
+			public static final short OFFSET_CCCD = 0;		// S
+			public static final short OFFSET_HOTEN = 1;		// S
+			public static final short OFFSET_NGAYSINH = 2;		// S
+			public static final short OFFSET_SDT = 3;		// S
+			public static final short OFFSET_PHONG = 4;		// S
+			public static final short OFFSET_NGAYDK = 5;		// S
+		}
+
+		.publicMethodTable 7 {
+			equals(Ljava/lang/Object;)Z;
+			register()V;
+			register([BSB)V;
+			selectingApplet()Z;
+			deselect()V;
+			getShareableInterfaceObject(Ljavacard/framework/AID;B)Ljavacard/framework/Shareable;;
+			select()Z;
+			process(Ljavacard/framework/APDU;)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public <init>()V 0 {
+			.stack 5;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 11;		// javacard/framework/Applet.<init>()V
+					aload_0;
+					sconst_4;
+					newarray 11;
+					dup;
+					sconst_0;
+					bspush 104;
+					bastore;
+					dup;
+					sconst_1;
+					bspush 105;
+					bastore;
+					dup;
+					sconst_2;
+					bspush 101;
+					bastore;
+					dup;
+					sconst_3;
+					bspush 117;
+					bastore;
+					putfield_a 0;		// reference helloworld/hi.ten
+					aload_0;
+					bspush 8;
+					newarray 11;
+					dup;
+					sconst_0;
+					sconst_1;
+					bastore;
+					dup;
+					sconst_1;
+					sconst_2;
+					bastore;
+					dup;
+					sconst_2;
+					sconst_1;
+					bastore;
+					dup;
+					sconst_3;
+					sconst_1;
+					bastore;
+					dup;
+					sconst_4;
+					sconst_2;
+					bastore;
+					dup;
+					sconst_5;
+					sconst_0;
+					bastore;
+					dup;
+					bspush 6;
+					sconst_0;
+					bastore;
+					dup;
+					bspush 7;
+					sconst_0;
+					bastore;
+					putfield_a 1;		// reference helloworld/hi.ngaysinh4
+					aload_0;
+					bspush 8;
+					newarray 11;
+					dup;
+					sconst_0;
+					sconst_1;
+					bastore;
+					dup;
+					sconst_1;
+					sconst_2;
+					bastore;
+					dup;
+					sconst_2;
+					sconst_3;
+					bastore;
+					dup;
+					sconst_3;
+					sconst_4;
+					bastore;
+					dup;
+					sconst_4;
+					sconst_5;
+					bastore;
+					dup;
+					sconst_5;
+					bspush 6;
+					bastore;
+					dup;
+					bspush 6;
+					bspush 7;
+					bastore;
+					dup;
+					bspush 7;
+					bspush 7;
+					bastore;
+					putfield_a 2;		// reference helloworld/hi.ngaysinh2
+					return;
+		}
+
+		.method public static install([BSB)V 1 {
+			.stack 5;
+			.locals 0;
+
+				L0:	new 4;		// helloworld/hi
+					dup;
+					invokespecial 5;		// helloworld/hi.<init>()V
+					aload_0;
+					sload_1;
+					sconst_1;
+					sadd;
+					aload_0;
+					sload_1;
+					baload;
+					invokevirtual 6;		// javacard/framework/Applet.register([BSB)V
+					return;
+		}
+
+		.method public process(Ljavacard/framework/APDU;)V 7 {
+			.stack 6;
+			.locals 18;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_0;
+					invokevirtual 7;		// javacard/framework/Applet.selectingApplet()Z
+					ifeq L2;
+				L1:	return;
+				L2:	aload_1;
+					invokevirtual 8;		// javacard/framework/APDU.getBuffer()[B
+					astore_2;
+				L3:	aload_1;
+					invokevirtual 9;		// javacard/framework/APDU.setIncomingAndReceive()S
+					pop;
+					aload_2;
+					sconst_1;
+					baload;
+					slookupswitch L27 2 0 L4 2 L26;
+				L4:	aload_2;
+					sconst_4;
+					baload;
+					newarray 11;
+					astore_3;
+				L5:	aload_3;
+					arraylength;
+					sstore 4;
+				L6:	aload_2;
+					sconst_5;
+					aload_3;
+					sconst_0;
+					aload_2;
+					sconst_4;
+					baload;
+					invokestatic 10;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					sconst_5;
+					newarray 11;
+					astore 11;
+				L7:	aload 11;
+					sconst_0;
+					sconst_0;
+					bastore;
+					sconst_1;
+					sstore 12;
+				L8:	sconst_0;
+					sstore 13;
+				L9:	sload 13;
+					aload_2;
+					sconst_4;
+					baload;
+					if_scmpge L13;
+				L10:	aload_3;
+					sload 13;
+					baload;
+					bspush 64;
+					if_scmpne L12;
+				L11:	aload 11;
+					sload 12;
+					sload 13;
+					sconst_1;
+					sadd;
+					s2b;
+					bastore;
+					sinc 12 1;
+				L12:	sinc 13 1;
+					goto L9;
+				L13:	aload 11;
+					sconst_1;
+					baload;
+					sconst_1;
+					ssub;
+					sstore 5;
+				L14:	aload 11;
+					sconst_2;
+					baload;
+					aload 11;
+					sconst_1;
+					baload;
+					ssub;
+					sconst_1;
+					ssub;
+					sstore 6;
+				L15:	aload 11;
+					sconst_3;
+					baload;
+					aload 11;
+					sconst_2;
+					baload;
+					ssub;
+					sconst_1;
+					ssub;
+					sstore 7;
+				L16:	aload 11;
+					sconst_4;
+					baload;
+					aload 11;
+					sconst_3;
+					baload;
+					ssub;
+					sconst_1;
+					ssub;
+					sstore 8;
+				L17:	aload 11;
+					sconst_5;
+					baload;
+					aload 11;
+					sconst_4;
+					baload;
+					ssub;
+					sconst_1;
+					ssub;
+					sstore 9;
+				L18:	aload_2;
+					sconst_4;
+					baload;
+					aload 11;
+					sconst_5;
+					baload;
+					ssub;
+					sstore 10;
+				L19:	sload 5;
+					newarray 11;
+					astore 14;
+				L20:	sload 6;
+					newarray 11;
+					astore 15;
+				L21:	sload 7;
+					newarray 11;
+					astore 16;
+				L22:	sload 8;
+					newarray 11;
+					astore 17;
+				L23:	sload 9;
+					newarray 11;
+					astore 18;
+				L24:	sload 10;
+					newarray 11;
+					astore 19;
+				L25:	aload_3;
+					aload 11;
+					sconst_0;
+					baload;
+					aload 14;
+					sconst_0;
+					sload 5;
+					invokestatic 10;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_3;
+					aload 11;
+					sconst_1;
+					baload;
+					aload 15;
+					sconst_0;
+					sload 6;
+					invokestatic 10;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_3;
+					aload 11;
+					sconst_2;
+					baload;
+					aload 16;
+					sconst_0;
+					sload 7;
+					invokestatic 10;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_3;
+					aload 11;
+					sconst_3;
+					baload;
+					aload 17;
+					sconst_0;
+					sload 8;
+					invokestatic 10;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_3;
+					aload 11;
+					sconst_4;
+					baload;
+					aload 18;
+					sconst_0;
+					sload 9;
+					invokestatic 10;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_3;
+					aload 11;
+					sconst_5;
+					baload;
+					aload 19;
+					sconst_0;
+					sload 10;
+					invokestatic 10;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					goto L28;
+				L26:	aload_0;
+					getfield_a_this 2;		// reference helloworld/hi.ngaysinh2
+					arraylength;
+					putfield_s 3;		// short helloworld/hi.len3
+					getfield_a_this 2;		// reference helloworld/hi.ngaysinh2
+					sconst_0;
+					aload_2;
+					sconst_0;
+					getfield_s_this 3;		// short helloworld/hi.len3
+					invokestatic 10;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_1;
+					sconst_0;
+					getfield_s_this 3;		// short helloworld/hi.len3
+					invokevirtual 12;		// javacard/framework/APDU.setOutgoingAndSend(SS)V
+					goto L28;
+				L27:	sspush 27904;
+					invokestatic 13;		// javacard/framework/ISOException.throwIt(S)V
+				L28:	return;
+		}
+
+	}
+
+}

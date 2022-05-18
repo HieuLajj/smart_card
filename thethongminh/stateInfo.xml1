@@ -1,0 +1,13 @@
+<StateInfo>
+<ExpandNodes>
+<PkgNodes>
+<Node>helloworld</Node>
+</PkgNodes>
+</ExpandNodes>
+<FileNodes>
+<ActiveFile>
+<fileName>src\helloworld\hi.java</fileName>
+<line>87</line>
+</ActiveFile>
+</FileNodes>
+</StateInfo>

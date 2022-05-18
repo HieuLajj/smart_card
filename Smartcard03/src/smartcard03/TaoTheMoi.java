@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import java.nio.charset.StandardCharsets;
 
 
 
@@ -37,15 +38,17 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author laihi
  */
 public class TaoTheMoi extends javax.swing.JFrame {
-
+    private ConnectJavaCard host;
+    public String linkanh;
+    public byte[] napanh;
+    public byte[] napanh2;
     /**
      * Creates new form TaoTheMoi
      */
     public TaoTheMoi() {
         initComponents();
+        host = new ConnectJavaCard();
     }
-    public String linkanh;
-    public byte[] napanh;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -309,8 +312,19 @@ public class TaoTheMoi extends javax.swing.JFrame {
                     ByteArrayOutputStream bos = new ByteArrayOutputStream();
                     ImageIO.write(bImage, "jpg", bos);
                     napanh = bos.toByteArray();
+                    
+                    
+//                    String pub =new String(napanh);
+//                    napanh2 = pub.getBytes();
+//                    
+//                    
+//                    
+//                    System.out.println(napanh2.length);
+//                    System.out.println(napanh2);
+                    System.out.println("-----napanh-----");
                     System.out.println(napanh.length);
                     System.out.println(napanh);
+                    host.transmissionData(cccd, hoten, ngaysinh, sdt, phong, ngaydk, napanh);
                     ByteArrayInputStream bis = new ByteArrayInputStream(napanh);
                     BufferedImage bImage2 = ImageIO.read(bis);
                     label_anh.setIcon(new ImageIcon(bImage2));
@@ -327,6 +341,18 @@ public class TaoTheMoi extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    
+    private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
+    public static String bytesToHex(byte[] bytes) {
+        char[] hexChars = new char[bytes.length * 2];
+        for (int j = 0; j < bytes.length; j++) {
+           int v = bytes[j] & 0xFF;
+           hexChars[j * 2] = HEX_ARRAY[v >>> 4];
+           hexChars[j * 2 + 1] = HEX_ARRAY[v & 0x0F];
+        }
+        return new String(hexChars);
+    }
+  
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
