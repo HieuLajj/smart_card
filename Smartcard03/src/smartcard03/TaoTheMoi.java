@@ -315,17 +315,13 @@ public class TaoTheMoi extends javax.swing.JFrame {
                     napanh = bos.toByteArray();
                     
                     
-//                    String pub =new String(napanh);
-//                    napanh2 = pub.getBytes();
-//                    
-//                    
-//                    
-//                    System.out.println(napanh2.length);
-//                    System.out.println(napanh2);
                     System.out.println("-----napanh-----");
                     System.out.println(napanh.length);
                     System.out.println(napanh);
-                    host.transmissionData(cccd, hoten, ngaysinh, sdt, phong, ngaydk,mapin, napanh);
+                    
+                   // host.sendImage(napanh);
+                   host.UploadImage(new File(linkanh),"jpg");
+                    //host.transmissionData(cccd, hoten, ngaysinh, sdt, phong, ngaydk,mapin, napanh);
                     ByteArrayInputStream bis = new ByteArrayInputStream(napanh);
                     BufferedImage bImage2 = ImageIO.read(bis);
                     label_anh.setIcon(new ImageIcon(bImage2));

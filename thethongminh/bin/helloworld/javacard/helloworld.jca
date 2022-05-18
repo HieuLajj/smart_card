@@ -1,5 +1,5 @@
 // converted by version 1.3
-// on Wed May 18 03:49:16 VET 2022
+// on Wed May 18 12:17:46 VET 2022
 
 .package helloworld {
 	.aid 0x11:0x22:0x33:0x44:0x55;
@@ -7,7 +7,8 @@
 
 	.imports {
 		0xA0:0x0:0x0:0x0:0x62:0x0:0x1 1.0;		//java/lang
-		0xA0:0x0:0x0:0x0:0x62:0x1:0x1 1.2;		//javacard/framework
+		0xA0:0x0:0x0:0x0:0x62:0x1:0x1 1.3;		//javacard/framework
+		0xA0:0x0:0x0:0x0:0x62:0x2:0x9 1.0;		//javacardx/apdu
 	}
 
 	.applet {
@@ -30,61 +31,61 @@
 		// 6
 		instanceFieldRef byte[] Customer/mapin;
 		// 7
-		instanceFieldRef byte[] hi/ten;
-		// 8
-		instanceFieldRef byte[] hi/ngaysinh4;
-		// 9
-		instanceFieldRef byte[] hi/ngaysinh2;
-		// 10
 		instanceFieldRef short hi/len3;
-		// 11
-		staticMethodRef 0.0.0()V;		// java/lang/Object.<init>()V
-		// 12
-		classRef hi;
-		// 13
-		staticMethodRef hi/<init>()V;
-		// 14
-		virtualMethodRef 1.3.2([BSB)V;		// javacard/framework/Applet.register([BSB)V
-		// 15
-		virtualMethodRef 1.3.3()Z;		// javacard/framework/Applet.selectingApplet()Z
-		// 16
-		virtualMethodRef 1.10.1()[B;		// javacard/framework/APDU.getBuffer()[B
-		// 17
-		virtualMethodRef 1.10.6()S;		// javacard/framework/APDU.setIncomingAndReceive()S
-		// 18
-		staticMethodRef 1.16.1([BS[BSS)S;		// javacard/framework/Util.arrayCopy([BS[BSS)S
-		// 19
-		classRef Customer;
-		// 20
-		staticMethodRef Customer/<init>([B[B[B[B[B[B[B)V;
-		// 21
-		staticFieldRef Customer hi/customer;
-		// 22
+		// 8
 		staticMethodRef 1.3.0()V;		// javacard/framework/Applet.<init>()V
+		// 9
+		classRef hi;
+		// 10
+		staticMethodRef hi/<init>()V;
+		// 11
+		virtualMethodRef 1.3.2([BSB)V;		// register([BSB)V
+		// 12
+		staticFieldRef byte[] hi/OpImage;
+		// 13
+		staticFieldRef byte[] hi/size;
+		// 14
+		virtualMethodRef 1.3.3()Z;		// selectingApplet()Z
+		// 15
+		virtualMethodRef 1.10.1()[B;		// getBuffer()[B
+		// 16
+		virtualMethodRef 1.10.6()S;		// setIncomingAndReceive()S
+		// 17
+		staticMethodRef 1.16.1([BS[BSS)S;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+		// 18
+		classRef Customer;
+		// 19
+		staticMethodRef Customer/<init>([B[B[B[B[B[B[B)V;
+		// 20
+		staticFieldRef Customer hi/customer;
+		// 21
+		staticMethodRef 0.0.0()V;		// java/lang/Object.<init>()V
+		// 22
+		virtualMethodRef 1.10.8(SS)V;		// setOutgoingAndSend(SS)V
 		// 23
-		virtualMethodRef 1.10.8(SS)V;		// javacard/framework/APDU.setOutgoingAndSend(SS)V
-		// 24
 		virtualMethodRef Customer/getCccd()[B;
-		// 25
+		// 24
 		virtualMethodRef Customer/getHoten()[B;
-		// 26
+		// 25
 		virtualMethodRef Customer/getNgaysinh()[B;
-		// 27
+		// 26
 		virtualMethodRef Customer/getSdt()[B;
-		// 28
+		// 27
 		virtualMethodRef Customer/getPhong()[B;
-		// 29
+		// 28
 		virtualMethodRef Customer/getNgaydk()[B;
-		// 30
+		// 29
 		virtualMethodRef Customer/getMapin()[B;
+		// 30
+		virtualMethodRef 1.10.7()S;		// setOutgoing()S
 		// 31
-		virtualMethodRef 1.10.7()S;		// javacard/framework/APDU.setOutgoing()S
+		virtualMethodRef 1.10.9(S)V;		// setOutgoingLength(S)V
 		// 32
-		virtualMethodRef 1.10.9(S)V;		// javacard/framework/APDU.setOutgoingLength(S)V
+		virtualMethodRef 1.10.5([BSS)V;		// sendBytesLong([BSS)V
 		// 33
-		virtualMethodRef 1.10.5([BSS)V;		// javacard/framework/APDU.sendBytesLong([BSS)V
-		// 34
 		staticMethodRef 1.7.1(S)V;		// javacard/framework/ISOException.throwIt(S)V
+		// 34
+		virtualMethodRef 1.10.4(SS)V;		// sendBytes(SS)V
 	}
 
 	.class public Customer 0 extends 0.0 {		// extends java/lang/Object
@@ -125,7 +126,7 @@
 			.locals 0;
 
 				L0:	aload_0;
-					invokespecial 11;		// java/lang/Object.<init>()V
+					invokespecial 21;		// java/lang/Object.<init>()V
 					aload_0;
 					aload_1;
 					putfield_a 0;		// reference helloworld/Customer.cccd
@@ -155,7 +156,7 @@
 			.locals 0;
 
 				L0:	aload_0;
-					invokespecial 11;		// java/lang/Object.<init>()V
+					invokespecial 21;		// java/lang/Object.<init>()V
 					return;
 		}
 
@@ -290,12 +291,9 @@
 	.class public hi 1 extends 1.3 {		// extends javacard/framework/Applet
 
 		.fields {
-			 byte[] ten 0;		// [B
-			 byte[] ngaysinh4 1;		// [B
-			 byte[] ngaysinh2 2;		// [B
-			 short len 3;		// S
-			 short len2 4;		// S
-			 short len3 5;		// S
+			 short len 0;		// S
+			 short len2 1;		// S
+			 short len3 2;		// S
 			public static final byte INS_INIT_0x00 = 0;		// B
 			public static final byte INS_GET_ALL_INFO_0x02 = 2;		// B
 			public static final short OFFSET_CCCD = 0;		// S
@@ -306,6 +304,13 @@
 			public static final short OFFSET_NGAYDK = 5;		// S
 			public static final short OFFSET_MAPIN = 6;		// S
 			public static Customer customer 0;		// Lhelloworld/Customer;
+			public static byte[] OpImage 1;		// [B
+			public static byte[] size 2;		// [B
+			private static final byte INS_CREATE_IMAGE = 83;		// B
+			private static final byte INS_CREATE_SIZEIMAGE = 84;		// B
+			private static final byte INS_OUT_SIZEIMAGE = 85;		// B
+			private static final byte INS_OUT_IMAGE = 86;		// B
+			private static short dataLen2;		// S
 		}
 
 		.publicMethodTable 7 {
@@ -322,104 +327,18 @@
 		.packageMethodTable 0 {
 		}
 
+		.implementedInterfaceInfoTable { 
+			.interface 2.0 { 		// javacardx/apdu/ExtendedLength
+			}
+
+		}
+
 		.method public <init>()V 0 {
-			.stack 5;
+			.stack 1;
 			.locals 0;
 
 				L0:	aload_0;
-					invokespecial 22;		// javacard/framework/Applet.<init>()V
-					aload_0;
-					sconst_4;
-					newarray 11;
-					dup;
-					sconst_0;
-					bspush 104;
-					bastore;
-					dup;
-					sconst_1;
-					bspush 105;
-					bastore;
-					dup;
-					sconst_2;
-					bspush 101;
-					bastore;
-					dup;
-					sconst_3;
-					bspush 117;
-					bastore;
-					putfield_a 7;		// reference helloworld/hi.ten
-					aload_0;
-					bspush 8;
-					newarray 11;
-					dup;
-					sconst_0;
-					sconst_1;
-					bastore;
-					dup;
-					sconst_1;
-					sconst_2;
-					bastore;
-					dup;
-					sconst_2;
-					sconst_1;
-					bastore;
-					dup;
-					sconst_3;
-					sconst_1;
-					bastore;
-					dup;
-					sconst_4;
-					sconst_2;
-					bastore;
-					dup;
-					sconst_5;
-					sconst_0;
-					bastore;
-					dup;
-					bspush 6;
-					sconst_0;
-					bastore;
-					dup;
-					bspush 7;
-					sconst_0;
-					bastore;
-					putfield_a 8;		// reference helloworld/hi.ngaysinh4
-					aload_0;
-					bspush 8;
-					newarray 11;
-					dup;
-					sconst_0;
-					sconst_1;
-					bastore;
-					dup;
-					sconst_1;
-					sconst_2;
-					bastore;
-					dup;
-					sconst_2;
-					sconst_3;
-					bastore;
-					dup;
-					sconst_3;
-					sconst_4;
-					bastore;
-					dup;
-					sconst_4;
-					sconst_5;
-					bastore;
-					dup;
-					sconst_5;
-					bspush 6;
-					bastore;
-					dup;
-					bspush 6;
-					bspush 7;
-					bastore;
-					dup;
-					bspush 7;
-					bspush 7;
-					bastore;
-					putfield_a 9;		// reference helloworld/hi.ngaysinh2
+					invokespecial 8;		// javacard/framework/Applet.<init>()V
 					return;
 		}
 
@@ -427,9 +346,9 @@
 			.stack 5;
 			.locals 0;
 
-				L0:	new 12;		// helloworld/hi
+				L0:	new 9;		// helloworld/hi
 					dup;
-					invokespecial 13;		// helloworld/hi.<init>()V
+					invokespecial 10;		// helloworld/hi.<init>()V
 					aload_0;
 					sload_1;
 					sconst_1;
@@ -437,148 +356,150 @@
 					aload_0;
 					sload_1;
 					baload;
-					invokevirtual 14;		// javacard/framework/Applet.register([BSB)V
+					invokevirtual 11;		// register([BSB)V
+					sspush 10000;
+					newarray 11;
+					putstatic_a 12;		// reference helloworld/hi.OpImage
+					bspush 7;
+					newarray 11;
+					putstatic_a 13;		// reference helloworld/hi.size
 					return;
 		}
 
 		.method public process(Ljavacard/framework/APDU;)V 7 {
 			.stack 9;
-			.locals 22;
+			.locals 28;
 
 			.descriptor	Ljavacard/framework/APDU;	1.10;
 
 				L0:	aload_0;
-					invokevirtual 15;		// javacard/framework/Applet.selectingApplet()Z
+					invokevirtual 14;		// selectingApplet()Z
 					ifeq L2;
 				L1:	return;
 				L2:	aload_1;
-					invokevirtual 16;		// javacard/framework/APDU.getBuffer()[B
+					invokevirtual 15;		// getBuffer()[B
 					astore_2;
 				L3:	aload_1;
-					invokevirtual 17;		// javacard/framework/APDU.setIncomingAndReceive()S
-					pop;
-					aload_2;
+					invokevirtual 16;		// setIncomingAndReceive()S
+					sstore_3;
+				L4:	sconst_0;
+					sstore 4;
+				L5:	aload_2;
 					sconst_1;
 					baload;
-					slookupswitch L31 2 0 L4 2 L28;
-				L4:	aload_2;
+					slookupswitch L41 6 0 L6 2 L30 83 L33 84 L36 85 L37 86 L38;
+				L6:	aload_2;
 					sconst_4;
 					baload;
 					newarray 11;
-					astore_3;
-				L5:	aload_3;
+					astore 5;
+				L7:	aload 5;
 					arraylength;
-					sstore 4;
-				L6:	aload_2;
+					sstore 6;
+				L8:	aload_2;
 					sconst_5;
-					aload_3;
+					aload 5;
 					sconst_0;
 					aload_2;
 					sconst_4;
 					baload;
-					invokestatic 18;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					invokestatic 17;		// javacard/framework/Util.arrayCopy([BS[BSS)S
 					pop;
 					bspush 7;
 					newarray 11;
-					astore 12;
-				L7:	aload 12;
+					astore 14;
+				L9:	aload 14;
 					sconst_0;
 					sconst_0;
 					bastore;
 					sconst_1;
-					sstore 13;
-				L8:	sconst_0;
-					sstore 14;
-				L9:	sload 14;
+					sstore 15;
+				L10:	sconst_0;
+					sstore 16;
+				L11:	sload 16;
 					aload_2;
 					sconst_4;
 					baload;
-					if_scmpge L13;
-				L10:	aload_3;
-					sload 14;
+					if_scmpge L15;
+				L12:	aload 5;
+					sload 16;
 					baload;
 					bspush 64;
-					if_scmpne L12;
-				L11:	aload 12;
-					sload 13;
-					sload 14;
+					if_scmpne L14;
+				L13:	aload 14;
+					sload 15;
+					sload 16;
 					sconst_1;
 					sadd;
 					s2b;
 					bastore;
-					sinc 13 1;
-				L12:	sinc 14 1;
-					goto L9;
-				L13:	aload 12;
+					sinc 15 1;
+				L14:	sinc 16 1;
+					goto L11;
+				L15:	aload 14;
 					sconst_1;
 					baload;
-					sconst_1;
-					ssub;
-					sstore 5;
-				L14:	aload 12;
-					sconst_2;
-					baload;
-					aload 12;
-					sconst_1;
-					baload;
-					ssub;
-					sconst_1;
-					ssub;
-					sstore 6;
-				L15:	aload 12;
-					sconst_3;
-					baload;
-					aload 12;
-					sconst_2;
-					baload;
-					ssub;
 					sconst_1;
 					ssub;
 					sstore 7;
-				L16:	aload 12;
-					sconst_4;
+				L16:	aload 14;
+					sconst_2;
 					baload;
-					aload 12;
-					sconst_3;
+					aload 14;
+					sconst_1;
 					baload;
 					ssub;
 					sconst_1;
 					ssub;
 					sstore 8;
-				L17:	aload 12;
-					sconst_5;
+				L17:	aload 14;
+					sconst_3;
 					baload;
-					aload 12;
-					sconst_4;
+					aload 14;
+					sconst_2;
 					baload;
 					ssub;
 					sconst_1;
 					ssub;
 					sstore 9;
-				L18:	aload 12;
-					bspush 6;
+				L18:	aload 14;
+					sconst_4;
 					baload;
-					aload 12;
-					sconst_5;
+					aload 14;
+					sconst_3;
 					baload;
 					ssub;
 					sconst_1;
 					ssub;
 					sstore 10;
-				L19:	aload_2;
+				L19:	aload 14;
+					sconst_5;
+					baload;
+					aload 14;
 					sconst_4;
 					baload;
-					aload 12;
+					ssub;
+					sconst_1;
+					ssub;
+					sstore 11;
+				L20:	aload 14;
+					bspush 6;
+					baload;
+					aload 14;
+					sconst_5;
+					baload;
+					ssub;
+					sconst_1;
+					ssub;
+					sstore 12;
+				L21:	aload_2;
+					sconst_4;
+					baload;
+					aload 14;
 					bspush 6;
 					baload;
 					ssub;
-					sstore 11;
-				L20:	sload 5;
-					newarray 11;
-					astore 15;
-				L21:	sload 6;
-					newarray 11;
-					astore 16;
+					sstore 13;
 				L22:	sload 7;
 					newarray 11;
 					astore 17;
@@ -594,130 +515,130 @@
 				L26:	sload 11;
 					newarray 11;
 					astore 21;
-				L27:	aload_3;
-					aload 12;
+				L27:	sload 12;
+					newarray 11;
+					astore 22;
+				L28:	sload 13;
+					newarray 11;
+					astore 23;
+				L29:	aload 5;
+					aload 14;
 					sconst_0;
-					baload;
-					aload 15;
-					sconst_0;
-					sload 5;
-					invokestatic 18;		// javacard/framework/Util.arrayCopy([BS[BSS)S
-					pop;
-					aload_3;
-					aload 12;
-					sconst_1;
-					baload;
-					aload 16;
-					sconst_0;
-					sload 6;
-					invokestatic 18;		// javacard/framework/Util.arrayCopy([BS[BSS)S
-					pop;
-					aload_3;
-					aload 12;
-					sconst_2;
 					baload;
 					aload 17;
 					sconst_0;
 					sload 7;
-					invokestatic 18;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					invokestatic 17;		// javacard/framework/Util.arrayCopy([BS[BSS)S
 					pop;
-					aload_3;
-					aload 12;
-					sconst_3;
+					aload 5;
+					aload 14;
+					sconst_1;
 					baload;
 					aload 18;
 					sconst_0;
 					sload 8;
-					invokestatic 18;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					invokestatic 17;		// javacard/framework/Util.arrayCopy([BS[BSS)S
 					pop;
-					aload_3;
-					aload 12;
-					sconst_4;
+					aload 5;
+					aload 14;
+					sconst_2;
 					baload;
 					aload 19;
 					sconst_0;
 					sload 9;
-					invokestatic 18;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					invokestatic 17;		// javacard/framework/Util.arrayCopy([BS[BSS)S
 					pop;
-					aload_3;
-					aload 12;
-					sconst_5;
+					aload 5;
+					aload 14;
+					sconst_3;
 					baload;
 					aload 20;
 					sconst_0;
 					sload 10;
-					invokestatic 18;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					invokestatic 17;		// javacard/framework/Util.arrayCopy([BS[BSS)S
 					pop;
-					aload_3;
-					aload 12;
-					bspush 6;
+					aload 5;
+					aload 14;
+					sconst_4;
 					baload;
 					aload 21;
 					sconst_0;
 					sload 11;
-					invokestatic 18;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					invokestatic 17;		// javacard/framework/Util.arrayCopy([BS[BSS)S
 					pop;
-					new 19;		// helloworld/Customer
+					aload 5;
+					aload 14;
+					sconst_5;
+					baload;
+					aload 22;
+					sconst_0;
+					sload 12;
+					invokestatic 17;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload 5;
+					aload 14;
+					bspush 6;
+					baload;
+					aload 23;
+					sconst_0;
+					sload 13;
+					invokestatic 17;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					new 18;		// helloworld/Customer
 					dup;
-					aload 15;
-					aload 16;
 					aload 17;
 					aload 18;
 					aload 19;
 					aload 20;
 					aload 21;
-					invokespecial 20;		// helloworld/Customer.<init>([B[B[B[B[B[B[B)V
-					putstatic_a 21;		// reference helloworld/hi.customer
+					aload 22;
+					aload 23;
+					invokespecial 19;		// helloworld/Customer.<init>([B[B[B[B[B[B[B)V
+					putstatic_a 20;		// reference helloworld/hi.customer
 					aload_0;
-					aload 21;
+					aload 23;
 					arraylength;
-					putfield_s 10;		// short helloworld/hi.len3
-					aload 21;
+					putfield_s 7;		// short helloworld/hi.len3
+					aload 23;
 					sconst_0;
 					aload_2;
 					sconst_0;
-					getfield_s_this 10;		// short helloworld/hi.len3
-					invokestatic 18;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					getfield_s_this 7;		// short helloworld/hi.len3
+					invokestatic 17;		// javacard/framework/Util.arrayCopy([BS[BSS)S
 					pop;
 					aload_1;
 					sconst_0;
-					getfield_s_this 10;		// short helloworld/hi.len3
-					invokevirtual 23;		// javacard/framework/APDU.setOutgoingAndSend(SS)V
-					goto_w L32;
-				L28:	sconst_1;
+					getfield_s_this 7;		// short helloworld/hi.len3
+					invokevirtual 22;		// setOutgoingAndSend(SS)V
+					goto_w L42;
+				L30:	sconst_1;
 					newarray 11;
 					dup;
 					sconst_0;
 					bspush 64;
 					bastore;
-					astore 22;
-				L29:	getstatic_a 21;		// reference helloworld/hi.customer
-					invokevirtual 24;		// helloworld/Customer.getCccd()[B
-					astore 15;
-					getstatic_a 21;		// reference helloworld/hi.customer
-					invokevirtual 25;		// helloworld/Customer.getHoten()[B
-					astore 16;
-					getstatic_a 21;		// reference helloworld/hi.customer
-					invokevirtual 26;		// helloworld/Customer.getNgaysinh()[B
+					astore 24;
+				L31:	getstatic_a 20;		// reference helloworld/hi.customer
+					invokevirtual 23;		// getCccd()[B
 					astore 17;
-					getstatic_a 21;		// reference helloworld/hi.customer
-					invokevirtual 27;		// helloworld/Customer.getSdt()[B
+					getstatic_a 20;		// reference helloworld/hi.customer
+					invokevirtual 24;		// getHoten()[B
 					astore 18;
-					getstatic_a 21;		// reference helloworld/hi.customer
-					invokevirtual 28;		// helloworld/Customer.getPhong()[B
+					getstatic_a 20;		// reference helloworld/hi.customer
+					invokevirtual 25;		// getNgaysinh()[B
 					astore 19;
-					getstatic_a 21;		// reference helloworld/hi.customer
-					invokevirtual 29;		// helloworld/Customer.getNgaydk()[B
+					getstatic_a 20;		// reference helloworld/hi.customer
+					invokevirtual 26;		// getSdt()[B
 					astore 20;
-					getstatic_a 21;		// reference helloworld/hi.customer
-					invokevirtual 30;		// helloworld/Customer.getMapin()[B
+					getstatic_a 20;		// reference helloworld/hi.customer
+					invokevirtual 27;		// getPhong()[B
 					astore 21;
-					aload 15;
-					arraylength;
-					sstore 5;
-					aload 16;
-					arraylength;
-					sstore 6;
+					getstatic_a 20;		// reference helloworld/hi.customer
+					invokevirtual 28;		// getNgaydk()[B
+					astore 22;
+					getstatic_a 20;		// reference helloworld/hi.customer
+					invokevirtual 29;		// getMapin()[B
+					astore 23;
 					aload 17;
 					arraylength;
 					sstore 7;
@@ -733,11 +654,13 @@
 					aload 21;
 					arraylength;
 					sstore 11;
-					sload 5;
-					sload 6;
-					sadd;
+					aload 22;
+					arraylength;
+					sstore 12;
+					aload 23;
+					arraylength;
+					sstore 13;
 					sload 7;
-					sadd;
 					sload 8;
 					sadd;
 					sload 9;
@@ -746,84 +669,260 @@
 					sadd;
 					sload 11;
 					sadd;
+					sload 12;
+					sadd;
+					sload 13;
+					sadd;
 					bspush 6;
 					sadd;
-					sstore 23;
-				L30:	aload_1;
-					invokevirtual 31;		// javacard/framework/APDU.setOutgoing()S
+					sstore 25;
+				L32:	aload_1;
+					invokevirtual 30;		// setOutgoing()S
 					pop;
 					aload_1;
-					sload 23;
-					invokevirtual 32;		// javacard/framework/APDU.setOutgoingLength(S)V
-					aload_1;
-					aload 15;
-					sconst_0;
-					sload 5;
-					invokevirtual 33;		// javacard/framework/APDU.sendBytesLong([BSS)V
-					aload_1;
-					aload 22;
-					sconst_0;
-					sconst_1;
-					invokevirtual 33;		// javacard/framework/APDU.sendBytesLong([BSS)V
-					aload_1;
-					aload 16;
-					sconst_0;
-					sload 6;
-					invokevirtual 33;		// javacard/framework/APDU.sendBytesLong([BSS)V
-					aload_1;
-					aload 22;
-					sconst_0;
-					sconst_1;
-					invokevirtual 33;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					sload 25;
+					invokevirtual 31;		// setOutgoingLength(S)V
 					aload_1;
 					aload 17;
 					sconst_0;
 					sload 7;
-					invokevirtual 33;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					invokevirtual 32;		// sendBytesLong([BSS)V
 					aload_1;
-					aload 22;
+					aload 24;
 					sconst_0;
 					sconst_1;
-					invokevirtual 33;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					invokevirtual 32;		// sendBytesLong([BSS)V
 					aload_1;
 					aload 18;
 					sconst_0;
 					sload 8;
-					invokevirtual 33;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					invokevirtual 32;		// sendBytesLong([BSS)V
 					aload_1;
-					aload 22;
+					aload 24;
 					sconst_0;
 					sconst_1;
-					invokevirtual 33;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					invokevirtual 32;		// sendBytesLong([BSS)V
 					aload_1;
 					aload 19;
 					sconst_0;
 					sload 9;
-					invokevirtual 33;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					invokevirtual 32;		// sendBytesLong([BSS)V
 					aload_1;
-					aload 22;
+					aload 24;
 					sconst_0;
 					sconst_1;
-					invokevirtual 33;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					invokevirtual 32;		// sendBytesLong([BSS)V
 					aload_1;
 					aload 20;
 					sconst_0;
 					sload 10;
-					invokevirtual 33;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					invokevirtual 32;		// sendBytesLong([BSS)V
 					aload_1;
-					aload 22;
+					aload 24;
 					sconst_0;
 					sconst_1;
-					invokevirtual 33;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					invokevirtual 32;		// sendBytesLong([BSS)V
 					aload_1;
 					aload 21;
 					sconst_0;
 					sload 11;
-					invokevirtual 33;		// javacard/framework/APDU.sendBytesLong([BSS)V
-					goto L32;
-				L31:	sspush 27904;
-					invokestatic 34;		// javacard/framework/ISOException.throwIt(S)V
-				L32:	return;
+					invokevirtual 32;		// sendBytesLong([BSS)V
+					aload_1;
+					aload 24;
+					sconst_0;
+					sconst_1;
+					invokevirtual 32;		// sendBytesLong([BSS)V
+					aload_1;
+					aload 22;
+					sconst_0;
+					sload 12;
+					invokevirtual 32;		// sendBytesLong([BSS)V
+					aload_1;
+					aload 24;
+					sconst_0;
+					sconst_1;
+					invokevirtual 32;		// sendBytesLong([BSS)V
+					aload_1;
+					aload 23;
+					sconst_0;
+					sload 13;
+					invokevirtual 32;		// sendBytesLong([BSS)V
+					goto L42;
+				L33:	aload_2;
+					sconst_2;
+					baload;
+					sspush 255;
+					sand;
+					sstore 26;
+				L34:	sspush 249;
+					sload 26;
+					smul;
+					sstore 27;
+				L35:	aload_2;
+					sconst_5;
+					getstatic_a 12;		// reference helloworld/hi.OpImage
+					sload 27;
+					sspush 249;
+					invokestatic 17;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					goto L42;
+				L36:	aload_2;
+					sconst_5;
+					getstatic_a 13;		// reference helloworld/hi.size
+					sconst_0;
+					bspush 7;
+					invokestatic 17;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					goto L42;
+				L37:	getstatic_a 13;		// reference helloworld/hi.size
+					sconst_0;
+					aload_2;
+					sconst_0;
+					getstatic_a 13;		// reference helloworld/hi.size
+					arraylength;
+					invokestatic 17;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_1;
+					sconst_0;
+					bspush 7;
+					invokevirtual 22;		// setOutgoingAndSend(SS)V
+					goto L42;
+				L38:	aload_1;
+					invokevirtual 30;		// setOutgoing()S
+					pop;
+					aload_2;
+					sconst_2;
+					baload;
+					sspush 255;
+					sand;
+					sstore 28;
+				L39:	sspush 249;
+					sload 28;
+					smul;
+					sstore 29;
+				L40:	aload_1;
+					sspush 249;
+					invokevirtual 31;		// setOutgoingLength(S)V
+					aload_1;
+					getstatic_a 12;		// reference helloworld/hi.OpImage
+					sload 29;
+					sspush 249;
+					invokevirtual 32;		// sendBytesLong([BSS)V
+					goto L42;
+				L41:	sspush 27904;
+					invokestatic 33;		// javacard/framework/ISOException.throwIt(S)V
+				L42:	return;
+		}
+
+		.method private SetupImage(Ljavacard/framework/APDU;[B)V {
+			.stack 5;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 16;		// setIncomingAndReceive()S
+					pop;
+					aload_2;
+					sconst_2;
+					baload;
+					sspush 255;
+					sand;
+					sstore_3;
+				L1:	sspush 249;
+					sload_3;
+					smul;
+					sstore 4;
+				L2:	aload_2;
+					sconst_5;
+					getstatic_a 12;		// reference helloworld/hi.OpImage
+					sload 4;
+					sspush 249;
+					invokestatic 17;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					return;
+		}
+
+		.method private SetCount(Ljavacard/framework/APDU;[B)V {
+			.stack 5;
+			.locals 0;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 16;		// setIncomingAndReceive()S
+					pop;
+					aload_2;
+					sconst_5;
+					getstatic_a 13;		// reference helloworld/hi.size
+					sconst_0;
+					bspush 7;
+					invokestatic 17;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					return;
+		}
+
+		.method private OuputSize(Ljavacard/framework/APDU;[B)V {
+			.stack 5;
+			.locals 0;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 16;		// setIncomingAndReceive()S
+					pop;
+					aload_1;
+					invokevirtual 30;		// setOutgoing()S
+					pop;
+					aload_1;
+					bspush 7;
+					invokevirtual 31;		// setOutgoingLength(S)V
+					getstatic_a 13;		// reference helloworld/hi.size
+					sconst_0;
+					aload_2;
+					sconst_0;
+					getstatic_a 13;		// reference helloworld/hi.size
+					arraylength;
+					invokestatic 17;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_1;
+					sconst_0;
+					bspush 7;
+					invokevirtual 34;		// sendBytes(SS)V
+					return;
+		}
+
+		.method private OututImage(Ljavacard/framework/APDU;[B)V {
+			.stack 4;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 16;		// setIncomingAndReceive()S
+					pop;
+					aload_1;
+					invokevirtual 30;		// setOutgoing()S
+					pop;
+					aload_2;
+					sconst_2;
+					baload;
+					sspush 255;
+					sand;
+					sstore_3;
+				L1:	sspush 249;
+					sload_3;
+					smul;
+					sstore 4;
+				L2:	aload_1;
+					sspush 249;
+					invokevirtual 31;		// setOutgoingLength(S)V
+					aload_1;
+					getstatic_a 12;		// reference helloworld/hi.OpImage
+					sload 4;
+					sspush 249;
+					invokevirtual 32;		// sendBytesLong([BSS)V
+					return;
 		}
 
 	}

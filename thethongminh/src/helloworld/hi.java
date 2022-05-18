@@ -1,13 +1,22 @@
 package helloworld;
 
 import javacard.framework.*;
+import javacardx.apdu.ExtendedLength;
 
-public class hi extends Applet
+public class hi extends Applet implements ExtendedLength
 {
 	public static Customer customer;
 	
 	public static final byte INS_INIT_0x00 = 0x00;
 	public static final byte INS_GET_ALL_INFO_0x02 = 0x02;
+	
+    private final static byte INS_CREATE_IMAGE = (byte)0x53;
+	private final static byte INS_CREATE_SIZEIMAGE = (byte)0x54;//countanh
+	private final static byte INS_OUT_SIZEIMAGE = (byte)0x55;
+	private final static byte INS_OUT_IMAGE = (byte)0x56;
+	
+	
+	private static short dataLen2;
 	
 	
 	public static final short OFFSET_CCCD     = 0;
@@ -21,16 +30,21 @@ public class hi extends Applet
 	
 	
 	
-	byte []ten = {'h','i','e','u'};
-    byte []ngaysinh4 = {1,2,1,1,2,0,0,0};
-    byte []ngaysinh2= {1,2,3,4,5,6,7,7};
     short len;
     short len2;
     short len3;
+    
+    public static byte[] OpImage,size;
+    
+    
 
 	public static void install(byte[] bArray, short bOffset, byte bLength) 
 	{
 		new hi().register(bArray, (short) (bOffset + 1), bArray[bOffset]);
+		
+		OpImage = new byte[10000];
+		size = new byte[7];
+		 
 	}
 
 	public void process(APDU apdu)
@@ -41,7 +55,9 @@ public class hi extends Applet
 		}
 
 		byte[] buf = apdu.getBuffer();
-		apdu.setIncomingAndReceive();
+		short recvLen =apdu.setIncomingAndReceive();
+		
+		short pointer = 0;
 		
 		switch (buf[ISO7816.OFFSET_INS])
 		{
@@ -144,9 +160,56 @@ public class hi extends Applet
 			
 			
 			break;
+	    case INS_CREATE_IMAGE:
+			 
+		    short p1 = (short)(buf[ISO7816.OFFSET_P1]&0xff);
+		    short count1 = (short)(249 * p1);
+		    Util.arrayCopy(buf, ISO7816.OFFSET_CDATA, OpImage, count1, (short)249);
+			break;
+		case INS_CREATE_SIZEIMAGE:
+			Util.arrayCopy(buf, ISO7816.OFFSET_CDATA, size, (short)0, (short)7);
+			break;
+		case INS_OUT_SIZEIMAGE:
+			Util.arrayCopy(size, (short)0, buf, (short)0, (short)(size.length));
+			apdu.setOutgoingAndSend((short)0,(short)7);
+			break;
+		case INS_OUT_IMAGE:
+			apdu.setOutgoing();
+		    short p = (short)(buf[ISO7816.OFFSET_P1]&0xff);
+		    short count = (short)(249 * p);
+		    apdu.setOutgoingLength((short)249);
+		    apdu.sendBytesLong(OpImage, count, (short)249);
+			break;
 		default:
 			ISOException.throwIt(ISO7816.SW_INS_NOT_SUPPORTED);
 		}
+	}
+	
+	//Input Image
+	private void SetupImage(APDU apdu, byte[] buffer){
+		apdu.setIncomingAndReceive();
+		short p1 = (short)(buffer[ISO7816.OFFSET_P1]&0xff);
+		short count = (short)(249 * p1);
+		Util.arrayCopy(buffer, ISO7816.OFFSET_CDATA, OpImage, count, (short)249);
+	}
+	private void SetCount(APDU apdu, byte[] buffer){
+		apdu.setIncomingAndReceive();
+		Util.arrayCopy(buffer, ISO7816.OFFSET_CDATA, size, (short)0, (short)7);
+	}
+	private void OuputSize(APDU apdu, byte[] buffer){
+		apdu.setIncomingAndReceive();
+		apdu.setOutgoing();
+		apdu.setOutgoingLength((short)7);
+		Util.arrayCopy(size, (short)0, buffer, (short)0, (short)(size.length));
+		apdu.sendBytes((short)0,(short)7);
+	}
+	private void OututImage(APDU apdu, byte[] buffer){
+		apdu.setIncomingAndReceive();
+		apdu.setOutgoing();
+		short p = (short)(buffer[ISO7816.OFFSET_P1]&0xff);
+		short count = (short)(249 * p);
+		apdu.setOutgoingLength((short)249);
+		apdu.sendBytesLong(OpImage, count, (short)249);
 	}
 
 }
