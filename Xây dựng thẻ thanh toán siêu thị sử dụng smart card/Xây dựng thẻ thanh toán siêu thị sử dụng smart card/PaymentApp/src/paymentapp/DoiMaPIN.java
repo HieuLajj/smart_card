@@ -8,7 +8,7 @@ package paymentapp;
 import javax.swing.JOptionPane;
 
 /**
- *
+ *FJ
  * @author duong
  */
 public class DoiMaPIN extends javax.swing.JFrame {

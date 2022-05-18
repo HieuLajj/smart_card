@@ -10,15 +10,15 @@ package javaapp;
  * @author laihi
  */
 public class Customer {
-    private String cccd;
-    private String hoten;
-    private String ngaysinh;
-    private String sdt;
-    private String phong;
-    private String ngaydk;
-    private String mapin;
+    private byte[] cccd;
+    private byte[] hoten;
+    private byte[] ngaysinh;
+    private byte[] sdt;
+    private byte[] phong;
+    private byte[] ngaydk;
+    private byte[] mapin;
 
-    public Customer(String cccd, String hoten, String ngaysinh, String sdt, String phong, String ngaydk, String mapin) {
+    public Customer(byte[] cccd, byte[] hoten, byte[] ngaysinh, byte[] sdt, byte[] phong, byte[] ngaydk, byte[] mapin) {
         this.cccd = cccd;
         this.hoten = hoten;
         this.ngaysinh = ngaysinh;
@@ -27,65 +27,61 @@ public class Customer {
         this.ngaydk = ngaydk;
         this.mapin = mapin;
     }
-    public Customer(){
-        
-    }
 
-    public String getCccd() {
+    public byte[] getCccd() {
         return cccd;
     }
 
-    public void setCccd(String cccd) {
+    public void setCccd(byte[] cccd) {
         this.cccd = cccd;
     }
 
-    public String getHoten() {
+    public byte[] getHoten() {
         return hoten;
     }
 
-    public void setHoten(String hoten) {
+    public void setHoten(byte[] hoten) {
         this.hoten = hoten;
     }
 
-    public String getNgaysinh() {
+    public byte[] getNgaysinh() {
         return ngaysinh;
     }
 
-    public void setNgaysinh(String ngaysinh) {
+    public void setNgaysinh(byte[] ngaysinh) {
         this.ngaysinh = ngaysinh;
     }
 
-    public String getSdt() {
+    public byte[] getSdt() {
         return sdt;
     }
 
-    public void setSdt(String sdt) {
+    public void setSdt(byte[] sdt) {
         this.sdt = sdt;
     }
 
-    public String getPhong() {
+    public byte[] getPhong() {
         return phong;
     }
 
-    public void setPhong(String phong) {
+    public void setPhong(byte[] phong) {
         this.phong = phong;
     }
 
-    public String getNgaydk() {
+    public byte[] getNgaydk() {
         return ngaydk;
     }
 
-    public void setNgaydk(String ngaydk) {
+    public void setNgaydk(byte[] ngaydk) {
         this.ngaydk = ngaydk;
     }
 
-    public String getMapin() {
+    public byte[] getMapin() {
         return mapin;
     }
 
-    public void setMapin(String mapin) {
+    public void setMapin(byte[] mapin) {
         this.mapin = mapin;
     }
-    
     
 }
