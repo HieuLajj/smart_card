@@ -71,7 +71,8 @@ public class ConnectJavaCard {
         try{
             byte[] send  ={(byte) 0x11,0x22,0x33,0x44,0x55,0x00};
             response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x02, (byte)0x00, (byte)0x00));
-            String pub = bytesToHex(response.getData());
+            String pub = new String(response.getData(),StandardCharsets.UTF_8);
+       
             System.out.println("answer: " + response.toString()+pub);
         }catch(Exception e){
             System.out.println("Ouch: " + e.toString());
@@ -81,34 +82,53 @@ public class ConnectJavaCard {
     
     
     
-    public boolean transmissionData(String cccd, String hoten, String ngaysinh, String sdt,String phong, String ngay_dk, byte[] image){
+    public boolean transmissionData(String cccd, String hoten, String ngaysinh, String sdt,String phong, String ngay_dk,String mapin,byte[] image){
         try {
             System.out.println("------------------------------------------------------------------------------------------");
-            String data = cccd + "@" + hoten + "@" + ngaysinh + "@" + sdt + "@" + phong + "@" + ngay_dk;
+            String data = cccd + "@" + hoten + "@" + ngaysinh + "@" + sdt + "@" + phong + "@" + ngay_dk+ "@"+ mapin;
             byte[] dataTrans = data.getBytes();
-            System.out.println("----data-----");
-            System.out.println(dataTrans.length);
-            System.out.println(dataTrans);
-            System.out.println("----image-----");
-            System.out.println(image.length);
-            System.out.println(image);
-            System.out.println("----combined-----");
-            byte[] combined = new byte[dataTrans.length + image.length];
             
-            for (int i = 0; i < combined.length; ++i)
-            {
-                combined[i] = i < dataTrans.length ? dataTrans[i] : image[i - dataTrans.length];
-            }
-            System.out.println(combined.length);
-            System.out.println(combined);
+            
+            
+            
+            
+            
+
+//            System.out.println("----data-----");
+//            System.out.println(dataTrans.length);
+//            System.out.println(dataTrans);
+//            System.out.println("----image-----");
+//            System.out.println(image.length);
+//            System.out.println(image);
+//            System.out.println("----combined-----");
+//            byte[] combined = new byte[dataTrans.length + image.length];
+//            
+//            for (int i = 0; i < combined.length; ++i)
+//            {
+//                combined[i] = i < dataTrans.length ? dataTrans[i] : image[i - dataTrans.length];
+//            }
+//            System.out.println(combined.length);
+//            System.out.println(combined);
             response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x00, (byte)0x11, (byte)0x00,dataTrans));
-            String pub = bytesToHex(response.getData());
-            System.out.println("answer: " + response.toString()+pub);
+            //String pub = bytesToHex(response.getData());
+            String pub = new String(response.getData(),StandardCharsets.UTF_8);
+            System.out.println("answer: " + response.toString()+"fawef"+pub);
             return true;
         } catch (CardException ex) {
             Logger.getLogger(ConnectJavaCard.class.getName()).log(Level.SEVERE, null, ex);
         }
             return false;
+    }
+    
+     public  String getData(){
+        try {
+            response = channel.transmit(new CommandAPDU((byte) 0x00, (byte)0x02, (byte) 0x00,(byte) 0x00));
+            return new String(response.getData(), StandardCharsets.UTF_8);
+        } catch (CardException e) {
+            System.out.println("Error :" + e);
+            return "Lỗi";
+        }
+        
     }
     
     

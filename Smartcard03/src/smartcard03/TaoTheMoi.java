@@ -290,6 +290,7 @@ public class TaoTheMoi extends javax.swing.JFrame {
                     String sdt = text_sdt.getText();
                     String phong = text_phong.getText();
                     String ngaydk = text_ngaydk.getText();
+                    String mapin = pin;
                     
                     JOptionPane.showMessageDialog(null, "Khởi tạo nội dung thẻ thành công. :)");
                     text_cccd.setText("");
@@ -324,7 +325,7 @@ public class TaoTheMoi extends javax.swing.JFrame {
                     System.out.println("-----napanh-----");
                     System.out.println(napanh.length);
                     System.out.println(napanh);
-                    host.transmissionData(cccd, hoten, ngaysinh, sdt, phong, ngaydk, napanh);
+                    host.transmissionData(cccd, hoten, ngaysinh, sdt, phong, ngaydk,mapin, napanh);
                     ByteArrayInputStream bis = new ByteArrayInputStream(napanh);
                     BufferedImage bImage2 = ImageIO.read(bis);
                     label_anh.setIcon(new ImageIcon(bImage2));

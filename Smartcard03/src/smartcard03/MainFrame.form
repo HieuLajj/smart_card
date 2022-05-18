@@ -213,13 +213,13 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTextField1" min="-2" pref="262" max="-2" attributes="0"/>
-                      <Component id="jTextField2" min="-2" pref="262" max="-2" attributes="0"/>
-                      <Component id="jTextField3" alignment="0" min="-2" pref="262" max="-2" attributes="0"/>
-                      <Component id="jTextField4" alignment="0" min="-2" pref="262" max="-2" attributes="0"/>
-                      <Component id="jTextField5" alignment="0" min="-2" pref="262" max="-2" attributes="0"/>
-                      <Component id="jTextField6" alignment="0" min="-2" pref="262" max="-2" attributes="0"/>
-                      <Component id="jTextField7" alignment="0" min="-2" pref="262" max="-2" attributes="0"/>
+                      <Component id="text_cccd" min="-2" pref="262" max="-2" attributes="0"/>
+                      <Component id="text_hoten" min="-2" pref="262" max="-2" attributes="0"/>
+                      <Component id="text_ngaysinh" alignment="0" min="-2" pref="262" max="-2" attributes="0"/>
+                      <Component id="text_sdt" alignment="0" min="-2" pref="262" max="-2" attributes="0"/>
+                      <Component id="text_phong" alignment="0" min="-2" pref="262" max="-2" attributes="0"/>
+                      <Component id="text_ngaydk" alignment="0" min="-2" pref="262" max="-2" attributes="0"/>
+                      <Component id="text_mapin" alignment="0" min="-2" pref="262" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="188" max="32767" attributes="0"/>
               </Group>
@@ -229,37 +229,37 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextField1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="text_cccd" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextField2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="text_hoten" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextField3" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="text_ngaysinh" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextField4" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="text_sdt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextField5" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="text_phong" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextField6" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="text_ngaydk" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="jLabel6" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextField7" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="text_mapin" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="jLabel7" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -324,19 +324,19 @@
             <Property name="text" type="java.lang.String" value="PIN:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="text_cccd">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="text_hoten">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField3">
+        <Component class="javax.swing.JTextField" name="text_ngaysinh">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField4">
+        <Component class="javax.swing.JTextField" name="text_sdt">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField5">
+        <Component class="javax.swing.JTextField" name="text_phong">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField6">
+        <Component class="javax.swing.JTextField" name="text_ngaydk">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField7">
+        <Component class="javax.swing.JTextField" name="text_mapin">
         </Component>
       </SubComponents>
     </Container>
