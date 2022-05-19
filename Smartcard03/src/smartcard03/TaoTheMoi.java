@@ -275,7 +275,7 @@ public class TaoTheMoi extends javax.swing.JFrame {
 
     private void button_okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_okActionPerformed
         // TODO add your handling code here:
-         String pin = Arrays.toString(text_mapin.getPassword());
+        String pin = Arrays.toString(text_mapin.getPassword());
         String xnpin = Arrays.toString(text_xnmapin.getPassword());
          if ((pin.equals(xnpin)) != true) {
             JOptionPane.showMessageDialog(null, "Xác nhận mã pin sai");
@@ -283,52 +283,46 @@ public class TaoTheMoi extends javax.swing.JFrame {
             if (pin.length() != 18) {
                 JOptionPane.showMessageDialog(null, "Mã PIN phải có độ dài 6 kí tự");
             } else {
-                try {
-                    String cccd =text_cccd.getText();
-                    String hoten = text_hoten.getText();
-                    String ngaysinh = text_ngaysinh.getText();
-                    String sdt = text_sdt.getText();
-                    String phong = text_phong.getText();
-                    String ngaydk = text_ngaydk.getText();
-                    String mapin = pin;
-                    
-                    JOptionPane.showMessageDialog(null, "Khởi tạo nội dung thẻ thành công. :)");
-                    text_cccd.setText("");
-                    text_hoten.setText("");
-                    text_ngaysinh.setText("");
-                    text_sdt.setText("");
-                    text_phong.setText("");
-                    text_ngaydk.setText("");
-                    text_mapin.setText("");
-                    text_xnmapin.setText("");
-                    System.out.println(cccd);
-                    System.out.println(hoten);
-                    System.out.println(ngaysinh);
-                    System.out.println(sdt);
-                    System.out.println(phong);
-                    System.out.println(ngaydk);
-                    
-                    
-                    BufferedImage bImage = ImageIO.read(new File(linkanh));
-                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                    ImageIO.write(bImage, "jpg", bos);
-                    napanh = bos.toByteArray();
-                    
-                    
-                    System.out.println("-----napanh-----");
-                    System.out.println(napanh.length);
-                    System.out.println(napanh);
-                    
-                   // host.sendImage(napanh);
-                   host.UploadImage(new File(linkanh),"jpg");
-                    //host.transmissionData(cccd, hoten, ngaysinh, sdt, phong, ngaydk,mapin, napanh);
-                    ByteArrayInputStream bis = new ByteArrayInputStream(napanh);
-                    BufferedImage bImage2 = ImageIO.read(bis);
-                    label_anh.setIcon(new ImageIcon(bImage2));
-                   
-                } catch (IOException ex) {
-                    Logger.getLogger(TaoTheMoi.class.getName()).log(Level.SEVERE, null, ex);
+                String cccd =text_cccd.getText();
+                String hoten = text_hoten.getText();
+                String ngaysinh = text_ngaysinh.getText();
+                String sdt = text_sdt.getText();
+                String phong = text_phong.getText();
+                String ngaydk = text_ngaydk.getText();
+                String mapin = new String(text_mapin.getPassword());
+                JOptionPane.showMessageDialog(null, "Khởi tạo nội dung thẻ thành công. :)");
+                text_cccd.setText("");
+                text_hoten.setText("");
+                text_ngaysinh.setText("");
+                text_sdt.setText("");
+                text_phong.setText("");
+                text_ngaydk.setText("");
+                text_mapin.setText("");
+                text_xnmapin.setText("");
+                System.out.println(cccd);
+                System.out.println(hoten);
+                System.out.println(ngaysinh);
+                System.out.println(sdt);
+                System.out.println(phong);
+                System.out.println(ngaydk);
+                if(host.UploadImage(new File(linkanh),"jpg")){
+                   host.transmissionData(cccd, hoten, ngaysinh, sdt, phong, ngaydk,mapin);
                 }
+               
+                //                    BufferedImage bImage = ImageIO.read(new File(linkanh));
+//                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+//                    ImageIO.write(bImage, "jpg", bos);
+//                    napanh = bos.toByteArray();
+//                    
+//                    System.out.println("-----napanh-----");
+//                    System.out.println(napanh.length);
+//                    System.out.println(napanh);
+
+// host.sendImage(napanh);
+           
+//                    ByteArrayInputStream bis = new ByteArrayInputStream(napanh);
+//                    BufferedImage bImage2 = ImageIO.read(bis);
+//                    label_anh.setIcon(new ImageIcon(bImage2));
                                            
             }
 
