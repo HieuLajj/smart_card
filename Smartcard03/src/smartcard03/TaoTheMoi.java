@@ -20,6 +20,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.nio.charset.StandardCharsets;
+import javax.swing.JFrame;
 
 
 
@@ -31,6 +32,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -114,14 +116,13 @@ public class TaoTheMoi extends javax.swing.JFrame {
 
         button_image.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         button_image.setText("Chọn ảnh");
-        button_image.setActionCommand("Chọn ảnh");
         button_image.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button_imageActionPerformed(evt);
             }
         });
 
-        label_image.setText("jLabel10");
+        label_image.setText("--------------------");
 
         button_ok.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         button_ok.setText("Khởi tạo");
@@ -327,6 +328,8 @@ public class TaoTheMoi extends javax.swing.JFrame {
             }
 
         }
+        this.setVisible(false);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }//GEN-LAST:event_button_okActionPerformed
 
     /**

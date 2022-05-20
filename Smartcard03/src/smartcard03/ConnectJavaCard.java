@@ -176,6 +176,70 @@ public class ConnectJavaCard {
             return "Lỗi";
         }      
     }
+    
+    public boolean changeName(String name){
+        byte[] nameTrans = name.getBytes();
+        try {
+            response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x03, (byte)0x01, (byte)0x00, nameTrans));
+            String check = Integer.toHexString(response.getSW());
+            
+            if (check.equals("9000")) {
+                return true;
+            }
+                return false;
+        } catch (CardException ex) {
+            System.out.println("Error :" + ex);
+        }
+            return false;
+    }
+    
+    public boolean changeBirth(String birth){
+        byte[] birthTrans = birth.getBytes();
+        try {
+            response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x03, (byte)0x02, (byte)0x00, birthTrans));
+            String check = Integer.toHexString(response.getSW());
+            
+            if (check.equals("9000")) {
+                return true;
+            }
+                return false;
+        } catch (CardException ex) {
+            System.out.println("Error :" + ex);
+        }
+            return false;
+    }
+    public boolean changePhoneNumber(String phoneNumber){
+        byte[] phoneNumberTrans = phoneNumber.getBytes();
+        try {
+            response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x03, (byte)0x03, (byte)0x00, phoneNumberTrans));
+            String check = Integer.toHexString(response.getSW());
+            
+            if (check.equals("9000")) {
+                return true;
+            }
+                return false;
+        } catch (CardException ex) {
+            System.out.println("Error :" + ex);
+            return false;
+        }
+            
+    }
+      public boolean changeRoom(String room){
+        byte[] RoomTrans = room.getBytes();
+        try {
+            response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x03, (byte)0x04, (byte)0x00, RoomTrans));
+            String check = Integer.toHexString(response.getSW());
+            
+            if (check.equals("9000")) {
+                return true;
+            }
+                return false;
+        } catch (CardException ex) {
+            System.out.println("Error :" + ex);
+            return false;
+        }
+            
+    }
      
     
     

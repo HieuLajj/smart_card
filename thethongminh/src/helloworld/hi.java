@@ -9,6 +9,7 @@ public class hi extends Applet implements ExtendedLength
 	
 	public static final byte INS_INIT_0x00 = 0x00;
 	public static final byte INS_GET_ALL_INFO_0x02 = 0x02;
+	public static final byte INS_CHANGE_INFO_0x03 = 0x03; 
 	public static final byte INS_AUTHENTICATE_PIN_0x04 = 0x04;
 	
     private final static byte INS_CREATE_IMAGE = (byte)0x53;
@@ -172,6 +173,60 @@ public class hi extends Applet implements ExtendedLength
 			
 			
 			break;
+			
+		case (byte) INS_CHANGE_INFO_0x03:
+			
+			// thay doi ten 0x01
+			if( buf[ISO7816.OFFSET_P1] == (byte)0x01){
+				hoten = new byte[(short)buf[ISO7816.OFFSET_LC]];
+				Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, hoten, (short)0, (short)buf[ISO7816.OFFSET_LC]);
+				//ma hoa ten moi truoc khi luu
+				//name = encryptAES(name, customer.getPIN());
+				
+				//bat dau thao tac nguyen tu
+				JCSystem.beginTransaction();
+				customer.setHoten(hoten);
+				JCSystem.commitTransaction(); //xac nhan ket thuc thao tac nguyen tu
+			}
+			
+			// thay doi ngay sinh
+			if( buf[ISO7816.OFFSET_P1] == (byte)0x02){
+				ngaysinh = new byte[(short)buf[ISO7816.OFFSET_LC]];
+				Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, ngaysinh, (short)0, (short)buf[ISO7816.OFFSET_LC]);
+				//ma hoa ngay sinh moi truoc khi luu
+				//birth = encryptAES(birth, customer.getPIN());
+
+				//bat dau thao tac nguyen tu
+				JCSystem.beginTransaction();
+				customer.setNgaysinh(ngaysinh);
+				JCSystem.commitTransaction(); //xac nhan ket thuc thao tac nguyen tu
+			}
+			
+			//thay doi so dien thoai
+			if( buf[ISO7816.OFFSET_P1] == (byte)0x03){
+				sdt = new byte[(short)buf[ISO7816.OFFSET_LC]];
+				Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, sdt, (short)0, (short)buf[ISO7816.OFFSET_LC]);
+				//ma hoa phone moi truoc khi luu
+				//phone = encryptAES(phone, customer.getPIN());
+
+				//bat dau thao tac nguyen tu
+				JCSystem.beginTransaction();
+				customer.setSdt(sdt);
+				JCSystem.commitTransaction(); //xac nhan ket thuc thao tac nguyen tu
+			}
+			//thay doi so phong
+			if( buf[ISO7816.OFFSET_P1] == (byte)0x04){
+				phong = new byte[(short)buf[ISO7816.OFFSET_LC]];
+				Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, phong, (short)0, (short)buf[ISO7816.OFFSET_LC]);
+				//ma hoa phone moi truoc khi luu
+				//phone = encryptAES(phone, customer.getPIN());
+
+				//bat dau thao tac nguyen tu
+				JCSystem.beginTransaction();
+				customer.setPhong(phong);
+				JCSystem.commitTransaction(); //xac nhan ket thuc thao tac nguyen tu
+			}
+			break;
 		
 		case (byte) INS_AUTHENTICATE_PIN_0x04:
 			 if( wrong_PIN_count[(short)0] == (short)3){
@@ -180,11 +235,9 @@ public class hi extends Applet implements ExtendedLength
 				 apdu.sendBytesLong(RUN_OUT_OF_TRIES_CODE, (short)0, (short)1);
 				 return;
 			 }
-			 
-			 inputPIN = new byte[(short)buf[ISO7816.OFFSET_LC]];
-			 Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, inputPIN, (short)0, (short)buf[ISO7816.OFFSET_LC]);
-			 
-			 
+			 short a = (short)buf[ISO7816.OFFSET_LC];
+			 inputPIN = new byte[(short)a];
+			 Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, inputPIN, (short)0, (short)buf[ISO7816.OFFSET_LC]);	 
 			 if( Util.arrayCompare(inputPIN, (short)0, customer.getMapin(), (short)0, (short)inputPIN.length) != (byte)0){
 				 wrong_PIN_count[(short)0] = (short)(wrong_PIN_count[(short)0] + 1);
 				 apdu.setOutgoing();

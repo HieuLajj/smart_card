@@ -61,6 +61,7 @@ public class MainFrame extends javax.swing.JFrame {
         text_mapin = new javax.swing.JTextField();
         Anhdaidien = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -162,7 +163,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(text_checkpin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(button_ok)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông Tin Thẻ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 20), new java.awt.Color(204, 0, 0))); // NOI18N
@@ -188,14 +189,27 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("PIN:");
 
+        text_cccd.setEnabled(false);
+
+        text_ngaydk.setEnabled(false);
         text_ngaydk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 text_ngaydkActionPerformed(evt);
             }
         });
 
+        text_mapin.setEnabled(false);
+
         jLabel10.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
         jLabel10.setText("Ảnh đại diện");
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton1.setText("Lưu thông tin thay đổi");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -223,9 +237,14 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addGap(30, 30, 30)
                                 .addComponent(Anhdaidien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(text_mapin, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(text_mapin, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(121, 121, 121)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -262,15 +281,18 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(text_phong, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(Anhdaidien, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(text_ngaydk, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(text_ngaydk, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(text_mapin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -316,7 +338,11 @@ public class MainFrame extends javax.swing.JFrame {
        }else{
        }
     }//GEN-LAST:event_button_connectActionPerformed
-
+    
+    public String hoten2;
+    public String ngaysinh2;
+    public String sdt2;
+    public String phong2;
     private void button_okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_okActionPerformed
 
           //ByteArrayInputStream bis = new ByteArrayInputStream(napanh);
@@ -338,6 +364,11 @@ public class MainFrame extends javax.swing.JFrame {
                            text_phong.setText(data[4]);
                            text_ngaydk.setText(data[5]);
                            text_mapin.setText(data[6]);
+                           
+                           hoten2=data[1];
+                           ngaysinh2=data[2];
+                           sdt2=data[3];
+                           phong2=data[4];
                        
                         break;
 
@@ -383,6 +414,46 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_text_checkpinActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if(!text_hoten.getText().equals(hoten2)){
+            System.out.println("thay doi ho ten");
+            if(host.changeName(text_hoten.getText())){
+                 System.out.println("thay doi ho ten thanh cong");
+            }
+        }
+        if(!text_ngaysinh.getText().equals(ngaysinh2)){
+            System.out.println("thay doi ngay sinh");
+            if(host.changeBirth(text_ngaysinh.getText())){
+                System.out.println("thay doi ngay sinh thanh cong");
+            }
+        }
+        if(!text_sdt.getText().equals(sdt2)){
+            System.out.println("thay doi sdt");
+              if(host.changePhoneNumber(text_sdt.getText())){
+                 System.out.println("thay doi sdt thanh cong");
+            }
+        }
+        if(!text_phong.getText().equals(phong2)){
+            System.out.println("thay doi phong");
+            if(host.changeRoom(text_phong.getText())){
+                 System.out.println("thay doi phong thanh cong");
+            }
+        }
+        
+        
+        Anhdaidien.setIcon(new ImageIcon( host.DownloadImage()));           
+        String[] data = host.getData().split("@");
+        text_cccd.setText(data[0]);
+        text_hoten.setText(data[1]);
+        text_ngaysinh.setText(data[2]);
+        text_sdt.setText(data[3]);
+        text_phong.setText(data[4]);
+        text_ngaydk.setText(data[5]);
+        text_mapin.setText(data[6]);
+        System.out.println("Cap nhap lai he thong");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -424,6 +495,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton button_delete;
     private javax.swing.JButton button_init;
     private javax.swing.JButton button_ok;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
