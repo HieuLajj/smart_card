@@ -1,5 +1,5 @@
 // converted by version 1.3
-// on Fri May 20 06:10:27 VET 2022
+// on Sat May 21 05:23:04 VET 2022
 
 .package helloworld {
 	.aid 0x11:0x22:0x33:0x44:0x55;
@@ -373,6 +373,7 @@
 			 short len2 1;		// S
 			 short len3 2;		// S
 			public static final byte INS_INIT_0x00 = 0;		// B
+			public static final byte UNLOCK_PIN = 1;		// B
 			public static final byte INS_GET_ALL_INFO_0x02 = 2;		// B
 			public static final byte INS_CHANGE_INFO_0x03 = 3;		// B
 			public static final byte INS_AUTHENTICATE_PIN_0x04 = 4;		// B
@@ -478,7 +479,7 @@
 				L5:	aload_3;
 					sconst_1;
 					baload;
-					slookupswitch L55 8 0 L6 2 L30 3 L33 4 L41 83 L47 84 L50 85 L51 86 L52;
+					slookupswitch L56 9 0 L6 1 L30 2 L31 3 L34 4 L42 83 L48 84 L51 85 L52 86 L53;
 				L6:	aload_3;
 					sconst_4;
 					baload;
@@ -702,15 +703,20 @@
 					sconst_0;
 					getfield_s_this 8;		// short helloworld/hi.len3
 					invokevirtual 25;		// setOutgoingAndSend(SS)V
-					goto_w L56;
-				L30:	sconst_1;
+					goto_w L57;
+				L30:	getstatic_a 16;		// reference helloworld/hi.wrong_PIN_count
+					sconst_0;
+					sconst_0;
+					sastore;
+					goto_w L57;
+				L31:	sconst_1;
 					newarray 11;
 					dup;
 					sconst_0;
 					bspush 64;
 					bastore;
 					astore 25;
-				L31:	getstatic_a 23;		// reference helloworld/hi.customer
+				L32:	getstatic_a 23;		// reference helloworld/hi.customer
 					invokevirtual 26;		// getCccd()[B
 					astore 18;
 					getstatic_a 23;		// reference helloworld/hi.customer
@@ -768,7 +774,7 @@
 					bspush 6;
 					sadd;
 					sstore 26;
-				L32:	aload_1;
+				L33:	aload_1;
 					invokevirtual 33;		// setOutgoing()S
 					pop;
 					aload_1;
@@ -839,13 +845,13 @@
 					sconst_0;
 					sload 14;
 					invokevirtual 35;		// sendBytesLong([BSS)V
-					goto_w L56;
-				L33:	aload_3;
+					goto_w L57;
+				L34:	aload_3;
 					sconst_2;
 					baload;
 					sconst_1;
-					if_scmpne L35;
-				L34:	aload_3;
+					if_scmpne L36;
+				L35:	aload_3;
 					sconst_4;
 					baload;
 					newarray 11;
@@ -864,12 +870,12 @@
 					aload 19;
 					invokevirtual 37;		// setHoten([B)V
 					invokestatic 38;		// javacard/framework/JCSystem.commitTransaction()V
-				L35:	aload_3;
+				L36:	aload_3;
 					sconst_2;
 					baload;
 					sconst_2;
-					if_scmpne L37;
-				L36:	aload_3;
+					if_scmpne L38;
+				L37:	aload_3;
 					sconst_4;
 					baload;
 					newarray 11;
@@ -888,12 +894,12 @@
 					aload 20;
 					invokevirtual 39;		// setNgaysinh([B)V
 					invokestatic 38;		// javacard/framework/JCSystem.commitTransaction()V
-				L37:	aload_3;
+				L38:	aload_3;
 					sconst_2;
 					baload;
 					sconst_3;
-					if_scmpne L39;
-				L38:	aload_3;
+					if_scmpne L40;
+				L39:	aload_3;
 					sconst_4;
 					baload;
 					newarray 11;
@@ -912,12 +918,12 @@
 					aload 21;
 					invokevirtual 40;		// setSdt([B)V
 					invokestatic 38;		// javacard/framework/JCSystem.commitTransaction()V
-				L39:	aload_3;
+				L40:	aload_3;
 					sconst_2;
 					baload;
 					sconst_4;
-					if_scmpne_w L56;
-				L40:	aload_3;
+					if_scmpne_w L57;
+				L41:	aload_3;
 					sconst_4;
 					baload;
 					newarray 11;
@@ -936,13 +942,13 @@
 					aload 22;
 					invokevirtual 41;		// setPhong([B)V
 					invokestatic 38;		// javacard/framework/JCSystem.commitTransaction()V
-					goto_w L56;
-				L41:	getstatic_a 16;		// reference helloworld/hi.wrong_PIN_count
+					goto_w L57;
+				L42:	getstatic_a 16;		// reference helloworld/hi.wrong_PIN_count
 					sconst_0;
 					saload;
 					sconst_3;
-					if_scmpne L43;
-				L42:	aload_1;
+					if_scmpne L44;
+				L43:	aload_1;
 					invokevirtual 33;		// setOutgoing()S
 					pop;
 					aload_1;
@@ -954,14 +960,14 @@
 					sconst_1;
 					invokevirtual 35;		// sendBytesLong([BSS)V
 					return;
-				L43:	aload_3;
+				L44:	aload_3;
 					sconst_4;
 					baload;
 					sstore 27;
-				L44:	sload 27;
+				L45:	sload 27;
 					newarray 11;
 					astore_2;
-				L45:	aload_3;
+				L46:	aload_3;
 					sconst_5;
 					aload_2;
 					sconst_0;
@@ -978,8 +984,8 @@
 					aload_2;
 					arraylength;
 					invokestatic 43;		// javacard/framework/Util.arrayCompare([BS[BSS)B
-					ifeq_w L56;
-				L46:	getstatic_a 16;		// reference helloworld/hi.wrong_PIN_count
+					ifeq_w L57;
+				L47:	getstatic_a 16;		// reference helloworld/hi.wrong_PIN_count
 					sconst_0;
 					getstatic_a 16;		// reference helloworld/hi.wrong_PIN_count
 					sconst_0;
@@ -998,34 +1004,34 @@
 					sconst_0;
 					sconst_1;
 					invokevirtual 35;		// sendBytesLong([BSS)V
-					goto L56;
-				L47:	aload_3;
+					goto L57;
+				L48:	aload_3;
 					sconst_2;
 					baload;
 					sspush 255;
 					sand;
 					sstore 28;
-				L48:	sspush 249;
+				L49:	sspush 249;
 					sload 28;
 					smul;
 					sstore 29;
-				L49:	aload_3;
+				L50:	aload_3;
 					sconst_5;
 					getstatic_a 13;		// reference helloworld/hi.OpImage
 					sload 29;
 					sspush 249;
 					invokestatic 20;		// javacard/framework/Util.arrayCopy([BS[BSS)S
 					pop;
-					goto L56;
-				L50:	aload_3;
+					goto L57;
+				L51:	aload_3;
 					sconst_5;
 					getstatic_a 14;		// reference helloworld/hi.size
 					sconst_0;
 					bspush 7;
 					invokestatic 20;		// javacard/framework/Util.arrayCopy([BS[BSS)S
 					pop;
-					goto L56;
-				L51:	getstatic_a 14;		// reference helloworld/hi.size
+					goto L57;
+				L52:	getstatic_a 14;		// reference helloworld/hi.size
 					sconst_0;
 					aload_3;
 					sconst_0;
@@ -1037,8 +1043,8 @@
 					sconst_0;
 					bspush 7;
 					invokevirtual 25;		// setOutgoingAndSend(SS)V
-					goto L56;
-				L52:	aload_1;
+					goto L57;
+				L53:	aload_1;
 					invokevirtual 33;		// setOutgoing()S
 					pop;
 					aload_3;
@@ -1047,11 +1053,11 @@
 					sspush 255;
 					sand;
 					sstore 30;
-				L53:	sspush 249;
+				L54:	sspush 249;
 					sload 30;
 					smul;
 					sstore 31;
-				L54:	aload_1;
+				L55:	aload_1;
 					sspush 249;
 					invokevirtual 34;		// setOutgoingLength(S)V
 					aload_1;
@@ -1060,10 +1066,10 @@
 					sload 31;
 					sspush 249;
 					invokevirtual 35;		// sendBytesLong([BSS)V
-					goto L56;
-				L55:	sspush 27904;
+					goto L57;
+				L56:	sspush 27904;
 					invokestatic 46;		// javacard/framework/ISOException.throwIt(S)V
-				L56:	return;
+				L57:	return;
 		}
 
 	}

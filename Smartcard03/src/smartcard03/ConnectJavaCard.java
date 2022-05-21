@@ -105,6 +105,30 @@ public class ConnectJavaCard {
         }
         return false;
     }
+    
+    public boolean disconnect(){
+        try {
+            card.disconnect(false);
+            return true;
+        } catch (CardException e) {
+            System.out.println("Error :" + e);
+        }
+        return false;
+    }
+     public boolean unLock(){
+        try {
+            response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x01, (byte)0x01, (byte)0x00));
+            String check = Integer.toHexString(response.getSW());
+            
+            if (check.equals("9000")) {
+                return true;
+            }
+                return false;
+        } catch (CardException ex) {
+            System.out.println("Error :" + ex);
+        }
+            return false;
+    }
 //    public void thongtin(){
 //        try{
 //            byte[] send  ={(byte) 0x11,0x22,0x33,0x44,0x55,0x00};
@@ -124,25 +148,7 @@ public class ConnectJavaCard {
         try {
             System.out.println("------------------------------------------------------------------------------------------");
             String data = cccd + "@" + hoten + "@" + ngaysinh + "@" + sdt + "@" + phong + "@" + ngay_dk+ "@"+ mapin;
-            byte[] dataTrans = data.getBytes();
-                                                             
-//            System.out.println("----data-----");
-//            System.out.println(dataTrans.length);
-//            System.out.println(dataTrans);
-//            System.out.println("----image-----");
-//            System.out.println(image.length);
-//            System.out.println(image);
-//            System.out.println("----combined-----");
-//            byte[] combined = new byte[dataTrans.length + image.length];
-//            
-//            for (int i = 0; i < combined.length; ++i)
-//            {
-//                combined[i] = i < dataTrans.length ? dataTrans[i] : image[i - dataTrans.length];
-//            }
-//            System.out.println(combined.length);
-//            System.out.println(combined);
-            
-            
+            byte[] dataTrans = data.getBytes();                                                         
             response = channel.transmit(new CommandAPDU((byte)0x00,INS_INIT, (byte)0x11, (byte)0x00,dataTrans));
             //response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x00, (byte)0x11, (byte)0x00,combined));
             //String pub = bytesToHex(response.getData());

@@ -8,6 +8,7 @@ public class hi extends Applet implements ExtendedLength
 	public static Customer customer;
 	
 	public static final byte INS_INIT_0x00 = 0x00;
+	public static final byte UNLOCK_PIN = 0x01;
 	public static final byte INS_GET_ALL_INFO_0x02 = 0x02;
 	public static final byte INS_CHANGE_INFO_0x03 = 0x03; 
 	public static final byte INS_AUTHENTICATE_PIN_0x04 = 0x04;
@@ -129,6 +130,9 @@ public class hi extends Applet implements ExtendedLength
 			Util.arrayCopy(mapin,(short)0, buf, (short)0,len3);
 			apdu.setOutgoingAndSend((short)0,len3);
 			break;
+	    case (byte) UNLOCK_PIN:
+	    	wrong_PIN_count[(short)0] = (short)0;
+	    	break;
 		case (byte)INS_GET_ALL_INFO_0x02:
 			byte[] flag = new byte[] {0x40};
 			

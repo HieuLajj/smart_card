@@ -400,10 +400,29 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        if(host.unLock()){
+             JOptionPane.showMessageDialog(rootPane, "Unlock thẻ thành công");
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void button_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_deleteActionPerformed
-        // TODO add your handling code here:
+       if(host.disconnect()){
+            isConnect = false;
+            button_connect.setText("Kết nối đến thẻ");
+            text_cccd.setText("");
+            text_hoten.setText("");
+            text_ngaysinh.setText("");
+            text_sdt.setText("");
+            text_phong.setText("");
+            text_ngaydk.setText("");
+            text_mapin.setText("");
+            text_status.setText("");
+            button_delete.setEnabled(isConnect);
+            button_init.setEnabled(isConnect);
+            text_checkpin.setText("");
+            button_ok.setEnabled(isConnect);
+            Anhdaidien.setIcon(null);
+       }
     }//GEN-LAST:event_button_deleteActionPerformed
 
     private void text_ngaydkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_ngaydkActionPerformed
