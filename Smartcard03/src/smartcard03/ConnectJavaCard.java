@@ -147,7 +147,7 @@ public class ConnectJavaCard {
     public boolean transmissionData(String cccd, String hoten, String ngaysinh, String sdt,String phong, String ngay_dk,String mapin){
         try {
             System.out.println("------------------------------------------------------------------------------------------");
-            String data = cccd + "@" + hoten + "@" + ngaysinh + "@" + sdt + "@" + phong + "@" + ngay_dk+ "@"+ mapin;
+            String data = cccd + "@" + hoten + "@" + ngaysinh + "@" + sdt + "@" + phong + "@" + ngay_dk+ "@"+ mapin+"@0";
             byte[] dataTrans = data.getBytes();                                                         
             response = channel.transmit(new CommandAPDU((byte)0x00,INS_INIT, (byte)0x11, (byte)0x00,dataTrans));
             //response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x00, (byte)0x11, (byte)0x00,combined));
@@ -240,6 +240,24 @@ public class ConnectJavaCard {
                 return true;
             }
                 return false;
+        } catch (CardException ex) {
+            System.out.println("Error :" + ex);
+            return false;
+        }
+            
+    }
+      
+    public boolean changePIN(String pin){
+        byte[] pinTrans = pin.getBytes();
+        try {
+            response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x03, (byte)0x05, (byte)0x00, pinTrans));
+            String check = Integer.toHexString(response.getSW());
+            
+            if (check.equals("9000")) {
+                return true;
+            }else{
+                return false;
+            }
         } catch (CardException ex) {
             System.out.println("Error :" + ex);
             return false;

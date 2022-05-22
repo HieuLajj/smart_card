@@ -29,6 +29,7 @@ public class hi extends Applet implements ExtendedLength
 	public static final short OFFSET_PHONG    = 4;
 	public static final short OFFSET_NGAYDK = 5;
 	public static final short OFFSET_MAPIN =6;
+	public static final short OFFSET_TIEN = 7;
 	
 	
 	
@@ -77,10 +78,10 @@ public class hi extends Applet implements ExtendedLength
 			byte[] data = new byte[(short)buf[ISO7816.OFFSET_LC]];
 			short dataLen = (short)data.length;
 			Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, data, (short)0, (short)buf[ISO7816.OFFSET_LC]);
-			short cccd_len, hoten_len, ngaysinh_len, sdt_len, phong_len, ngaydk_len,mapin_len;
+			short cccd_len, hoten_len, ngaysinh_len, sdt_len, phong_len, ngaydk_len,mapin_len,tien_len;
 			// tao mang luu vi tri bat dau cua tung thong tin trong mang data nhan duoc
 			
-			byte[] infoOFFSET = new byte[(short)7];
+			byte[] infoOFFSET = new byte[(short)8];
 			// // ID bat dau tu vi tri 0
 			infoOFFSET[OFFSET_CCCD] = (short)0;
 			short j = (short)1;
@@ -100,7 +101,9 @@ public class hi extends Applet implements ExtendedLength
 			 sdt_len      = (short)((short)(infoOFFSET[OFFSET_PHONG]    - infoOFFSET[OFFSET_SDT]) - 1);
 			 phong_len    = (short)((short)(infoOFFSET[OFFSET_NGAYDK] - infoOFFSET[OFFSET_PHONG]-1));	
 			 ngaydk_len   = (short)((short)(infoOFFSET[OFFSET_MAPIN] - infoOFFSET[OFFSET_NGAYDK]-1));	
-			 mapin_len    = (short)(buf[ISO7816.OFFSET_LC] - infoOFFSET[OFFSET_MAPIN]);
+			 mapin_len    = (short)((short)(infoOFFSET[OFFSET_TIEN]  - infoOFFSET[OFFSET_MAPIN]-1));
+			 tien_len     = (short)(buf[ISO7816.OFFSET_LC] - infoOFFSET[OFFSET_TIEN]);
+			 
 			 //anh_len      = (short)OpImage.length;
 			 
 			 byte[] cccd = new byte[cccd_len];
@@ -110,6 +113,7 @@ public class hi extends Applet implements ExtendedLength
 			 byte[] phong = new byte[phong_len];
 			 byte[] ngay_dk = new byte[ngaydk_len];
 			 byte[] mapin = new byte[mapin_len];
+			 byte[] tien  = new byte[tien_len];
 			 
 			 //byte[] anhdaidien = new byte[anh_len];
 			
@@ -121,11 +125,12 @@ public class hi extends Applet implements ExtendedLength
 			 Util.arrayCopy(data, (short)infoOFFSET[OFFSET_PHONG]    , phong    , (short)0, phong_len);			
 			 Util.arrayCopy(data, (short)infoOFFSET[OFFSET_NGAYDK]   , ngay_dk  , (short)0, ngaydk_len);
 			 Util.arrayCopy(data, (short)infoOFFSET[OFFSET_MAPIN]    , mapin    , (short)0, mapin_len);
+			 Util.arrayCopy(data, (short)infoOFFSET[OFFSET_TIEN]     , tien     , (short)0, tien_len);
 			 
 			 //Util.arrayCopy(OpImage, (short)0, anhdaidien, (short)0, anh_len);
 			 // //--------------------------//
 			 
-			customer = new Customer(cccd,hoten,ngaysinh,sdt,phong,ngay_dk,mapin,OpImage);
+			customer = new Customer(cccd,hoten,ngaysinh,sdt,phong,ngay_dk,mapin,OpImage,tien);
 			len3= (short)mapin.length;
 			Util.arrayCopy(mapin,(short)0, buf, (short)0,len3);
 			apdu.setOutgoingAndSend((short)0,len3);
@@ -143,6 +148,7 @@ public class hi extends Applet implements ExtendedLength
 			phong = customer.getPhong();
 			ngay_dk = customer.getNgaydk();
 			mapin = customer.getMapin();
+			tien= customer.getTien();
 			
 			cccd_len = (short)cccd.length;
 			hoten_len = (short)hoten.length;
@@ -151,8 +157,9 @@ public class hi extends Applet implements ExtendedLength
 			phong_len = (short)phong.length;
 			ngaydk_len = (short)ngay_dk.length;
 			mapin_len = (short)mapin.length;
+			tien_len = (short)tien.length;
 			
-			short totalSendLen = (short)(cccd_len+hoten_len+ngaysinh_len+sdt_len+phong_len+ngaydk_len+mapin_len+(short)6);
+			short totalSendLen = (short)(cccd_len+hoten_len+ngaysinh_len+sdt_len+phong_len+ngaydk_len+mapin_len+tien_len+(short)7);
 			apdu.setOutgoing();
 			apdu.setOutgoingLength(totalSendLen);
 			apdu.sendBytesLong(cccd,(short)0,cccd_len);
@@ -174,6 +181,9 @@ public class hi extends Applet implements ExtendedLength
 			apdu.sendBytesLong(flag, (short)0, (short)1);
 			
 			apdu.sendBytesLong(mapin,(short)0, mapin_len);
+			apdu.sendBytesLong(flag, (short)0, (short)1);
+			
+			apdu.sendBytesLong(tien,(short)0, tien_len);
 			
 			
 			break;
@@ -230,6 +240,16 @@ public class hi extends Applet implements ExtendedLength
 				customer.setPhong(phong);
 				JCSystem.commitTransaction(); //xac nhan ket thuc thao tac nguyen tu
 			}
+			
+	        if( buf[ISO7816.OFFSET_P1] == (byte)0x05){
+		        mapin = new byte[(short)buf[ISO7816.OFFSET_LC]];
+		        Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, mapin, (short)0, (short)buf[ISO7816.OFFSET_LC]);
+				JCSystem.beginTransaction();
+				customer.setMapin(mapin);
+				JCSystem.commitTransaction(); //xac nhan ket thuc thao tac nguyen tu
+			}
+			
+	        
 			break;
 		
 		case (byte) INS_AUTHENTICATE_PIN_0x04:
