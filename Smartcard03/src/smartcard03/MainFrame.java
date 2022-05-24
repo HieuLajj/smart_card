@@ -357,6 +357,7 @@ public class MainFrame extends javax.swing.JFrame {
     public String ngaysinh2;
     public String sdt2;
     public String phong2;
+    public int tien2;
     private void button_okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_okActionPerformed
 
           //ByteArrayInputStream bis = new ByteArrayInputStream(napanh);
@@ -384,7 +385,8 @@ public class MainFrame extends javax.swing.JFrame {
                            ngaysinh2=data[2];
                            sdt2=data[3];
                            phong2=data[4];
-                       
+                           tien2 = Integer.valueOf(data[7]);
+                                          
                         break;
 
                     case "19000":
@@ -486,6 +488,7 @@ public class MainFrame extends javax.swing.JFrame {
         text_ngaydk.setText(data[5]);
         text_mapin.setText(data[6]);
         System.out.println("Cap nhap lai he thong");
+        JOptionPane.showMessageDialog(this, "Cập nhập thành công");   
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

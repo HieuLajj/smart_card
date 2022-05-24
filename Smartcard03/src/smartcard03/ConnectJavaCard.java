@@ -182,6 +182,18 @@ public class ConnectJavaCard {
             return "Lỗi";
         }      
     }
+      public  String authPHONG(String phong){
+        byte[] phongTrans = phong.getBytes();
+        try {
+            response = channel.transmit(new CommandAPDU((byte)0x00,(byte)0x05, (byte)0x00, (byte)0x00, phongTrans));
+            String test = new String(response.getData(), StandardCharsets.UTF_8) + Integer.toHexString(response.getSW());
+            System.out.println(test);
+            return  test;
+        } catch (CardException e) {
+            System.out.println("Error :" + e);
+            return "Lỗi";
+        }      
+    }
     
     public boolean changeName(String name){
         byte[] nameTrans = name.getBytes();
@@ -258,6 +270,23 @@ public class ConnectJavaCard {
             }else{
                 return false;
             }
+        } catch (CardException ex) {
+            System.out.println("Error :" + ex);
+            return false;
+        }
+            
+    }
+    
+    public static boolean changeWallet(String wallet){
+        byte[] walletTrans = wallet.getBytes();
+        try {
+            response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x03, (byte)0x06, (byte)0x00, walletTrans));
+            String check = Integer.toHexString(response.getSW());
+            
+            if (check.equals("9000")) {
+                return true;
+            }else{return false;}
+                
         } catch (CardException ex) {
             System.out.println("Error :" + ex);
             return false;

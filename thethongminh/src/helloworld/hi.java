@@ -63,6 +63,7 @@ public class hi extends Applet implements ExtendedLength
 			return;
 		}
 		byte[] inputPIN;
+		byte[] inputPHONG;
 
 		byte[] buf = apdu.getBuffer();
 		short recvLen =apdu.setIncomingAndReceive();
@@ -248,6 +249,17 @@ public class hi extends Applet implements ExtendedLength
 				customer.setMapin(mapin);
 				JCSystem.commitTransaction(); //xac nhan ket thuc thao tac nguyen tu
 			}
+			if( buf[ISO7816.OFFSET_P1] == (byte)0x06){
+				tien = new byte[(short)buf[ISO7816.OFFSET_LC]];
+				Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, tien, (short)0, (short)buf[ISO7816.OFFSET_LC]);
+				// //ma hoa so du moi truoc khi luu
+				// wallet = encryptAES(wallet, customer.getPIN());
+
+				// //bat dau thao tac nguyen tu
+				JCSystem.beginTransaction();
+				customer.setTien(tien);
+				JCSystem.commitTransaction(); //xac nhan ket thuc thao tac nguyen tu
+			}
 			
 	        
 			break;
@@ -270,7 +282,17 @@ public class hi extends Applet implements ExtendedLength
 			 }
 			
 			break;
-		
+			
+		case (byte)0x05:
+			 short b = (short)buf[ISO7816.OFFSET_LC];
+			 inputPHONG = new byte[(short)b];
+			 Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, inputPHONG, (short)0, (short)buf[ISO7816.OFFSET_LC]);	 
+			 if( Util.arrayCompare(inputPHONG, (short)0, customer.getPhong(), (short)0, (short)inputPHONG.length) != (byte)0){
+				 apdu.setOutgoing();
+		         apdu.setOutgoingLength((short)1);
+				 apdu.sendBytesLong(WRONG_PIN_CODE, (short)0, (short)1);
+			 }		
+			break;
 	    case INS_CREATE_IMAGE:		 
 		    short p1 = (short)(buf[ISO7816.OFFSET_P1]&0xff);
 		    short count1 = (short)(249 * p1);

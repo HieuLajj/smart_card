@@ -256,7 +256,7 @@ public class TaoTheMoi extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    int aa=0;
     private void button_imageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_imageActionPerformed
         // TODO add your handling code here:
         // TODO add your handling code here:
@@ -270,6 +270,7 @@ public class TaoTheMoi extends javax.swing.JFrame {
             label_image.setText(chooser.getSelectedFile().getName());
             System.out.print(chooser.getSelectedFile().getAbsolutePath());
             linkanh=chooser.getSelectedFile().getAbsolutePath();
+            aa=1;
         }      
 
     }//GEN-LAST:event_button_imageActionPerformed
@@ -278,19 +279,24 @@ public class TaoTheMoi extends javax.swing.JFrame {
         // TODO add your handling code here:
         String pin = Arrays.toString(text_mapin.getPassword());
         String xnpin = Arrays.toString(text_xnmapin.getPassword());
+        String cccd =text_cccd.getText();
+        String hoten = text_hoten.getText();
+        String ngaysinh = text_ngaysinh.getText();
+        String sdt = text_sdt.getText();
+        String phong = text_phong.getText();
+        String ngaydk = text_ngaydk.getText();
+        String mapin = new String(text_mapin.getPassword());
+        if(cccd.equals("")||hoten.equals("")||ngaysinh.equals("")||sdt.equals("")||phong.equals("")||ngaydk.equals("")||mapin.equals("")||aa==0){
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin");
+        }
+        else{
          if ((pin.equals(xnpin)) != true) {
             JOptionPane.showMessageDialog(null, "Xác nhận mã pin sai");
         } else {
             if (pin.length() != 18) {
                 JOptionPane.showMessageDialog(null, "Mã PIN phải có độ dài 6 kí tự");
             } else {
-                String cccd =text_cccd.getText();
-                String hoten = text_hoten.getText();
-                String ngaysinh = text_ngaysinh.getText();
-                String sdt = text_sdt.getText();
-                String phong = text_phong.getText();
-                String ngaydk = text_ngaydk.getText();
-                String mapin = new String(text_mapin.getPassword());
+              
                 JOptionPane.showMessageDialog(null, "Khởi tạo nội dung thẻ thành công. :)");
                 text_cccd.setText("");
                 text_hoten.setText("");
@@ -308,26 +314,10 @@ public class TaoTheMoi extends javax.swing.JFrame {
                 System.out.println(ngaydk);
                 if(host.UploadImage(new File(linkanh),"jpg")){
                    host.transmissionData(cccd, hoten, ngaysinh, sdt, phong, ngaydk,mapin);
-                }
-               
-                //                    BufferedImage bImage = ImageIO.read(new File(linkanh));
-//                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
-//                    ImageIO.write(bImage, "jpg", bos);
-//                    napanh = bos.toByteArray();
-//                    
-//                    System.out.println("-----napanh-----");
-//                    System.out.println(napanh.length);
-//                    System.out.println(napanh);
-
-// host.sendImage(napanh);
-           
-//                    ByteArrayInputStream bis = new ByteArrayInputStream(napanh);
-//                    BufferedImage bImage2 = ImageIO.read(bis);
-//                    label_anh.setIcon(new ImageIcon(bImage2));
-                                           
+                }                                        
             }
 
-        }
+        }}
         this.setVisible(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }//GEN-LAST:event_button_okActionPerformed
