@@ -5,6 +5,15 @@
  */
 package smartcard03;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -16,14 +25,16 @@ import javax.swing.JOptionPane;
 public class CustomerFrame extends javax.swing.JFrame {
     private ConnectJavaCard host;
     public boolean  isConnect;
-    public int tiendichvu;
+    public int tiendichvu=0;
     public int tienthuc ;
+    public int dichvuyeucau = 0;
     /**
      * Creates new form CustomerFrame
      */
     public CustomerFrame() {
         host = new ConnectJavaCard();
         initComponents();
+        
     }
 
     /**
@@ -72,18 +83,29 @@ public class CustomerFrame extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         text_tiencanthanhtoan = new javax.swing.JTextField();
         button_thanhtoan = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        text_dichvuyeucau = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        text_ngayhientai = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        text_ngaydangki = new javax.swing.JTextField();
+        text_ngayo = new javax.swing.JTextField();
         panel_dichvu = new javax.swing.JPanel();
         button_casino = new javax.swing.JButton();
         button_ok = new javax.swing.JButton();
         button_spa = new javax.swing.JButton();
         button_bar = new javax.swing.JButton();
-        button_tennis = new javax.swing.JButton();
-        button_hoihop = new javax.swing.JButton();
         button_nhahang = new javax.swing.JButton();
-        button_fitness = new javax.swing.JButton();
-        button_golf = new javax.swing.JButton();
         text_tiendichvu = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        button_casino_uncheck = new javax.swing.JButton();
+        button_spa_uncheck = new javax.swing.JButton();
+        button_bar_uncheck = new javax.swing.JButton();
+        button_nhahang_uncheck = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,7 +147,7 @@ public class CustomerFrame extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(110, 110, 110)
                 .addComponent(button_connect, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
                 .addComponent(button_dangnhap, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(130, 130, 130))
         );
@@ -136,7 +158,7 @@ public class CustomerFrame extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(text_pin, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(button_connect, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(button_dangnhap, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -240,7 +262,7 @@ public class CustomerFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_mokhoaphongLayout.createSequentialGroup()
                         .addGap(67, 67, 67)
                         .addComponent(button_8, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         panel_mokhoaphongLayout.setVerticalGroup(
             panel_mokhoaphongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,7 +279,7 @@ public class CustomerFrame extends javax.swing.JFrame {
                     .addComponent(button_6, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(button_7, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(button_8, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         Table.addTab("Mở khóa phòng", panel_mokhoaphong);
@@ -384,7 +406,7 @@ public class CustomerFrame extends javax.swing.JFrame {
                     .addComponent(text_tien, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(56, 56, 56)
                 .addComponent(button_doimapin)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         Table.addTab("Thông in cá nhân", panel_thongtincanhan);
@@ -403,6 +425,15 @@ public class CustomerFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel16.setText("Dịch vụ đang dùng");
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel17.setText("Ngày đăng kí");
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel18.setText("Ngày hiện tại");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -410,39 +441,64 @@ public class CustomerFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel10))
-                        .addGap(34, 34, 34)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(text_tiencanthanhtoan, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(text_tiennhapvao, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(338, 338, 338)
+                        .addComponent(button_thanhtoan, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(250, 250, 250)
-                        .addComponent(button_thanhtoan, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(134, Short.MAX_VALUE))
+                        .addGap(53, 53, 53)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel18))
+                        .addGap(90, 90, 90)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(text_tiencanthanhtoan)
+                            .addComponent(text_tiennhapvao)
+                            .addComponent(text_ngaydangki, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(text_ngayhientai, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(text_ngayo))
+                            .addComponent(text_dichvuyeucau))))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(text_ngaydangki, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(text_tiencanthanhtoan, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                    .addComponent(text_ngayhientai, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18)
+                    .addComponent(text_ngayo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel16)
+                    .addComponent(text_dichvuyeucau, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel10))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(text_tiencanthanhtoan, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(text_tiennhapvao, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(100, 100, 100)
-                .addComponent(button_thanhtoan, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                    .addComponent(text_tiennhapvao, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(16, 16, 16)
+                .addComponent(button_thanhtoan, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         Table.addTab("Thanh toán thẻ", jPanel1);
 
         button_casino.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        button_casino.setText("Casino");
+        button_casino.setText("Chọn mua");
         button_casino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button_casinoActionPerformed(evt);
@@ -458,7 +514,7 @@ public class CustomerFrame extends javax.swing.JFrame {
         });
 
         button_spa.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        button_spa.setText("Spa");
+        button_spa.setText("Chọn mua");
         button_spa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button_spaActionPerformed(evt);
@@ -466,114 +522,144 @@ public class CustomerFrame extends javax.swing.JFrame {
         });
 
         button_bar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        button_bar.setText("Bar");
+        button_bar.setText("Chọn mua");
         button_bar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button_barActionPerformed(evt);
             }
         });
 
-        button_tennis.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        button_tennis.setText("Tennis");
-        button_tennis.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button_tennisActionPerformed(evt);
-            }
-        });
-
-        button_hoihop.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        button_hoihop.setText("Hội họp");
-        button_hoihop.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button_hoihopActionPerformed(evt);
-            }
-        });
-
         button_nhahang.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        button_nhahang.setText("Nhà Hàng");
+        button_nhahang.setText("Chọn mua");
         button_nhahang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button_nhahangActionPerformed(evt);
             }
         });
 
-        button_fitness.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        button_fitness.setText("Fitness");
-        button_fitness.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button_fitnessActionPerformed(evt);
-            }
-        });
-
-        button_golf.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        button_golf.setText("Golf");
-        button_golf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button_golfActionPerformed(evt);
-            }
-        });
-
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel11.setText("Tiền dịch vụ:");
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/anh2/casino2.jpg"))); // NOI18N
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/anh2/spa2.jpg"))); // NOI18N
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/anh2/bar2.jpg"))); // NOI18N
+
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/anh2/restaurant2.jpg"))); // NOI18N
+        jLabel15.setText("jLabel12");
+
+        button_casino_uncheck.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        button_casino_uncheck.setText("Bỏ mua");
+        button_casino_uncheck.setEnabled(false);
+        button_casino_uncheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_casino_uncheckActionPerformed(evt);
+            }
+        });
+
+        button_spa_uncheck.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        button_spa_uncheck.setText("Bỏ mua");
+        button_spa_uncheck.setEnabled(false);
+        button_spa_uncheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_spa_uncheckActionPerformed(evt);
+            }
+        });
+
+        button_bar_uncheck.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        button_bar_uncheck.setText("Bỏ mua");
+        button_bar_uncheck.setEnabled(false);
+        button_bar_uncheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_bar_uncheckActionPerformed(evt);
+            }
+        });
+
+        button_nhahang_uncheck.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        button_nhahang_uncheck.setText("Bỏ mua");
+        button_nhahang_uncheck.setEnabled(false);
+        button_nhahang_uncheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_nhahang_uncheckActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel_dichvuLayout = new javax.swing.GroupLayout(panel_dichvu);
         panel_dichvu.setLayout(panel_dichvuLayout);
         panel_dichvuLayout.setHorizontalGroup(
             panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_dichvuLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(21, 21, 21)
+                .addGroup(panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(button_casino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(button_casino_uncheck, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_dichvuLayout.createSequentialGroup()
-                        .addComponent(button_casino, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70)
-                        .addComponent(button_spa, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                        .addGap(59, 59, 59)
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_dichvuLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(button_bar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(button_fitness, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(63, 63, 63))
-                    .addGroup(panel_dichvuLayout.createSequentialGroup()
-                        .addGroup(panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(button_hoihop, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panel_dichvuLayout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(32, 32, 32)
-                        .addGroup(panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(button_nhahang, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(text_tiendichvu, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(button_spa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(button_spa_uncheck, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(button_ok, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button_tennis, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button_golf, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21))
+                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(button_bar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(button_bar_uncheck, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57)
+                .addGroup(panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(button_nhahang, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(button_nhahang_uncheck, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22))
+            .addGroup(panel_dichvuLayout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(text_tiendichvu, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(button_ok, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panel_dichvuLayout.setVerticalGroup(
             panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_dichvuLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(button_casino, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button_spa, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button_bar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button_tennis, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addGroup(panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(button_golf, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button_fitness, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button_nhahang, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button_hoihop, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_dichvuLayout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(button_ok))
+                        .addGap(22, 22, 22)
+                        .addGroup(panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_dichvuLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(button_spa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panel_dichvuLayout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addGroup(panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(text_tiendichvu, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(button_casino)
+                                .addComponent(button_nhahang))
+                            .addComponent(button_bar))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(button_nhahang_uncheck)
+                    .addComponent(button_bar_uncheck)
+                    .addComponent(button_spa_uncheck, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(button_casino_uncheck))
+                .addGap(25, 25, 25)
+                .addGroup(panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(text_tiendichvu, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(button_ok, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         Table.addTab("Dịch vụ yêu cầu", panel_dichvu);
@@ -614,7 +700,8 @@ public class CustomerFrame extends javax.swing.JFrame {
 
     public String mapin2;
     private void button_dangnhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_dangnhapActionPerformed
-                      
+    
+      
       String pin = new String(text_pin.getPassword());
       if (pin.length() == 6) {
             String checkPIN = host.authPIN(pin);
@@ -626,15 +713,111 @@ public class CustomerFrame extends javax.swing.JFrame {
                         Table.setEnabled(true);             
                         anhdaidien.setIcon(new ImageIcon( host.DownloadImage()));           
                         String[] data = host.getData().split("@");
+                        
                         text_cccd.setText(data[0]);
-                        text_hoten.setText(data[1]);                       
-                        text_phong.setText(data[4]);
-                        text_ngaydk.setText(data[5]);
-                        text_mapin.setText(data[6]);
-                        text_tien.setText(data[7]);    
-                        text_tiencanthanhtoan.setText(tienthuc+data[7]);
-                        mapin2 = data[6];
-                        tienthuc = Integer.valueOf(data[7]);
+                        text_hoten.setText(data[1]);
+                        System.out.println(" dich vu yeu cau hien gio la" + data[2]);    
+                        dichvuyeucau = Integer.valueOf(data[2]);
+                        text_phong.setText(data[5]);
+                        text_ngaydk.setText(data[6]);
+                        text_mapin.setText(data[7]);
+                        text_tien.setText(data[8]);     
+                        text_tiencanthanhtoan.setText(tienthuc+data[8]);
+                        
+                        mapin2 = data[7];
+                        tienthuc = Integer.valueOf(data[8]);
+                        if(dichvuyeucau==1){button_casino.setEnabled(false); text_dichvuyeucau.setText("Casino");}
+                        else if(dichvuyeucau==3){button_spa.setEnabled(false); text_dichvuyeucau.setText("Spa");}
+                        else if(dichvuyeucau==5){button_bar.setEnabled(false); text_dichvuyeucau.setText("Bar");}
+                        else if(dichvuyeucau==10){button_nhahang.setEnabled(false); text_dichvuyeucau.setText("Nha hang");}
+                        else if(dichvuyeucau==4){
+                            button_casino.setEnabled(false);
+                            button_spa.setEnabled(false);
+                            text_dichvuyeucau.setText("Casino --- Spa");
+                        }
+                        else if(dichvuyeucau==6){
+                            button_casino.setEnabled(false);
+                            button_bar.setEnabled(false);
+                            text_dichvuyeucau.setText("Casino --- Bar");
+                        }
+                        else if(dichvuyeucau==11){
+                            button_casino.setEnabled(false);
+                            button_nhahang.setEnabled(false);
+                            text_dichvuyeucau.setText("Casino --- Nha hang");
+                        }
+                        else if(dichvuyeucau==8){
+                            button_spa.setEnabled(false);
+                            button_bar.setEnabled(false);
+                            text_dichvuyeucau.setText("Spa --- Bar");
+                        }
+                        else if(dichvuyeucau==13){
+                            button_spa.setEnabled(false);
+                            button_nhahang.setEnabled(false);
+                            text_dichvuyeucau.setText("Spa --- Nha hang");
+                        }
+                        else if(dichvuyeucau==15){
+                            button_bar.setEnabled(false);
+                            button_nhahang.setEnabled(false);
+                            text_dichvuyeucau.setText("Bar --- Nha hang");
+                        }
+                        else if(dichvuyeucau==9){
+                            button_casino.setEnabled(false);
+                            button_spa.setEnabled(false);
+                            button_bar.setEnabled(false);
+                            text_dichvuyeucau.setText("Casino --- Spa --- Bar");
+                        }
+                        else if(dichvuyeucau==14){
+                            button_casino.setEnabled(false);
+                            button_spa.setEnabled(false);
+                            button_nhahang.setEnabled(false);
+                            text_dichvuyeucau.setText("Casino --- Spa --- Nha hang");
+                        }
+                        else if(dichvuyeucau==16){
+                            button_casino.setEnabled(false);
+                            button_bar.setEnabled(false);
+                            button_nhahang.setEnabled(false);
+                            text_dichvuyeucau.setText("Casino --- Bar --- Nha hang");
+                        }
+                        else if(dichvuyeucau==18){
+                            button_spa.setEnabled(false);
+                            button_bar.setEnabled(false);
+                            button_nhahang.setEnabled(false);
+                            text_dichvuyeucau.setText("Spa --- Bar --- Nha hang");
+                        }
+                        else if(dichvuyeucau==19){
+                            button_spa.setEnabled(false);
+                            button_casino.setEnabled(false);
+                            button_bar.setEnabled(false);
+                            button_nhahang.setEnabled(false);
+                            text_dichvuyeucau.setText("Casino --- Spa --- Bar --- Nha hang");
+                        }
+                        DateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                        Date currentDate = new Date();
+                        Date date1 = null;
+                        Date date2 = null;
+                        {
+                       try {
+                            date1 = simpleDateFormat.parse(data[6]);
+                        } catch (ParseException ex) {
+                           Logger.getLogger(CustomerFrame.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        }
+                        String endDate = simpleDateFormat.format(currentDate);
+            {
+                try {
+                    date2 = simpleDateFormat.parse(endDate);
+                } catch (ParseException ex) {
+                    Logger.getLogger(CustomerFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+                        long getDiff = date2.getTime() - date1.getTime();
+
+                        long getDaysDiff = getDiff / (24 * 60 * 60 * 1000); 
+                        text_ngayhientai.setText(date2+"");
+                        text_ngaydangki.setText(date1+"");
+                        long m = getDaysDiff*500;
+                        text_ngayo.setText(getDaysDiff+"=> " +m+" VNĐ");
+                        
                         break;
 
                     case "19000":
@@ -666,54 +849,122 @@ public class CustomerFrame extends javax.swing.JFrame {
     private void button_casinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_casinoActionPerformed
         // TODO add your handling code here:
         tiendichvu +=100;
+        dichvuyeucau +=1;
         text_tiendichvu.setText(tiendichvu+"");
+        button_casino_uncheck.setEnabled(true);
+        button_casino.setEnabled(false);
     }//GEN-LAST:event_button_casinoActionPerformed
 
     private void button_spaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_spaActionPerformed
        tiendichvu +=200;
-        text_tiendichvu.setText(tiendichvu+"");
+       dichvuyeucau +=3;
+       text_tiendichvu.setText(tiendichvu+"");
+       button_spa_uncheck.setEnabled(true);
+       button_spa.setEnabled(false);
     }//GEN-LAST:event_button_spaActionPerformed
 
     private void button_barActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_barActionPerformed
         // TODO add your handling code here:
-         tiendichvu +=300;
+        tiendichvu +=300;
+        dichvuyeucau+=5;
         text_tiendichvu.setText(tiendichvu+"");
+        button_bar_uncheck.setEnabled(true);
+        button_bar.setEnabled(false);
     }//GEN-LAST:event_button_barActionPerformed
-
-    private void button_tennisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_tennisActionPerformed
-        // TODO add your handling code here:
-         tiendichvu +=400;
-        text_tiendichvu.setText(tiendichvu+"");
-    }//GEN-LAST:event_button_tennisActionPerformed
-
-    private void button_hoihopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_hoihopActionPerformed
-        tiendichvu +=500;
-        text_tiendichvu.setText(tiendichvu+"");
-    }//GEN-LAST:event_button_hoihopActionPerformed
 
     private void button_nhahangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_nhahangActionPerformed
         // TODO add your handling code here:
-         tiendichvu +=600;
+        tiendichvu +=600;
+        dichvuyeucau+=10;
         text_tiendichvu.setText(tiendichvu+"");
+        button_nhahang_uncheck.setEnabled(true);
+        button_nhahang.setEnabled(false);
     }//GEN-LAST:event_button_nhahangActionPerformed
-
-    private void button_fitnessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_fitnessActionPerformed
-        tiendichvu +=700;
-        text_tiendichvu.setText(tiendichvu+"");
-    }//GEN-LAST:event_button_fitnessActionPerformed
-
-    private void button_golfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_golfActionPerformed
-       tiendichvu +=800;
-        text_tiendichvu.setText(tiendichvu+"");
-    }//GEN-LAST:event_button_golfActionPerformed
 
     private void button_okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_okActionPerformed
         // TODO add your handling code here:
+        if(tiendichvu==0){
+            JOptionPane.showMessageDialog(this, "Không có dịch vụ nào được lựa chọn");   
+        }else{
         tienthuc+= tiendichvu;
         text_tien.setText(tienthuc+"");
         text_tiencanthanhtoan.setText(tienthuc+"");
+        tiendichvu=0;
+        text_tiendichvu.setText("");
         host.changeWallet(tienthuc+"");
+        host.changeDichvuyeucau(dichvuyeucau+"");
         JOptionPane.showMessageDialog(this, "Rất vui lòng phục vụ quý khách");   
+        button_bar_uncheck.setEnabled(false);
+        button_casino_uncheck.setEnabled(false);
+        button_nhahang_uncheck.setEnabled(false);
+        button_spa_uncheck.setEnabled(false);
+        }
+                    if(dichvuyeucau==1){button_casino.setEnabled(false); text_dichvuyeucau.setText("Casino");}
+                        else if(dichvuyeucau==3){button_spa.setEnabled(false); text_dichvuyeucau.setText("Spa");}
+                        else if(dichvuyeucau==5){button_bar.setEnabled(false); text_dichvuyeucau.setText("Bar");}
+                        else if(dichvuyeucau==10){button_nhahang.setEnabled(false); text_dichvuyeucau.setText("Nha hang");}
+                        else if(dichvuyeucau==4){
+                            button_casino.setEnabled(false);
+                            button_spa.setEnabled(false);
+                            text_dichvuyeucau.setText("Casino --- Spa");
+                        }
+                        else if(dichvuyeucau==6){
+                            button_casino.setEnabled(false);
+                            button_bar.setEnabled(false);
+                            text_dichvuyeucau.setText("Casino --- Bar");
+                        }
+                        else if(dichvuyeucau==11){
+                            button_casino.setEnabled(false);
+                            button_nhahang.setEnabled(false);
+                            text_dichvuyeucau.setText("Casino --- Nha hang");
+                        }
+                        else if(dichvuyeucau==8){
+                            button_spa.setEnabled(false);
+                            button_bar.setEnabled(false);
+                            text_dichvuyeucau.setText("Spa --- Bar");
+                        }
+                        else if(dichvuyeucau==13){
+                            button_spa.setEnabled(false);
+                            button_nhahang.setEnabled(false);
+                            text_dichvuyeucau.setText("Spa --- Nha hang");
+                        }
+                        else if(dichvuyeucau==15){
+                            button_bar.setEnabled(false);
+                            button_nhahang.setEnabled(false);
+                            text_dichvuyeucau.setText("Bar --- Nha hang");
+                        }
+                        else if(dichvuyeucau==9){
+                            button_casino.setEnabled(false);
+                            button_spa.setEnabled(false);
+                            button_bar.setEnabled(false);
+                            text_dichvuyeucau.setText("Casino --- Spa --- Bar");
+                        }
+                        else if(dichvuyeucau==14){
+                            button_casino.setEnabled(false);
+                            button_spa.setEnabled(false);
+                            button_nhahang.setEnabled(false);
+                            text_dichvuyeucau.setText("Casino --- Spa --- Nha hang");
+                        }
+                        else if(dichvuyeucau==16){
+                            button_casino.setEnabled(false);
+                            button_bar.setEnabled(false);
+                            button_nhahang.setEnabled(false);
+                            text_dichvuyeucau.setText("Casino --- Bar --- Nha hang");
+                        }
+                        else if(dichvuyeucau==18){
+                            button_spa.setEnabled(false);
+                            button_bar.setEnabled(false);
+                            button_nhahang.setEnabled(false);
+                            text_dichvuyeucau.setText("Spa --- Bar --- Nha hang");
+                        }
+                        else if(dichvuyeucau==19){
+                            button_spa.setEnabled(false);
+                            button_casino.setEnabled(false);
+                            button_bar.setEnabled(false);
+                            button_nhahang.setEnabled(false);
+                            text_dichvuyeucau.setText("Casino --- Spa --- Bar --- Nha hang");
+                        }
+                        
     }//GEN-LAST:event_button_okActionPerformed
 
     private void button_thanhtoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_thanhtoanActionPerformed
@@ -933,6 +1184,42 @@ public class CustomerFrame extends javax.swing.JFrame {
              }
     }//GEN-LAST:event_button_8ActionPerformed
 
+    private void button_casino_uncheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_casino_uncheckActionPerformed
+        // TODO add your handling code here:
+        tiendichvu -=100;
+        dichvuyeucau-=1;
+        text_tiendichvu.setText(tiendichvu+"");
+        button_casino_uncheck.setEnabled(false);
+        button_casino.setEnabled(true);
+    }//GEN-LAST:event_button_casino_uncheckActionPerformed
+
+    private void button_spa_uncheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_spa_uncheckActionPerformed
+        // TODO add your handling code here:
+        tiendichvu -=200;
+        dichvuyeucau-=3;
+        text_tiendichvu.setText(tiendichvu+"");
+        button_spa_uncheck.setEnabled(false);
+        button_spa.setEnabled(true);
+    }//GEN-LAST:event_button_spa_uncheckActionPerformed
+
+    private void button_bar_uncheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_bar_uncheckActionPerformed
+        // TODO add your handling code here:
+        tiendichvu -=300;
+        dichvuyeucau-=5;
+        text_tiendichvu.setText(tiendichvu+"");
+        button_bar_uncheck.setEnabled(false);
+        button_bar.setEnabled(true);
+    }//GEN-LAST:event_button_bar_uncheckActionPerformed
+
+    private void button_nhahang_uncheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_nhahang_uncheckActionPerformed
+        // TODO add your handling code here:
+        tiendichvu -=600;
+        dichvuyeucau-=10;
+        text_tiendichvu.setText(tiendichvu+"");
+        button_nhahang_uncheck.setEnabled(false);
+        button_nhahang.setEnabled(true);
+    }//GEN-LAST:event_button_nhahang_uncheckActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -980,21 +1267,28 @@ public class CustomerFrame extends javax.swing.JFrame {
     private javax.swing.JButton button_7;
     private javax.swing.JButton button_8;
     private javax.swing.JButton button_bar;
+    private javax.swing.JButton button_bar_uncheck;
     private javax.swing.JButton button_casino;
+    private javax.swing.JButton button_casino_uncheck;
     private javax.swing.JButton button_connect;
     private javax.swing.JButton button_dangnhap;
     private javax.swing.JButton button_doimapin;
-    private javax.swing.JButton button_fitness;
-    private javax.swing.JButton button_golf;
-    private javax.swing.JButton button_hoihop;
     private javax.swing.JButton button_nhahang;
+    private javax.swing.JButton button_nhahang_uncheck;
     private javax.swing.JButton button_ok;
     private javax.swing.JButton button_spa;
-    private javax.swing.JButton button_tennis;
+    private javax.swing.JButton button_spa_uncheck;
     private javax.swing.JButton button_thanhtoan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1009,9 +1303,13 @@ public class CustomerFrame extends javax.swing.JFrame {
     private javax.swing.JPanel panel_mokhoaphong;
     private javax.swing.JPanel panel_thongtincanhan;
     private javax.swing.JTextField text_cccd;
+    private javax.swing.JTextField text_dichvuyeucau;
     private javax.swing.JTextField text_hoten;
     private javax.swing.JTextField text_mapin;
+    private javax.swing.JTextField text_ngaydangki;
     private javax.swing.JTextField text_ngaydk;
+    private javax.swing.JTextField text_ngayhientai;
+    private javax.swing.JTextField text_ngayo;
     private javax.swing.JTextField text_phong;
     private javax.swing.JPasswordField text_pin;
     private javax.swing.JTextField text_tien;

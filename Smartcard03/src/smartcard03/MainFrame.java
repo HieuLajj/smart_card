@@ -374,12 +374,13 @@ public class MainFrame extends javax.swing.JFrame {
                            String[] data = host.getData().split("@");
                            text_cccd.setText(data[0]);
                            text_hoten.setText(data[1]);
-                           text_ngaysinh.setText(data[2]);
-                           text_sdt.setText(data[3]);
-                           text_phong.setText(data[4]);
-                           text_ngaydk.setText(data[5]);
-                           text_mapin.setText(data[6]);
-                           text_tien.setText(data[7]);
+                           System.out.println(" dich vu yeu cau hien gio la" + data[2]);
+                           text_ngaysinh.setText(data[3]);
+                           text_sdt.setText(data[4]);
+                           text_phong.setText(data[5]);
+                           text_ngaydk.setText(data[6]);
+                           text_mapin.setText(data[7]);
+                           text_tien.setText(data[8]);                   
                            
                            hoten2=data[1];
                            ngaysinh2=data[2];

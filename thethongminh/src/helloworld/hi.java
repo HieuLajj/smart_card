@@ -22,14 +22,15 @@ public class hi extends Applet implements ExtendedLength
 	private static short dataLen2;
 	
 	
-	public static final short OFFSET_CCCD     = 0;
-	public static final short OFFSET_HOTEN   = 1;
-	public static final short OFFSET_NGAYSINH  = 2;
-	public static final short OFFSET_SDT  = 3;
-	public static final short OFFSET_PHONG    = 4;
-	public static final short OFFSET_NGAYDK = 5;
-	public static final short OFFSET_MAPIN =6;
-	public static final short OFFSET_TIEN = 7;
+	public static final short OFFSET_CCCD         = 0;
+	public static final short OFFSET_HOTEN        = 1;
+	public static final short OFFSET_DICHVUYEUCAU = 2;
+	public static final short OFFSET_NGAYSINH     = 3;
+	public static final short OFFSET_SDT          = 4;
+	public static final short OFFSET_PHONG        = 5;
+	public static final short OFFSET_NGAYDK       = 6;
+	public static final short OFFSET_MAPIN        = 7;
+	public static final short OFFSET_TIEN         = 8;
 	
 	
 	
@@ -79,10 +80,10 @@ public class hi extends Applet implements ExtendedLength
 			byte[] data = new byte[(short)buf[ISO7816.OFFSET_LC]];
 			short dataLen = (short)data.length;
 			Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, data, (short)0, (short)buf[ISO7816.OFFSET_LC]);
-			short cccd_len, hoten_len, ngaysinh_len, sdt_len, phong_len, ngaydk_len,mapin_len,tien_len;
+			short cccd_len, hoten_len, ngaysinh_len, sdt_len, phong_len, ngaydk_len,mapin_len,tien_len,dichvuyeucau_len;
 			// tao mang luu vi tri bat dau cua tung thong tin trong mang data nhan duoc
 			
-			byte[] infoOFFSET = new byte[(short)8];
+			byte[] infoOFFSET = new byte[(short)9];
 			// // ID bat dau tu vi tri 0
 			infoOFFSET[OFFSET_CCCD] = (short)0;
 			short j = (short)1;
@@ -96,14 +97,17 @@ public class hi extends Applet implements ExtendedLength
 			 }
 			 
 			 
-			 cccd_len     = (short)(infoOFFSET[OFFSET_HOTEN]   - 1);
-			 hoten_len    = (short)((short)(infoOFFSET[OFFSET_NGAYSINH]  - infoOFFSET[OFFSET_HOTEN])  - 1);
-			 ngaysinh_len = (short)((short)(infoOFFSET[OFFSET_SDT]  - infoOFFSET[OFFSET_NGAYSINH]) - 1);
-			 sdt_len      = (short)((short)(infoOFFSET[OFFSET_PHONG]    - infoOFFSET[OFFSET_SDT]) - 1);
-			 phong_len    = (short)((short)(infoOFFSET[OFFSET_NGAYDK] - infoOFFSET[OFFSET_PHONG]-1));	
-			 ngaydk_len   = (short)((short)(infoOFFSET[OFFSET_MAPIN] - infoOFFSET[OFFSET_NGAYDK]-1));	
-			 mapin_len    = (short)((short)(infoOFFSET[OFFSET_TIEN]  - infoOFFSET[OFFSET_MAPIN]-1));
-			 tien_len     = (short)(buf[ISO7816.OFFSET_LC] - infoOFFSET[OFFSET_TIEN]);
+			 cccd_len         = (short)(infoOFFSET[OFFSET_HOTEN]   - 1);
+			 hoten_len        = (short)((short)(infoOFFSET[OFFSET_DICHVUYEUCAU]  - infoOFFSET[OFFSET_HOTEN])  - 1);
+			 dichvuyeucau_len = (short)((short)(infoOFFSET[OFFSET_NGAYSINH]  - infoOFFSET[OFFSET_DICHVUYEUCAU]) - 1);
+			 ngaysinh_len     = (short)((short)(infoOFFSET[OFFSET_SDT]  - infoOFFSET[OFFSET_NGAYSINH]) - 1);
+			 sdt_len          = (short)((short)(infoOFFSET[OFFSET_PHONG]    - infoOFFSET[OFFSET_SDT]) - 1);
+			 phong_len        = (short)((short)(infoOFFSET[OFFSET_NGAYDK] - infoOFFSET[OFFSET_PHONG]-1));	
+			 ngaydk_len       = (short)((short)(infoOFFSET[OFFSET_MAPIN] - infoOFFSET[OFFSET_NGAYDK]-1));	
+			 mapin_len        = (short)((short)(infoOFFSET[OFFSET_TIEN]  - infoOFFSET[OFFSET_MAPIN]-1));
+			 tien_len =          (short)(buf[ISO7816.OFFSET_LC] - infoOFFSET[OFFSET_TIEN]);
+			 //tien_len         = (short)((short)(infoOFFSET[OFFSET_DICHVUYEUCAU]) - infoOFFSET[OFFSET_TIEN-1]);
+			 //dichvuyeucau_len = (short)(buf[ISO7816.OFFSET_LC] - infoOFFSET[OFFSET_DICHVUYEUCAU]);
 			 
 			 //anh_len      = (short)OpImage.length;
 			 
@@ -115,12 +119,14 @@ public class hi extends Applet implements ExtendedLength
 			 byte[] ngay_dk = new byte[ngaydk_len];
 			 byte[] mapin = new byte[mapin_len];
 			 byte[] tien  = new byte[tien_len];
+			 byte[] dichvuyeucau = new byte[dichvuyeucau_len];
 			 
 			 //byte[] anhdaidien = new byte[anh_len];
 			
 			
 			 Util.arrayCopy(data, (short)infoOFFSET[OFFSET_CCCD]     , cccd     , (short)0, cccd_len);			
-			 Util.arrayCopy(data, (short)infoOFFSET[OFFSET_HOTEN]    , hoten    , (short)0, hoten_len);			
+			 Util.arrayCopy(data, (short)infoOFFSET[OFFSET_HOTEN]    , hoten    , (short)0, hoten_len);		
+			 Util.arrayCopy(data, (short)infoOFFSET[OFFSET_DICHVUYEUCAU], dichvuyeucau, (short)0, dichvuyeucau_len);	
 			 Util.arrayCopy(data, (short)infoOFFSET[OFFSET_NGAYSINH] , ngaysinh , (short)0, ngaysinh_len);			
 			 Util.arrayCopy(data, (short)infoOFFSET[OFFSET_SDT]      , sdt      , (short)0, sdt_len);			
 			 Util.arrayCopy(data, (short)infoOFFSET[OFFSET_PHONG]    , phong    , (short)0, phong_len);			
@@ -128,10 +134,11 @@ public class hi extends Applet implements ExtendedLength
 			 Util.arrayCopy(data, (short)infoOFFSET[OFFSET_MAPIN]    , mapin    , (short)0, mapin_len);
 			 Util.arrayCopy(data, (short)infoOFFSET[OFFSET_TIEN]     , tien     , (short)0, tien_len);
 			 
+			 
 			 //Util.arrayCopy(OpImage, (short)0, anhdaidien, (short)0, anh_len);
 			 // //--------------------------//
 			 
-			customer = new Customer(cccd,hoten,ngaysinh,sdt,phong,ngay_dk,mapin,OpImage,tien);
+			customer = new Customer(cccd,hoten,ngaysinh,sdt,phong,ngay_dk,mapin,OpImage,tien,dichvuyeucau);
 			len3= (short)mapin.length;
 			Util.arrayCopy(mapin,(short)0, buf, (short)0,len3);
 			apdu.setOutgoingAndSend((short)0,len3);
@@ -150,6 +157,7 @@ public class hi extends Applet implements ExtendedLength
 			ngay_dk = customer.getNgaydk();
 			mapin = customer.getMapin();
 			tien= customer.getTien();
+			dichvuyeucau = customer.getDichvuyeucau();
 			
 			cccd_len = (short)cccd.length;
 			hoten_len = (short)hoten.length;
@@ -159,14 +167,18 @@ public class hi extends Applet implements ExtendedLength
 			ngaydk_len = (short)ngay_dk.length;
 			mapin_len = (short)mapin.length;
 			tien_len = (short)tien.length;
+			dichvuyeucau_len = (short)dichvuyeucau.length;
 			
-			short totalSendLen = (short)(cccd_len+hoten_len+ngaysinh_len+sdt_len+phong_len+ngaydk_len+mapin_len+tien_len+(short)7);
+			short totalSendLen = (short)(cccd_len+hoten_len+ngaysinh_len+sdt_len+phong_len+ngaydk_len+mapin_len+tien_len+dichvuyeucau_len+(short)8);
 			apdu.setOutgoing();
 			apdu.setOutgoingLength(totalSendLen);
 			apdu.sendBytesLong(cccd,(short)0,cccd_len);
 			apdu.sendBytesLong(flag, (short)0, (short)1);
 			
 			apdu.sendBytesLong(hoten,(short)0,hoten_len);
+			apdu.sendBytesLong(flag, (short)0, (short)1);
+			
+			apdu.sendBytesLong(dichvuyeucau,(short)0, dichvuyeucau_len);
 			apdu.sendBytesLong(flag, (short)0, (short)1);
 			
 			apdu.sendBytesLong(ngaysinh,(short)0, ngaysinh_len);
@@ -260,8 +272,18 @@ public class hi extends Applet implements ExtendedLength
 				customer.setTien(tien);
 				JCSystem.commitTransaction(); //xac nhan ket thuc thao tac nguyen tu
 			}
-			
-	        
+			if( buf[ISO7816.OFFSET_P1] == (byte)0x07){
+				dichvuyeucau = new byte[(short)buf[ISO7816.OFFSET_LC]];
+				Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, dichvuyeucau, (short)0, (short)buf[ISO7816.OFFSET_LC]);
+				// //ma hoa so du moi truoc khi luu
+				// wallet = encryptAES(wallet, customer.getPIN());
+
+				// //bat dau thao tac nguyen tu
+				JCSystem.beginTransaction();
+				customer.setDichvuyeucau(dichvuyeucau);
+				JCSystem.commitTransaction(); //xac nhan ket thuc thao tac nguyen tu
+			}
+			       
 			break;
 		
 		case (byte) INS_AUTHENTICATE_PIN_0x04:

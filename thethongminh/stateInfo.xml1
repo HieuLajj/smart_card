@@ -7,11 +7,11 @@
 <FileNodes>
 <fnode>
 <fileName>src\helloworld\Customer.java</fileName>
-<line>111</line>
+<line>18</line>
 </fnode>
 <ActiveFile>
 <fileName>src\helloworld\hi.java</fileName>
-<line>273</line>
+<line>282</line>
 </ActiveFile>
 </FileNodes>
 </StateInfo>

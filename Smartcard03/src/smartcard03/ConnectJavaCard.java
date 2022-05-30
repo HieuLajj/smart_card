@@ -147,12 +147,13 @@ public class ConnectJavaCard {
     public boolean transmissionData(String cccd, String hoten, String ngaysinh, String sdt,String phong, String ngay_dk,String mapin){
         try {
             System.out.println("------------------------------------------------------------------------------------------");
-            String data = cccd + "@" + hoten + "@" + ngaysinh + "@" + sdt + "@" + phong + "@" + ngay_dk+ "@"+ mapin+"@0";
+            String data = cccd + "@" + hoten + "@0@"+ ngaysinh + "@" + sdt + "@" + phong + "@" + ngay_dk+ "@"+ mapin+"@0";
             byte[] dataTrans = data.getBytes();                                                         
             response = channel.transmit(new CommandAPDU((byte)0x00,INS_INIT, (byte)0x11, (byte)0x00,dataTrans));
             //response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x00, (byte)0x11, (byte)0x00,combined));
             //String pub = bytesToHex(response.getData());
             String pub = new String(response.getData(),StandardCharsets.UTF_8);
+            System.out.println("answer: "+data);
             System.out.println("answer: " + response.toString()+"fawef"+pub);
             return true;
         } catch (CardException ex) {
@@ -290,12 +291,26 @@ public class ConnectJavaCard {
         } catch (CardException ex) {
             System.out.println("Error :" + ex);
             return false;
-        }
-            
+        }           
     }
-     
     
+    public static boolean  changeDichvuyeucau(String dichvuyeucay){
+        byte[] dichvuyeucauTrans = dichvuyeucay.getBytes();
+        try {
+            response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x03, (byte)0x07, (byte)0x00, dichvuyeucauTrans));
+            String check = Integer.toHexString(response.getSW());
+            
+            if (check.equals("9000")) {
+                return true;
+            }else{return false;}
+                
+        } catch (CardException ex) {
+            System.out.println("Error :" + ex);
+            return false;
+        }           
+    }
     
+
     public boolean UploadImage(File file, String type){
        // connectapplet();
         try{
