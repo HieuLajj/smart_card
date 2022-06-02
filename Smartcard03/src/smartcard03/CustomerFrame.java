@@ -28,6 +28,7 @@ public class CustomerFrame extends javax.swing.JFrame {
     public int tiendichvu=0;
     public int tienthuc ;
     public int dichvuyeucau = 0;
+    public long tienngay = 0;
     /**
      * Creates new form CustomerFrame
      */
@@ -698,7 +699,8 @@ public class CustomerFrame extends javax.swing.JFrame {
        }        
     }//GEN-LAST:event_button_connectActionPerformed
 
-    public String mapin2;
+   // public String mapin2;
+    int count=0;
     private void button_dangnhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_dangnhapActionPerformed
     
       
@@ -710,22 +712,38 @@ public class CustomerFrame extends javax.swing.JFrame {
              switch (checkPIN) {
                     case "9000":
                         JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
+                        count=0;
                         Table.setEnabled(true);             
                         anhdaidien.setIcon(new ImageIcon( host.DownloadImage()));           
                         String[] data = host.getData().split("@");
                         
                         text_cccd.setText(data[0]);
-                        text_hoten.setText(data[1]);
+                       // text_hoten.setText(data[1]);
                         System.out.println(" dich vu yeu cau hien gio la" + data[2]);    
                         dichvuyeucau = Integer.valueOf(data[2]);
                         text_phong.setText(data[5]);
                         text_ngaydk.setText(data[6]);
-                        text_mapin.setText(data[7]);
-                        text_tien.setText(data[8]);     
-                        text_tiencanthanhtoan.setText(tienthuc+data[8]);
+                    //    text_mapin.setText(data[7]);
+                      //ss  text_mapin.setText("******");
+                        text_tien.setText(data[7]);     
+                      //  text_tiencanthanhtoan.setText(tienngay+tienthuc+data[8]);
+                       
                         
-                        mapin2 = data[7];
-                        tienthuc = Integer.valueOf(data[8]);
+                     //   mapin2 = data[7];
+                       
+//                           text_cccd.setText(data[0]);
+//                           text_hoten.setText(data[1]);
+//                           System.out.println(" dich vu yeu cau hien gio la" + data[2]);
+                        //034200005365@Lai Van Hieu@0@12-11-2000@0981136706@0@25-5-2022@123456@0
+                           
+                                          
+                           
+                
+                        
+                        
+                        
+                        
+                        tienthuc = Integer.valueOf(data[7]);
                         if(dichvuyeucau==1){button_casino.setEnabled(false); text_dichvuyeucau.setText("Casino");}
                         else if(dichvuyeucau==3){button_spa.setEnabled(false); text_dichvuyeucau.setText("Spa");}
                         else if(dichvuyeucau==5){button_bar.setEnabled(false); text_dichvuyeucau.setText("Bar");}
@@ -815,13 +833,16 @@ public class CustomerFrame extends javax.swing.JFrame {
                         long getDaysDiff = getDiff / (24 * 60 * 60 * 1000); 
                         text_ngayhientai.setText(date2+"");
                         text_ngaydangki.setText(date1+"");
-                        long m = getDaysDiff*500;
-                        text_ngayo.setText(getDaysDiff+"=> " +m+" VNĐ");
+                        tienngay = getDaysDiff*500;
+                        text_ngayo.setText(getDaysDiff+"=> " +tienngay+" VNĐ");
+                        text_tiencanthanhtoan.setText((tienngay+tienthuc)+"");
                         
                         break;
 
-                    case "19000":
-                        JOptionPane.showMessageDialog(this, "Nhập mã sai rồi đấy");
+                  case "19000":
+                       // host.wrongPIN();
+                        JOptionPane.showMessageDialog(this, "Còn " + (3-count) + " nhập sai PIN");
+                        count++;
                         break;
                      
                     case "09000":
@@ -837,12 +858,12 @@ public class CustomerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_button_dangnhapActionPerformed
 
     private void button_doimapinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_doimapinActionPerformed
-        if(!text_mapin.getText().equals(mapin2)){
+      //  if(!text_mapin.getText().equals(mapin2)){
             System.out.println("thay doi pin");
             if(host.changePIN(text_mapin.getText())){
                 System.out.println("thay doi pin  thanh cong");
                 JOptionPane.showMessageDialog(this, "Thay pin thành công");   
-            }
+       //     }
         }
     }//GEN-LAST:event_button_doimapinActionPerformed
 
@@ -888,7 +909,7 @@ public class CustomerFrame extends javax.swing.JFrame {
         }else{
         tienthuc+= tiendichvu;
         text_tien.setText(tienthuc+"");
-        text_tiencanthanhtoan.setText(tienthuc+"");
+        text_tiencanthanhtoan.setText(tienngay+tienthuc+"");
         tiendichvu=0;
         text_tiendichvu.setText("");
         host.changeWallet(tienthuc+"");
@@ -971,14 +992,14 @@ public class CustomerFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         int tien3 = Integer.valueOf(text_tiencanthanhtoan.getText());
         int tiennhapvao = Integer.valueOf(text_tiennhapvao.getText());
-        if(tiennhapvao>tien3){
-              JOptionPane.showMessageDialog(this, "Số tiền phải nhỏ hơn số tiền cần thanh toán");
+        if(tiennhapvao!=tien3){
+              JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng số tiền cần thanh toán");
         }
         else{
-           int b = tien3-tiennhapvao;
-           text_tien.setText(b+"");
-           text_tiencanthanhtoan.setText(b+"");
-           host.changeWallet(b+"");
+          // int b = tien3-tiennhapvao;
+           text_tien.setText(0+"");
+           text_tiencanthanhtoan.setText(0+"");
+           host.changeWallet(0+"");
            JOptionPane.showMessageDialog(this, "Thanh toán thành công");   
         }  
     }//GEN-LAST:event_button_thanhtoanActionPerformed

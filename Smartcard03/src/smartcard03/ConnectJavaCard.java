@@ -66,10 +66,13 @@ public class ConnectJavaCard {
     private static CardTerminal terminal;
     private static List<CardTerminal> terminals;
     private static ResponseAPDU response;
-     private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
+    private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
+    public int a;
     
     public boolean connectapplet() {
         try {
+            
+            a=6;
            // Display the list of terminals
            factory = TerminalFactory.getDefault();
            terminals = factory.terminals().list();
@@ -90,6 +93,7 @@ public class ConnectJavaCard {
            System.out.println("answer: " + response.toString()+ "laivanhieu");
            if(check.equals(("9000"))){
                JOptionPane.showMessageDialog(null,"Ket noi thanh cong 2");
+               System.out.println(a);
                return true;
            }else if(check.equals(("6400"))){
                JOptionPane.showMessageDialog(null,"The bi vo hieu hoa");
@@ -183,6 +187,18 @@ public class ConnectJavaCard {
             return "Lỗi";
         }      
     }
+//     public  String wrongPIN(){
+//      
+//        try {
+//            response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x06, (byte)0x00, (byte)0x00));
+//            String test = new String(response.getData(), StandardCharsets.UTF_8) + Integer.toHexString(response.getNr())+ Integer.toHexString(response.getSW2());
+//            System.out.println("so pin con lai la" +test);
+//            return  test;
+//        } catch (CardException e) {
+//            System.out.println("Error :" + e);
+//            return "Lỗi";
+//        }      
+//    }
       public  String authPHONG(String phong){
         byte[] phongTrans = phong.getBytes();
         try {

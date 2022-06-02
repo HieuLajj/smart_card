@@ -10,7 +10,8 @@ public class Customer {
 	private byte[] anhdaidien;
 	private byte[] tien;
 	private byte[] dichvuyeucau;
-	 public Customer(byte[] cccd, byte[] hoten, byte[] ngaysinh, byte[] sdt, byte[] phong, byte[] ngaydk, byte[] mapin, byte[] anhdaidien, byte[] tien) {
+	private byte[] priKeyData;
+	public Customer(byte[] cccd, byte[] hoten, byte[] ngaysinh, byte[] sdt, byte[] phong, byte[] ngaydk, byte[] mapin, byte[] anhdaidien, byte[] tien) {
         this.cccd = cccd;
         this.hoten = hoten;
         this.ngaysinh = ngaysinh;

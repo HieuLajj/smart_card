@@ -2,6 +2,8 @@ package helloworld;
 
 import javacard.framework.*;
 import javacardx.apdu.ExtendedLength;
+import javacard.security.*;
+import javacardx.crypto.*;
 
 public class hi extends Applet implements ExtendedLength
 {
@@ -32,7 +34,7 @@ public class hi extends Applet implements ExtendedLength
 	public static final short OFFSET_MAPIN        = 7;
 	public static final short OFFSET_TIEN         = 8;
 	
-	
+	public static final short LENGTH_BLOCK_AES = 16;
 	
 	
     short len;
@@ -138,38 +140,87 @@ public class hi extends Applet implements ExtendedLength
 			 //Util.arrayCopy(OpImage, (short)0, anhdaidien, (short)0, anh_len);
 			 // //--------------------------//
 			 
-			customer = new Customer(cccd,hoten,ngaysinh,sdt,phong,ngay_dk,mapin,OpImage,tien,dichvuyeucau);
-			len3= (short)mapin.length;
-			Util.arrayCopy(mapin,(short)0, buf, (short)0,len3);
-			apdu.setOutgoingAndSend((short)0,len3);
-			break;
+			 mapin = hashMD5(mapin);
+			 
+			 cccd         = encryptAES(cccd, mapin);
+			 hoten        = encryptAES(hoten, mapin);
+			 ngaysinh     = encryptAES(ngaysinh, mapin);
+			 sdt          = encryptAES(sdt, mapin);
+			 phong        =  encryptAES(phong, mapin);
+			 ngay_dk      =  encryptAES(ngay_dk, mapin);
+			 tien         =  encryptAES(tien, mapin);
+			 dichvuyeucau =  encryptAES(dichvuyeucau, mapin);
+			 
+			 JCSystem.beginTransaction();
+			 customer = new Customer(cccd,hoten,ngaysinh,sdt,phong,ngay_dk,mapin,OpImage,tien,dichvuyeucau);
+			 JCSystem.commitTransaction();
+			 // len3= (short)mapin.length;
+			 // Util.arrayCopy(mapin,(short)0, buf, (short)0,len3);
+			 // apdu.setOutgoingAndSend((short)0,len3);
+			 break;
 	    case (byte) UNLOCK_PIN:
 	    	wrong_PIN_count[(short)0] = (short)0;
 	    	break;
 		case (byte)INS_GET_ALL_INFO_0x02:
 			byte[] flag = new byte[] {0x40};
 			
-			cccd = customer.getCccd();
-			hoten = customer.getHoten();
-			ngaysinh = customer.getNgaysinh();
-			sdt = customer.getSdt();
-			phong = customer.getPhong();
-			ngay_dk = customer.getNgaydk();
-			mapin = customer.getMapin();
-			tien= customer.getTien();
-			dichvuyeucau = customer.getDichvuyeucau();
+			 cccd =decryptAES(customer.getCccd(),customer.getMapin());
+			 cccd_len = removePaddingM2(cccd, (short)cccd.length);
 			
-			cccd_len = (short)cccd.length;
-			hoten_len = (short)hoten.length;
-			ngaysinh_len = (short)ngaysinh.length;
-			sdt_len = (short)sdt.length;
-			phong_len = (short)phong.length;
-			ngaydk_len = (short)ngay_dk.length;
-			mapin_len = (short)mapin.length;
-			tien_len = (short)tien.length;
-			dichvuyeucau_len = (short)dichvuyeucau.length;
+			 hoten =decryptAES(customer.getHoten(),customer.getMapin());
+			 hoten_len = removePaddingM2(hoten, (short)hoten.length);
 			
-			short totalSendLen = (short)(cccd_len+hoten_len+ngaysinh_len+sdt_len+phong_len+ngaydk_len+mapin_len+tien_len+dichvuyeucau_len+(short)8);
+			 dichvuyeucau =decryptAES(customer.getDichvuyeucau(),customer.getMapin());
+			 dichvuyeucau_len = removePaddingM2(dichvuyeucau, (short)dichvuyeucau.length);
+			
+			 ngaysinh =decryptAES(customer.getNgaysinh(),customer.getMapin());
+			 ngaysinh_len = removePaddingM2(ngaysinh, (short)ngaysinh.length);
+			
+			 sdt =decryptAES(customer.getSdt(),customer.getMapin());
+			 sdt_len = removePaddingM2(sdt, (short)sdt.length);
+			
+			 phong =decryptAES(customer.getPhong(),customer.getMapin());
+			 phong_len = removePaddingM2(phong, (short)phong.length);
+			
+			 ngay_dk =decryptAES(customer.getNgaydk(),customer.getMapin());
+			 ngaydk_len = removePaddingM2(ngay_dk, (short)ngay_dk.length);
+			// // // //mapin = customer.getMapin();
+			 tien =decryptAES(customer.getTien(),customer.getMapin());
+			 tien_len = removePaddingM2(tien, (short)tien.length);
+			// // // dichvuyeucau =decryptAES(customer.getDichvuyeucau(),customer.getMapin());
+			
+			//cccd_len = removePaddingM2(cccd, (short)cccd.length);
+			// hoten_len = removePaddingM2(hoten, (short)hoten.length);
+			// ngaysinh_len = removePaddingM2(ngaysinh, (short)ngaysinh.length);
+			// sdt_len = removePaddingM2(sdt, (short)sdt.length);
+			// phong_len = removePaddingM2(phong, (short)phong.length);
+			// ngaydk_len = removePaddingM2(ngay_dk, (short)ngay_dk.length);
+			// //mapin_len = (short)mapin.length;
+			// tien_len = removePaddingM2(tien, (short)tien.length);
+			// dichvuyeucau_len = removePaddingM2(dichvuyeucau, (short)dichvuyeucau.length);
+			
+			// cccd = customer.getCccd();
+			// hoten = customer.getHoten();
+            // ngaysinh = customer.getNgaysinh();
+			  // sdt = customer.getSdt();
+			 // phong = customer.getPhong();
+			 // ngay_dk = customer.getNgaydk();
+			  // mapin = customer.getMapin();
+			  // tien= customer.getTien();
+			 // dichvuyeucau = customer.getDichvuyeucau();
+			
+			// cccd_len = (short)cccd.length;
+			 // hoten_len = (short)hoten.length;
+			 // ngaysinh_len = (short)ngaysinh.length;
+             // sdt_len = (short)sdt.length;
+			 // phong_len = (short)phong.length;
+			 // ngaydk_len = (short)ngay_dk.length;
+			// mapin_len = (short)mapin.length;
+			  // tien_len = (short)tien.length;
+			 // dichvuyeucau_len = (short)dichvuyeucau.length;
+			
+			//short totalSendLen = (short)(cccd_len+hoten_len+ngaysinh_len+sdt_len+phong_len+ngaydk_len+mapin_len+tien_len+dichvuyeucau_len+(short)8);
+			short totalSendLen = (short)(cccd_len+hoten_len+ngaysinh_len+sdt_len+phong_len+ngaydk_len+tien_len+dichvuyeucau_len+(short)7);
 			apdu.setOutgoing();
 			apdu.setOutgoingLength(totalSendLen);
 			apdu.sendBytesLong(cccd,(short)0,cccd_len);
@@ -193,8 +244,8 @@ public class hi extends Applet implements ExtendedLength
 			apdu.sendBytesLong(ngay_dk,(short)0, ngaydk_len);
 			apdu.sendBytesLong(flag, (short)0, (short)1);
 			
-			apdu.sendBytesLong(mapin,(short)0, mapin_len);
-			apdu.sendBytesLong(flag, (short)0, (short)1);
+			 //apdu.sendBytesLong(mapin,(short)0, mapin_len);
+			// apdu.sendBytesLong(flag, (short)0, (short)1);
 			
 			apdu.sendBytesLong(tien,(short)0, tien_len);
 			
@@ -295,7 +346,9 @@ public class hi extends Applet implements ExtendedLength
 			 }
 			 short a = (short)buf[ISO7816.OFFSET_LC];
 			 inputPIN = new byte[(short)a];
-			 Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, inputPIN, (short)0, (short)buf[ISO7816.OFFSET_LC]);	 
+			 Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, inputPIN, (short)0, (short)buf[ISO7816.OFFSET_LC]);
+			 
+			 inputPIN = hashMD5(inputPIN);	 
 			 if( Util.arrayCompare(inputPIN, (short)0, customer.getMapin(), (short)0, (short)inputPIN.length) != (byte)0){
 				 wrong_PIN_count[(short)0] = (short)(wrong_PIN_count[(short)0] + 1);
 				 apdu.setOutgoing();
@@ -304,7 +357,14 @@ public class hi extends Applet implements ExtendedLength
 			 }
 			
 			break;
-			
+		// case (byte) 0x06:
+			// //len3= (short)wrong_PIN_count.length;
+			// //Util.arrayCopy(wrong_PIN_count,(short)0, buf, (short)0,len3);
+			// //apdu.setOutgoingAndSend((short)0,len3);
+			// Util.setShort(buf,(short)0,wrong_PIN_count[(short)0]);
+			// short le =apdu.setOutgoing();
+			// apdu.setOutgoingLength((short)2);
+			// apdu.sendBytes((short)0,(short)2);
 		case (byte)0x05:
 			 short b = (short)buf[ISO7816.OFFSET_LC];
 			 inputPHONG = new byte[(short)b];
@@ -339,4 +399,118 @@ public class hi extends Applet implements ExtendedLength
 			ISOException.throwIt(ISO7816.SW_INS_NOT_SUPPORTED);
 		}
 	}
+	
+	// ham bam
+	public byte[] hashMD5(byte[] data){
+		byte[] hashData = new byte[(short)16];
+		MessageDigest md5 = MessageDigest.getInstance(
+			MessageDigest.ALG_MD5,
+			false
+		);
+		md5.doFinal(data, (short)0, (short)(data.length), hashData, (short)0);
+
+		return hashData;
+	}
+	// ham ma hoa AES co them padding
+	private byte[] encryptAES(byte[] data, byte[] keyData){
+		AESKey aesKey= (AESKey)KeyBuilder.buildKey(
+			KeyBuilder.TYPE_AES,
+			KeyBuilder.LENGTH_AES_128, 
+			false
+		);
+		aesKey.setKey(keyData, (short)0);
+
+		Cipher cipher = Cipher.getInstance(
+			Cipher.ALG_AES_BLOCK_128_ECB_NOPAD, 
+			false
+		);
+		//them padding vao du lieu vao truoc khi ma hoa
+		data = addPaddingM2(data, (short)data.length);
+
+		cipher.init(aesKey, Cipher.MODE_ENCRYPT);
+		cipher.doFinal(data, (short)0, (short)data.length, data, (short)0);
+		return data;
+	}
+	// ham ma hoa AES khong them padding, ap dung voi du lieu vao da duoc padding tu truoc
+	private byte[] encryptAES_wontPadding(byte[] data, byte[] keyData){
+		AESKey aesKey= (AESKey)KeyBuilder.buildKey(
+			KeyBuilder.TYPE_AES,
+			KeyBuilder.LENGTH_AES_128, 
+			false
+		);
+		aesKey.setKey(keyData, (short)0);
+
+		Cipher cipher = Cipher.getInstance(
+			Cipher.ALG_AES_BLOCK_128_ECB_NOPAD, 
+			false
+		);
+
+		cipher.init(aesKey, Cipher.MODE_ENCRYPT);
+		cipher.doFinal(data, (short)0, (short)data.length, data, (short)0);
+		return data;
+	}
+	
+	// ham giai ma AES
+	//du lieu sau khi giai ma van con padding
+	private byte[] decryptAES(byte[] data, byte[] keyData){
+		AESKey aesKey= (AESKey)KeyBuilder.buildKey(
+			KeyBuilder.TYPE_AES,
+			KeyBuilder.LENGTH_AES_128, 
+			false
+		);
+		aesKey.setKey(keyData, (short)0);
+
+		Cipher cipher = Cipher.getInstance(
+			Cipher.ALG_AES_BLOCK_128_ECB_NOPAD, 
+			false
+		);
+
+		cipher.init(aesKey, Cipher.MODE_DECRYPT);
+		cipher.doFinal(data, (short)0, (short)data.length, data, (short)0);
+		return data;
+	}
+
+	// ISO 9797 Padding Method 2.
+	private byte[] addPaddingM2(byte[] data, short length) {
+		//vi tri padding flag 0x80 
+		short newLen = (short)(length+1);
+
+		// neu do dai mang moi chua bang do dai 1 block hoac chua phai boi so cua 1 block
+		// thi tiep tuc tang do dai
+		while (newLen < LENGTH_BLOCK_AES || (newLen % LENGTH_BLOCK_AES != 0)) {
+			newLen = (short)(newLen+1);
+		}
+
+		byte[] buffer  = new byte[newLen];
+		Util.arrayCopy(data, (short)0, buffer, (short)0, length);
+
+		// them padding flag
+		buffer[length] = (byte)0x80;
+		
+		// them 0x00 toi het mang moi
+		while ( length < (short)(newLen - 1) ) {
+			length = (short)(length+1);
+		   	buffer[length] = 0x00;
+		}
+		
+		return buffer; 
+	 }
+	 //ham xoa padding
+	 //tra ve do dai moi khong bao gom padding
+	 private short removePaddingM2(byte[] buffer, short length) {
+		
+		// xoa cac so 0x00
+		while ( (length != 0) && buffer[(short)(length - 1)] == (byte)0x00) 
+			length = (short)(length-1);
+		
+		// ktra padding flag
+		if (buffer[(short)(length - 1)] != (byte)0x80 ) ISOException.throwIt(ISO7816.SW_DATA_INVALID);
+		
+		length = (short)(length-1); // xoa not byte padding 0x80    
+  
+		return length; //tra ve do dai moi khong bao gom padding
+	 }
+	 
+
+
 }

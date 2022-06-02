@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package smartcard03;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import javax.imageio.ImageIO;
@@ -51,14 +52,12 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         text_cccd = new javax.swing.JTextField();
         text_hoten = new javax.swing.JTextField();
         text_ngaysinh = new javax.swing.JTextField();
         text_sdt = new javax.swing.JTextField();
         text_phong = new javax.swing.JTextField();
         text_ngaydk = new javax.swing.JTextField();
-        text_mapin = new javax.swing.JTextField();
         Anhdaidien = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -165,7 +164,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(text_checkpin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(button_ok)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông Tin Thẻ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 20), new java.awt.Color(204, 0, 0))); // NOI18N
@@ -188,9 +187,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("Ngày ĐK:");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel7.setText("PIN:");
-
         text_cccd.setEnabled(false);
 
         text_ngaydk.setEnabled(false);
@@ -199,8 +195,6 @@ public class MainFrame extends javax.swing.JFrame {
                 text_ngaydkActionPerformed(evt);
             }
         });
-
-        text_mapin.setEnabled(false);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
         jLabel10.setText("Ảnh đại diện");
@@ -244,17 +238,11 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addGap(30, 30, 30)
                                 .addComponent(Anhdaidien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(text_mapin, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(text_tien, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(text_tien, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -298,15 +286,11 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(text_ngaydk, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(text_mapin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(text_tien, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(text_tien, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -350,6 +334,51 @@ public class MainFrame extends javax.swing.JFrame {
                 text_status.setText("0 Thành công");
            }
        }else{
+            if (host.disconnect()) {
+                isConnect = false;
+                button_connect.setText("Kết nối đến thẻ");
+                text_status.setText("");
+                button_delete.setEnabled(isConnect);
+                button_init.setEnabled(isConnect);
+                button_ok.setEnabled(isConnect);
+                text_checkpin.setText("");
+                text_cccd.setText("");
+                text_hoten.setText("");
+                text_ngaysinh.setText("");
+                text_sdt.setText("");
+                text_phong.setText("");
+                text_ngaydk.setText("");
+                text_tien.setText("");
+                Anhdaidien.setIcon(null); 
+            
+//                pfCheckPIN.setEnabled(isConnect);
+//                btLogin.setEnabled(isConnect);
+//                btOpenCard.setEnabled(isConnect);
+//                btClearCard.setEnabled(isConnect);
+//                jButtonConnectToCard.setText("Kết nối đến thẻ");
+//                jButtonConnectToCard.setForeground(Color.BLACK);
+//                statusConnect.setText("");
+//                jButtonCardInit.setEnabled(false);
+//                tfID.setText("");
+//                tfName.setText("");
+//                tfBirth.setText("");
+//                tfPhone.setText("");
+//                tfWallet.setText("");
+//                pfCheckPIN.setText("");
+//                tpStatus.setText("");
+//                btChangeName.setEnabled(isConnect);
+//                btChangeBirth.setEnabled(isConnect);
+//                btChangePhone.setEnabled(isConnect);
+//                btChangePIN.setEnabled(isConnect);
+//                btSave.setEnabled(isConnect);
+//                btPayment.setEnabled(isConnect);
+//                btLoad.setEnabled(isConnect);
+                
+//                resetButton();
+            }
+           
+           
+           
        }
     }//GEN-LAST:event_button_connectActionPerformed
     
@@ -358,6 +387,7 @@ public class MainFrame extends javax.swing.JFrame {
     public String sdt2;
     public String phong2;
     public int tien2;
+    int count=0;
     private void button_okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_okActionPerformed
 
           //ByteArrayInputStream bis = new ByteArrayInputStream(napanh);
@@ -370,28 +400,36 @@ public class MainFrame extends javax.swing.JFrame {
              switch (checkPIN) {
                     case "9000":
                         JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
+                           count=0;
                            Anhdaidien.setIcon(new ImageIcon( host.DownloadImage()));           
                            String[] data = host.getData().split("@");
-                           text_cccd.setText(data[0]);
-                           text_hoten.setText(data[1]);
-                           System.out.println(" dich vu yeu cau hien gio la" + data[2]);
-                           text_ngaysinh.setText(data[3]);
-                           text_sdt.setText(data[4]);
-                           text_phong.setText(data[5]);
-                           text_ngaydk.setText(data[6]);
-                           text_mapin.setText(data[7]);
-                           text_tien.setText(data[8]);                   
+                           for(int i=0;i<data.length;i++){
+                           System.out.println(i+""+data[i]);
+                           }
                            
-                           hoten2=data[1];
-                           ngaysinh2=data[2];
-                           sdt2=data[3];
-                           phong2=data[4];
-                           tien2 = Integer.valueOf(data[7]);
+//                        //   System.out.println("Făèwaèwaèwae"+host.getData());
+//                           text_cccd.setText(data[0]);
+//                           //text_hoten.setText(data[1]);
+//                           System.out.println(" dich vu yeu cau hien gio la" + data[2]);
+//                           text_ngaysinh.setText(data[3]);
+//                           text_sdt.setText(data[4]);
+//                           text_phong.setText(data[5]);
+//                           text_ngaydk.setText(data[6]);
+//                         //  text_mapin.setText(data[7]);
+//                           text_tien.setText(data[7]);                   
+//                           
+//                           hoten2=data[1];
+//                           ngaysinh2=data[2];
+//                           sdt2=data[3];
+//                           phong2=data[4];
+//                           tien2 = Integer.valueOf(data[7]);
                                           
                         break;
 
                     case "19000":
-                        JOptionPane.showMessageDialog(this, "Nhập mã sai rồi đấy");
+                       // host.wrongPIN();
+                        JOptionPane.showMessageDialog(this, "Còn " + (3-count) + " nhập sai PIN");
+                        count++;
                         break;
                      
                     case "09000":
@@ -433,7 +471,7 @@ public class MainFrame extends javax.swing.JFrame {
             text_sdt.setText("");
             text_phong.setText("");
             text_ngaydk.setText("");
-            text_mapin.setText("");
+          //  text_mapin.setText("");
             text_status.setText("");
             button_delete.setEnabled(isConnect);
             button_init.setEnabled(isConnect);
@@ -487,7 +525,7 @@ public class MainFrame extends javax.swing.JFrame {
         text_sdt.setText(data[3]);
         text_phong.setText(data[4]);
         text_ngaydk.setText(data[5]);
-        text_mapin.setText(data[6]);
+     //   text_mapin.setText(data[6]);
         System.out.println("Cap nhap lai he thong");
         JOptionPane.showMessageDialog(this, "Cập nhập thành công");   
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -543,7 +581,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -551,7 +588,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField text_cccd;
     private javax.swing.JPasswordField text_checkpin;
     private javax.swing.JTextField text_hoten;
-    private javax.swing.JTextField text_mapin;
     private javax.swing.JTextField text_ngaydk;
     private javax.swing.JTextField text_ngaysinh;
     private javax.swing.JTextField text_phong;
