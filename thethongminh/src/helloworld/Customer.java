@@ -11,17 +11,18 @@ public class Customer {
 	private byte[] tien;
 	private byte[] dichvuyeucau;
 	private byte[] priKeyData;
-	public Customer(byte[] cccd, byte[] hoten, byte[] ngaysinh, byte[] sdt, byte[] phong, byte[] ngaydk, byte[] mapin, byte[] anhdaidien, byte[] tien) {
-        this.cccd = cccd;
-        this.hoten = hoten;
-        this.ngaysinh = ngaysinh;
-        this.sdt = sdt;
-        this.phong = phong;
-        this.ngaydk = ngaydk;
-        this.mapin = mapin;
-        this.anhdaidien = anhdaidien;
-        this.tien = tien;
-    }
+	// public Customer(byte[] cccd, byte[] hoten, byte[] ngaysinh, byte[] sdt, byte[] phong, byte[] ngaydk, byte[] mapin, byte[] anhdaidien, byte[] tien) {
+        // this.cccd = cccd;
+        // this.hoten = hoten;
+        // this.ngaysinh = ngaysinh;
+        // this.sdt = sdt;
+        // this.phong = phong;
+        // this.ngaydk = ngaydk;
+        // this.mapin = mapin;
+        // this.anhdaidien = anhdaidien;
+        // this.tien = tien;
+    // }
+    //customer = new Customer(cccd,hoten,ngaysinh,sdt,phong,ngay_dk,mapin,OpImage,tien,dichvuyeucau);
     public Customer(byte[] cccd, byte[] hoten, byte[] ngaysinh, byte[] sdt, byte[] phong, byte[] ngaydk, byte[] mapin, byte[] anhdaidien, byte[] tien,byte[] dichvuyeucau) {
         this.cccd = cccd;
         this.hoten = hoten;

@@ -403,38 +403,33 @@ public class MainFrame extends javax.swing.JFrame {
                            count=0;
                            Anhdaidien.setIcon(new ImageIcon( host.DownloadImage()));           
                            String[] data = host.getData().split("@");
-                           for(int i=0;i<data.length;i++){
-                           System.out.println(i+""+data[i]);
-                           }
+//                           for(int i=0;i<data.length;i++){
+//                           System.out.println(i+""+data[i]);
+//                           }
+                           text_cccd.setText(data[0]);
+                           text_hoten.setText(data[1]);
+                           System.out.println(" dich vu yeu cau hien gio la" + data[2]);
+                           text_ngaysinh.setText(data[3]);
+                           text_sdt.setText(data[4]);
+                           text_phong.setText(data[5]);
+                           text_ngaydk.setText(data[6]);
+                           text_tien.setText(data[7]);                   
                            
-//                        //   System.out.println("Făèwaèwaèwae"+host.getData());
-//                           text_cccd.setText(data[0]);
-//                           //text_hoten.setText(data[1]);
-//                           System.out.println(" dich vu yeu cau hien gio la" + data[2]);
-//                           text_ngaysinh.setText(data[3]);
-//                           text_sdt.setText(data[4]);
-//                           text_phong.setText(data[5]);
-//                           text_ngaydk.setText(data[6]);
-//                         //  text_mapin.setText(data[7]);
-//                           text_tien.setText(data[7]);                   
-//                           
-//                           hoten2=data[1];
-//                           ngaysinh2=data[2];
-//                           sdt2=data[3];
-//                           phong2=data[4];
-//                           tien2 = Integer.valueOf(data[7]);
+                           hoten2=data[1];
+                           ngaysinh2=data[3];
+                           sdt2=data[4];
+                           phong2=data[5];
+                           tien2 = Integer.valueOf(data[7]);
                                           
-                        break;
+                           break;
 
                     case "19000":
                        // host.wrongPIN();
                         JOptionPane.showMessageDialog(this, "Còn " + (3-count) + " nhập sai PIN");
                         count++;
-                        break;
-                     
+                        break;                   
                     case "09000":
-                        JOptionPane.showMessageDialog(this, "Thẻ đã bị khóa");
-                    
+                        JOptionPane.showMessageDialog(this, "Thẻ đã bị khóa");                  
                         break;
                     default:
                         JOptionPane.showMessageDialog(rootPane, "Lỗi đăng nhập");

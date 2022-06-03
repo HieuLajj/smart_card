@@ -718,7 +718,7 @@ public class CustomerFrame extends javax.swing.JFrame {
                         String[] data = host.getData().split("@");
                         
                         text_cccd.setText(data[0]);
-                       // text_hoten.setText(data[1]);
+                        text_hoten.setText(data[1]);
                         System.out.println(" dich vu yeu cau hien gio la" + data[2]);    
                         dichvuyeucau = Integer.valueOf(data[2]);
                         text_phong.setText(data[5]);
@@ -735,13 +735,7 @@ public class CustomerFrame extends javax.swing.JFrame {
 //                           text_hoten.setText(data[1]);
 //                           System.out.println(" dich vu yeu cau hien gio la" + data[2]);
                         //034200005365@Lai Van Hieu@0@12-11-2000@0981136706@0@25-5-2022@123456@0
-                           
-                                          
-                           
-                
-                        
-                        
-                        
+                                       
                         
                         tienthuc = Integer.valueOf(data[7]);
                         if(dichvuyeucau==1){button_casino.setEnabled(false); text_dichvuyeucau.setText("Casino");}

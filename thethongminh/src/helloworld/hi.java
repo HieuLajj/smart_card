@@ -82,7 +82,7 @@ public class hi extends Applet implements ExtendedLength
 			byte[] data = new byte[(short)buf[ISO7816.OFFSET_LC]];
 			short dataLen = (short)data.length;
 			Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, data, (short)0, (short)buf[ISO7816.OFFSET_LC]);
-			short cccd_len, hoten_len, ngaysinh_len, sdt_len, phong_len, ngaydk_len,mapin_len,tien_len,dichvuyeucau_len;
+			short cccd_len, hoten_len, ngaysinh_len, sdt_len, phong_len, ngaydk_len,mapin_len,tien_len,dichvuyeucau_len,cccd2_len;
 			// tao mang luu vi tri bat dau cua tung thong tin trong mang data nhan duoc
 			
 			byte[] infoOFFSET = new byte[(short)9];
@@ -142,18 +142,18 @@ public class hi extends Applet implements ExtendedLength
 			 
 			 mapin = hashMD5(mapin);
 			 
-			 cccd         = encryptAES(cccd, mapin);
-			 hoten        = encryptAES(hoten, mapin);
-			 ngaysinh     = encryptAES(ngaysinh, mapin);
-			 sdt          = encryptAES(sdt, mapin);
+			 cccd         =  encryptAES(cccd, mapin);
+			 hoten        =  encryptAES(hoten, mapin);
+			 ngaysinh     =  encryptAES(ngaysinh, mapin);
+			 sdt          =  encryptAES(sdt, mapin);
 			 phong        =  encryptAES(phong, mapin);
 			 ngay_dk      =  encryptAES(ngay_dk, mapin);
 			 tien         =  encryptAES(tien, mapin);
 			 dichvuyeucau =  encryptAES(dichvuyeucau, mapin);
 			 
-			 JCSystem.beginTransaction();
+			// JCSystem.beginTransaction();
 			 customer = new Customer(cccd,hoten,ngaysinh,sdt,phong,ngay_dk,mapin,OpImage,tien,dichvuyeucau);
-			 JCSystem.commitTransaction();
+			// JCSystem.commitTransaction();
 			 // len3= (short)mapin.length;
 			 // Util.arrayCopy(mapin,(short)0, buf, (short)0,len3);
 			 // apdu.setOutgoingAndSend((short)0,len3);
@@ -164,67 +164,38 @@ public class hi extends Applet implements ExtendedLength
 		case (byte)INS_GET_ALL_INFO_0x02:
 			byte[] flag = new byte[] {0x40};
 			
-			 cccd =decryptAES(customer.getCccd(),customer.getMapin());
-			 cccd_len = removePaddingM2(cccd, (short)cccd.length);
+			 
+			cccd = decryptAES(customer.getCccd(),customer.getMapin());
+			cccd_len = removePaddingM2(cccd, (short)cccd.length); 
+			 
+			hoten =decryptAES(customer.getHoten(),customer.getMapin());
+			hoten_len = removePaddingM2(hoten, (short)hoten.length);
 			
-			 hoten =decryptAES(customer.getHoten(),customer.getMapin());
-			 hoten_len = removePaddingM2(hoten, (short)hoten.length);
+			dichvuyeucau =decryptAES(customer.getDichvuyeucau(),customer.getMapin());
+			dichvuyeucau_len = removePaddingM2(dichvuyeucau, (short)dichvuyeucau.length);
 			
-			 dichvuyeucau =decryptAES(customer.getDichvuyeucau(),customer.getMapin());
-			 dichvuyeucau_len = removePaddingM2(dichvuyeucau, (short)dichvuyeucau.length);
+			ngaysinh =decryptAES(customer.getNgaysinh(),customer.getMapin());
+			ngaysinh_len = removePaddingM2(ngaysinh, (short)ngaysinh.length);
 			
-			 ngaysinh =decryptAES(customer.getNgaysinh(),customer.getMapin());
-			 ngaysinh_len = removePaddingM2(ngaysinh, (short)ngaysinh.length);
+			sdt =decryptAES(customer.getSdt(),customer.getMapin());
+			sdt_len = removePaddingM2(sdt, (short)sdt.length);
 			
-			 sdt =decryptAES(customer.getSdt(),customer.getMapin());
-			 sdt_len = removePaddingM2(sdt, (short)sdt.length);
+			phong =decryptAES(customer.getPhong(),customer.getMapin());
+		    phong_len = removePaddingM2(phong, (short)phong.length);
 			
-			 phong =decryptAES(customer.getPhong(),customer.getMapin());
-			 phong_len = removePaddingM2(phong, (short)phong.length);
-			
-			 ngay_dk =decryptAES(customer.getNgaydk(),customer.getMapin());
-			 ngaydk_len = removePaddingM2(ngay_dk, (short)ngay_dk.length);
-			// // // //mapin = customer.getMapin();
-			 tien =decryptAES(customer.getTien(),customer.getMapin());
-			 tien_len = removePaddingM2(tien, (short)tien.length);
-			// // // dichvuyeucau =decryptAES(customer.getDichvuyeucau(),customer.getMapin());
-			
-			//cccd_len = removePaddingM2(cccd, (short)cccd.length);
-			// hoten_len = removePaddingM2(hoten, (short)hoten.length);
-			// ngaysinh_len = removePaddingM2(ngaysinh, (short)ngaysinh.length);
-			// sdt_len = removePaddingM2(sdt, (short)sdt.length);
-			// phong_len = removePaddingM2(phong, (short)phong.length);
-			// ngaydk_len = removePaddingM2(ngay_dk, (short)ngay_dk.length);
-			// //mapin_len = (short)mapin.length;
-			// tien_len = removePaddingM2(tien, (short)tien.length);
-			// dichvuyeucau_len = removePaddingM2(dichvuyeucau, (short)dichvuyeucau.length);
-			
-			// cccd = customer.getCccd();
-			// hoten = customer.getHoten();
-            // ngaysinh = customer.getNgaysinh();
-			  // sdt = customer.getSdt();
-			 // phong = customer.getPhong();
-			 // ngay_dk = customer.getNgaydk();
-			  // mapin = customer.getMapin();
-			  // tien= customer.getTien();
-			 // dichvuyeucau = customer.getDichvuyeucau();
-			
-			// cccd_len = (short)cccd.length;
-			 // hoten_len = (short)hoten.length;
-			 // ngaysinh_len = (short)ngaysinh.length;
-             // sdt_len = (short)sdt.length;
-			 // phong_len = (short)phong.length;
-			 // ngaydk_len = (short)ngay_dk.length;
-			// mapin_len = (short)mapin.length;
-			  // tien_len = (short)tien.length;
-			 // dichvuyeucau_len = (short)dichvuyeucau.length;
-			
-			//short totalSendLen = (short)(cccd_len+hoten_len+ngaysinh_len+sdt_len+phong_len+ngaydk_len+mapin_len+tien_len+dichvuyeucau_len+(short)8);
+			ngay_dk =decryptAES(customer.getNgaydk(),customer.getMapin());
+			ngaydk_len = removePaddingM2(ngay_dk, (short)ngay_dk.length);
+			 
+			tien =decryptAES(customer.getTien(),customer.getMapin());
+			tien_len = removePaddingM2(tien, (short)tien.length);
+			 
 			short totalSendLen = (short)(cccd_len+hoten_len+ngaysinh_len+sdt_len+phong_len+ngaydk_len+tien_len+dichvuyeucau_len+(short)7);
 			apdu.setOutgoing();
 			apdu.setOutgoingLength(totalSendLen);
+			
 			apdu.sendBytesLong(cccd,(short)0,cccd_len);
 			apdu.sendBytesLong(flag, (short)0, (short)1);
+			
 			
 			apdu.sendBytesLong(hoten,(short)0,hoten_len);
 			apdu.sendBytesLong(flag, (short)0, (short)1);
@@ -244,11 +215,7 @@ public class hi extends Applet implements ExtendedLength
 			apdu.sendBytesLong(ngay_dk,(short)0, ngaydk_len);
 			apdu.sendBytesLong(flag, (short)0, (short)1);
 			
-			 //apdu.sendBytesLong(mapin,(short)0, mapin_len);
-			// apdu.sendBytesLong(flag, (short)0, (short)1);
-			
 			apdu.sendBytesLong(tien,(short)0, tien_len);
-			
 			
 			break;
 			
@@ -258,9 +225,7 @@ public class hi extends Applet implements ExtendedLength
 			if( buf[ISO7816.OFFSET_P1] == (byte)0x01){
 				hoten = new byte[(short)buf[ISO7816.OFFSET_LC]];
 				Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, hoten, (short)0, (short)buf[ISO7816.OFFSET_LC]);
-				//ma hoa ten moi truoc khi luu
-				//name = encryptAES(name, customer.getPIN());
-				
+				hoten = encryptAES(hoten, customer.getMapin());		
 				//bat dau thao tac nguyen tu
 				JCSystem.beginTransaction();
 				customer.setHoten(hoten);
@@ -272,12 +237,11 @@ public class hi extends Applet implements ExtendedLength
 				ngaysinh = new byte[(short)buf[ISO7816.OFFSET_LC]];
 				Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, ngaysinh, (short)0, (short)buf[ISO7816.OFFSET_LC]);
 				//ma hoa ngay sinh moi truoc khi luu
-				//birth = encryptAES(birth, customer.getPIN());
+				ngaysinh = encryptAES(ngaysinh,customer.getMapin());
 
-				//bat dau thao tac nguyen tu
 				JCSystem.beginTransaction();
 				customer.setNgaysinh(ngaysinh);
-				JCSystem.commitTransaction(); //xac nhan ket thuc thao tac nguyen tu
+				JCSystem.commitTransaction(); 
 			}
 			
 			//thay doi so dien thoai
@@ -285,19 +249,18 @@ public class hi extends Applet implements ExtendedLength
 				sdt = new byte[(short)buf[ISO7816.OFFSET_LC]];
 				Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, sdt, (short)0, (short)buf[ISO7816.OFFSET_LC]);
 				//ma hoa phone moi truoc khi luu
-				//phone = encryptAES(phone, customer.getPIN());
+				sdt = encryptAES(sdt,customer.getMapin());
 
-				//bat dau thao tac nguyen tu
 				JCSystem.beginTransaction();
 				customer.setSdt(sdt);
-				JCSystem.commitTransaction(); //xac nhan ket thuc thao tac nguyen tu
+				JCSystem.commitTransaction(); 
 			}
 			//thay doi so phong
 			if( buf[ISO7816.OFFSET_P1] == (byte)0x04){
 				phong = new byte[(short)buf[ISO7816.OFFSET_LC]];
 				Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, phong, (short)0, (short)buf[ISO7816.OFFSET_LC]);
 				//ma hoa phone moi truoc khi luu
-				//phone = encryptAES(phone, customer.getPIN());
+				phong = encryptAES(phong,customer.getMapin());
 
 				//bat dau thao tac nguyen tu
 				JCSystem.beginTransaction();
@@ -308,6 +271,35 @@ public class hi extends Applet implements ExtendedLength
 	        if( buf[ISO7816.OFFSET_P1] == (byte)0x05){
 		        mapin = new byte[(short)buf[ISO7816.OFFSET_LC]];
 		        Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, mapin, (short)0, (short)buf[ISO7816.OFFSET_LC]);
+				mapin = hashMD5(mapin);
+				
+				cccd         =  decryptAES(customer.getCccd(), customer.getMapin());
+			    hoten        =  decryptAES(customer.getHoten(), customer.getMapin());
+			    ngaysinh     =  decryptAES(customer.getNgaysinh(), customer.getMapin());
+			    sdt          =  decryptAES(customer.getSdt(), customer.getMapin());
+			    phong        =  decryptAES(customer.getPhong(), customer.getMapin());
+			    ngay_dk      =  decryptAES(customer.getNgaydk(), customer.getMapin());
+			    tien         =  decryptAES(customer.getTien(), customer.getMapin());
+			    dichvuyeucau =  decryptAES(customer.getDichvuyeucau(), customer.getMapin());
+			    
+			    cccd         =  encryptAES_wontPadding(cccd, mapin);
+			    hoten        =  encryptAES_wontPadding(hoten, mapin);
+			    ngaysinh     =  encryptAES_wontPadding(ngaysinh, mapin);
+			    sdt          =  encryptAES_wontPadding(sdt, mapin);
+			    phong        =  encryptAES_wontPadding(phong, mapin);
+			    ngay_dk      =  encryptAES_wontPadding(ngay_dk, mapin);
+			    tien         =  encryptAES_wontPadding(tien, mapin);
+			    dichvuyeucau =  encryptAES_wontPadding(dichvuyeucau, mapin);
+			    
+			    customer.setCccd(cccd);
+			    customer.setHoten(hoten);
+			    customer.setNgaysinh(ngaysinh);
+			    customer.setSdt(sdt);
+			    customer.setPhong(phong);
+			    customer.setNgaydk(ngay_dk);
+			    customer.setTien(tien);
+			    customer.setDichvuyeucau(dichvuyeucau);
+			    
 				JCSystem.beginTransaction();
 				customer.setMapin(mapin);
 				JCSystem.commitTransaction(); //xac nhan ket thuc thao tac nguyen tu
@@ -316,8 +308,7 @@ public class hi extends Applet implements ExtendedLength
 				tien = new byte[(short)buf[ISO7816.OFFSET_LC]];
 				Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, tien, (short)0, (short)buf[ISO7816.OFFSET_LC]);
 				// //ma hoa so du moi truoc khi luu
-				// wallet = encryptAES(wallet, customer.getPIN());
-
+				tien = encryptAES(tien,customer.getMapin());
 				// //bat dau thao tac nguyen tu
 				JCSystem.beginTransaction();
 				customer.setTien(tien);
@@ -327,7 +318,7 @@ public class hi extends Applet implements ExtendedLength
 				dichvuyeucau = new byte[(short)buf[ISO7816.OFFSET_LC]];
 				Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, dichvuyeucau, (short)0, (short)buf[ISO7816.OFFSET_LC]);
 				// //ma hoa so du moi truoc khi luu
-				// wallet = encryptAES(wallet, customer.getPIN());
+				dichvuyeucau = encryptAES (dichvuyeucau,customer.getMapin());
 
 				// //bat dau thao tac nguyen tu
 				JCSystem.beginTransaction();
@@ -369,6 +360,8 @@ public class hi extends Applet implements ExtendedLength
 			 short b = (short)buf[ISO7816.OFFSET_LC];
 			 inputPHONG = new byte[(short)b];
 			 Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, inputPHONG, (short)0, (short)buf[ISO7816.OFFSET_LC]);	 
+			 inputPHONG = encryptAES (inputPHONG,customer.getMapin());
+			 		 
 			 if( Util.arrayCompare(inputPHONG, (short)0, customer.getPhong(), (short)0, (short)inputPHONG.length) != (byte)0){
 				 apdu.setOutgoing();
 		         apdu.setOutgoingLength((short)1);
@@ -424,7 +417,7 @@ public class hi extends Applet implements ExtendedLength
 			Cipher.ALG_AES_BLOCK_128_ECB_NOPAD, 
 			false
 		);
-		//them padding vao du lieu vao truoc khi ma hoa
+		
 		data = addPaddingM2(data, (short)data.length);
 
 		cipher.init(aesKey, Cipher.MODE_ENCRYPT);
@@ -449,25 +442,24 @@ public class hi extends Applet implements ExtendedLength
 		cipher.doFinal(data, (short)0, (short)data.length, data, (short)0);
 		return data;
 	}
-	
 	// ham giai ma AES
 	//du lieu sau khi giai ma van con padding
 	private byte[] decryptAES(byte[] data, byte[] keyData){
+		short data3_len = (short)data.length;
+		byte[] data3 =  new byte[data3_len];
 		AESKey aesKey= (AESKey)KeyBuilder.buildKey(
 			KeyBuilder.TYPE_AES,
 			KeyBuilder.LENGTH_AES_128, 
 			false
 		);
 		aesKey.setKey(keyData, (short)0);
-
 		Cipher cipher = Cipher.getInstance(
 			Cipher.ALG_AES_BLOCK_128_ECB_NOPAD, 
 			false
 		);
-
 		cipher.init(aesKey, Cipher.MODE_DECRYPT);
-		cipher.doFinal(data, (short)0, (short)data.length, data, (short)0);
-		return data;
+		cipher.doFinal(data, (short)0, (short)data.length, data3, (short)0);
+		return data3;
 	}
 
 	// ISO 9797 Padding Method 2.

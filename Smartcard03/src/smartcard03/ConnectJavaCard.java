@@ -168,7 +168,7 @@ public class ConnectJavaCard {
     
     public  String getData(){
         try {
-            response = channel.transmit(new CommandAPDU((byte) 0x00,INS_GET_ALL_INFO, (byte) 0x00,(byte) 0x00));
+            response = channel.transmit(new CommandAPDU((byte) 0x00,INS_GET_ALL_INFO, (byte) 0x01,(byte) 0x01));
             return new String(response.getData(), StandardCharsets.UTF_8);
         } catch (CardException e) {
             System.out.println("Error :" + e);
