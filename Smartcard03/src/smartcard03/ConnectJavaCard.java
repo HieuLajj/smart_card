@@ -11,6 +11,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +26,7 @@ import utils.ConvertData;
  * @author laihi
  */
 public class ConnectJavaCard {
+    public  static HashMap<String, String> idAndPubkey = new HashMap<String, String>();
     public final static String  SW_NO_ERROR = "9000";
     public final static String  SW_UNKNOWN = "6F00";
     
@@ -156,9 +158,14 @@ public class ConnectJavaCard {
             response = channel.transmit(new CommandAPDU((byte)0x00,INS_INIT, (byte)0x11, (byte)0x00,dataTrans));
             //response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x00, (byte)0x11, (byte)0x00,combined));
             //String pub = bytesToHex(response.getData());
-            String pub = new String(response.getData(),StandardCharsets.UTF_8);
+             String pub = bytesToHex(response.getData());
+             idAndPubkey.put(cccd, pub);
+           
+            System.out.println(idAndPubkey);
+            System.out.println("ooooooooooooooooo");
+            String pub2 = new String(response.getData(),StandardCharsets.UTF_8);
             System.out.println("answer: "+data);
-            System.out.println("answer: " + response.toString()+"fawef"+pub);
+            System.out.println("answer: " + response.toString()+"fawef"+pub2);
             return true;
         } catch (CardException ex) {
             Logger.getLogger(ConnectJavaCard.class.getName()).log(Level.SEVERE, null, ex);
@@ -174,6 +181,24 @@ public class ConnectJavaCard {
             System.out.println("Error :" + e);
             return "Lỗi";
         } 
+    }
+    
+       public String authCard(String ranString){
+        byte[] ranStringTrans = ranString.getBytes();
+        try {
+            response = channel.transmit(new CommandAPDU((byte) 0x00, (byte)0x06, (byte) 0x00,(byte) 0x00, ranStringTrans));
+            String enCodeRanString = bytesToHex(response.getData());
+            System.out.println(enCodeRanString);
+            String check = Integer.toHexString(response.getSW());
+            if (check.equals("9000")) {
+                return enCodeRanString;
+            }else{
+                return "Lỗi";
+            }
+        } catch (CardException e) {
+            System.out.println("Error :" + e);
+            return "Lỗi";
+        }
     }
     public  String authPIN(String pin){
         byte[] pinTrans = pin.getBytes();

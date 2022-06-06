@@ -7,6 +7,18 @@ package smartcard03;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.security.*;
+import java.math.BigInteger;
+import java.security.InvalidKeyException;
+import java.security.KeyFactory;
+import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
+import java.security.Signature;
+import java.security.SignatureException;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.RSAPublicKeySpec;
+import java.util.Base64;
+import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -45,6 +57,7 @@ public class MainFrame extends javax.swing.JFrame {
         button_delete = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         text_checkpin = new javax.swing.JPasswordField();
+        testbtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -121,6 +134,13 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        testbtn.setText("jButton2");
+        testbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testbtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -142,6 +162,10 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(jLabel9)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(testbtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,7 +188,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(text_checkpin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(button_ok)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(testbtn)
+                .addGap(33, 33, 33))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông Tin Thẻ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 20), new java.awt.Color(204, 0, 0))); // NOI18N
@@ -525,6 +551,45 @@ public class MainFrame extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Cập nhập thành công");   
     }//GEN-LAST:event_jButton1ActionPerformed
 
+     boolean result = false;
+    private void testbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testbtnActionPerformed
+        // TODO add your handling code here:
+        
+             String ranString = randomString().toLowerCase();
+        byte[] dataBytes = Base64.getEncoder().encode(ranString.getBytes());
+//        System.out.println(ranString);
+//        System.out.println(Arrays.toString(dataBytes));
+        String resData = host.authCard(ranString);
+        String resRanString = resData.substring(128);
+//        String resRanStrings = resData.substring(0, 128);
+//        byte[] sigToVerify = Base64.getDecoder().decode(resRanString);
+//        System.out.println(resRanString);
+ 
+        try {
+            String expAndMod =  ConnectJavaCard.idAndPubkey.get("123456");
+            System.out.println(expAndMod);
+            
+            String exp = expAndMod.substring(0, 6);
+//            System.out.println(exp);
+            String mod = expAndMod.substring(6);
+//            System.out.println(mod);
+            
+            RSAPublicKeySpec pubKeySpec = new RSAPublicKeySpec(new BigInteger(mod, 16), new BigInteger(exp,16));
+            KeyFactory factory = KeyFactory.getInstance("RSA");
+            PublicKey pubKey = factory.generatePublic(pubKeySpec);
+
+            Signature signature = Signature.getInstance("SHA1withRSA");
+            signature.initVerify(pubKey);
+            signature.update(dataBytes);
+            result = signature.verify(resRanString.getBytes());
+            System.out.println(result);
+            
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException | InvalidKeyException | SignatureException  e) {
+            System.out.println("Error" + e);
+        }
+        
+    }//GEN-LAST:event_testbtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -559,6 +624,17 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
     }
+     public String randomString() {
+        String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < 3) {
+            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+            salt.append(SALTCHARS.charAt(index));
+        }
+        String saltStr = salt.toString();
+        return saltStr;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Anhdaidien;
@@ -580,6 +656,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton testbtn;
     private javax.swing.JTextField text_cccd;
     private javax.swing.JPasswordField text_checkpin;
     private javax.swing.JTextField text_hoten;
