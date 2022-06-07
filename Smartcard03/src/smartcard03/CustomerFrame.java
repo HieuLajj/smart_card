@@ -70,12 +70,12 @@ public class CustomerFrame extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         button_doimapin = new javax.swing.JButton();
-        text_cccd = new javax.swing.JTextField();
-        text_hoten = new javax.swing.JTextField();
-        text_phong = new javax.swing.JTextField();
-        text_ngaydk = new javax.swing.JTextField();
-        text_mapin = new javax.swing.JTextField();
-        text_tien = new javax.swing.JTextField();
+        text_cccd2 = new javax.swing.JTextField();
+        text_hoten2 = new javax.swing.JTextField();
+        text_phong2 = new javax.swing.JTextField();
+        text_ngaydk2 = new javax.swing.JTextField();
+        text_mapin2 = new javax.swing.JTextField();
+        text_tien2 = new javax.swing.JTextField();
         anhdaidien = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -97,7 +97,7 @@ public class CustomerFrame extends javax.swing.JFrame {
         button_spa = new javax.swing.JButton();
         button_bar = new javax.swing.JButton();
         button_nhahang = new javax.swing.JButton();
-        text_tiendichvu = new javax.swing.JTextField();
+        text_tiendichvu2 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -311,18 +311,23 @@ public class CustomerFrame extends javax.swing.JFrame {
             }
         });
 
-        text_cccd.setEnabled(false);
+        text_cccd2.setEnabled(false);
 
-        text_hoten.setEnabled(false);
+        text_hoten2.setEnabled(false);
 
-        text_phong.setEnabled(false);
-
-        text_ngaydk.setEnabled(false);
-
-        text_tien.setEnabled(false);
-        text_tien.addActionListener(new java.awt.event.ActionListener() {
+        text_phong2.setEnabled(false);
+        text_phong2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                text_tienActionPerformed(evt);
+                text_phong2ActionPerformed(evt);
+            }
+        });
+
+        text_ngaydk2.setEnabled(false);
+
+        text_tien2.setEnabled(false);
+        text_tien2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                text_tien2ActionPerformed(evt);
             }
         });
 
@@ -336,78 +341,79 @@ public class CustomerFrame extends javax.swing.JFrame {
         panel_thongtincanhanLayout.setHorizontalGroup(
             panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_thongtincanhanLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(panel_thongtincanhanLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(75, 75, 75)
+                        .addComponent(text_cccd2))
+                    .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel6)
+                        .addGroup(panel_thongtincanhanLayout.createSequentialGroup()
+                            .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel5))
+                            .addGap(51, 51, 51)
+                            .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(text_tien2, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
+                                        .addComponent(text_mapin2)
+                                        .addComponent(text_ngaydk2))
+                                    .addComponent(text_phong2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(text_hoten2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_thongtincanhanLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(panel_thongtincanhanLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(75, 75, 75)
-                                .addComponent(text_cccd))
-                            .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6)
-                                .addGroup(panel_thongtincanhanLayout.createSequentialGroup()
-                                    .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel5))
-                                    .addGap(51, 51, 51)
-                                    .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(text_tien, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
-                                                .addComponent(text_mapin)
-                                                .addComponent(text_ngaydk))
-                                            .addComponent(text_phong, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(text_hoten, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(52, 52, 52)
-                        .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(anhdaidien, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8)))
-                    .addGroup(panel_thongtincanhanLayout.createSequentialGroup()
-                        .addGap(317, 317, 317)
-                        .addComponent(button_doimapin)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(anhdaidien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_thongtincanhanLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel8)
+                        .addGap(48, 48, 48))))
+            .addGroup(panel_thongtincanhanLayout.createSequentialGroup()
+                .addGap(317, 317, 317)
+                .addComponent(button_doimapin)
+                .addContainerGap(351, Short.MAX_VALUE))
         );
         panel_thongtincanhanLayout.setVerticalGroup(
             panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_thongtincanhanLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel_thongtincanhanLayout.createSequentialGroup()
-                        .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(text_cccd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(text_hoten, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(text_phong, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(text_ngaydk, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)))
-                    .addComponent(anhdaidien, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel_thongtincanhanLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(text_mapin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)))
-                    .addGroup(panel_thongtincanhanLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel8)))
+                .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(text_cccd2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(text_hoten2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(text_phong2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(text_ngaydk2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(text_mapin2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(panel_thongtincanhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(text_tien, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(text_tien2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(56, 56, 56)
                 .addComponent(button_doimapin)
                 .addContainerGap(50, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_thongtincanhanLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(anhdaidien, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel8)
+                .addGap(158, 158, 158))
         );
 
         Table.addTab("Thông in cá nhân", panel_thongtincanhan);
@@ -620,7 +626,7 @@ public class CustomerFrame extends javax.swing.JFrame {
                 .addGap(110, 110, 110)
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
-                .addComponent(text_tiendichvu, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(text_tiendichvu2, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(button_ok, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -640,16 +646,13 @@ public class CustomerFrame extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(button_spa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panel_dichvuLayout.createSequentialGroup()
-                        .addGroup(panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(button_casino)
-                                .addComponent(button_nhahang))
-                            .addComponent(button_bar))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(button_casino)
+                        .addComponent(button_nhahang))
+                    .addComponent(button_bar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(button_spa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(button_nhahang_uncheck)
                     .addComponent(button_bar_uncheck)
@@ -658,7 +661,7 @@ public class CustomerFrame extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(panel_dichvuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(text_tiendichvu, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(text_tiendichvu2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(button_ok, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(55, Short.MAX_VALUE))
         );
@@ -682,9 +685,9 @@ public class CustomerFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void text_tienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_tienActionPerformed
+    private void text_tien2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_tien2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_text_tienActionPerformed
+    }//GEN-LAST:event_text_tien2ActionPerformed
 
     private void button_connectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_connectActionPerformed
       if(!isConnect){
@@ -716,27 +719,17 @@ public class CustomerFrame extends javax.swing.JFrame {
                         Table.setEnabled(true);             
                         anhdaidien.setIcon(new ImageIcon( host.DownloadImage()));           
                         String[] data = host.getData().split("@");
-                        
-                        text_cccd.setText(data[0]);
-                        text_hoten.setText(data[1]);
-                        System.out.println(" dich vu yeu cau hien gio la" + data[2]);    
+                        System.out.println("-----------"+data.length);
+                        text_cccd2.setText(data[0]);
+                        text_hoten2.setText(data[1]);
+                      //  System.out.println(" dich vu yeu cau hien gio la" + data[2]);    
                         dichvuyeucau = Integer.valueOf(data[2]);
-                        text_phong.setText(data[5]);
-                        text_ngaydk.setText(data[6]);
-                    //    text_mapin.setText(data[7]);
-                      //ss  text_mapin.setText("******");
-                        text_tien.setText(data[7]);     
-                      //  text_tiencanthanhtoan.setText(tienngay+tienthuc+data[8]);
-                       
-                        
-                     //   mapin2 = data[7];
-                       
-//                           text_cccd.setText(data[0]);
-//                           text_hoten.setText(data[1]);
-//                           System.out.println(" dich vu yeu cau hien gio la" + data[2]);
-                        //034200005365@Lai Van Hieu@0@12-11-2000@0981136706@0@25-5-2022@123456@0
-                                       
-                        
+                        String a =(data[3]);
+                        String b =(data[4]);
+                        text_phong2.setText(data[5]);
+                        text_ngaydk2.setText(data[6]);
+                        text_tien2.setText(data[7]);     
+       
                         tienthuc = Integer.valueOf(data[7]);
                         if(dichvuyeucau==1){button_casino.setEnabled(false); text_dichvuyeucau.setText("Casino");}
                         else if(dichvuyeucau==3){button_spa.setEnabled(false); text_dichvuyeucau.setText("Spa");}
@@ -854,7 +847,7 @@ public class CustomerFrame extends javax.swing.JFrame {
     private void button_doimapinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_doimapinActionPerformed
       //  if(!text_mapin.getText().equals(mapin2)){
             System.out.println("thay doi pin");
-            if(host.changePIN(text_mapin.getText())){
+            if(host.changePIN(text_mapin2.getText())){
                 System.out.println("thay doi pin  thanh cong");
                 JOptionPane.showMessageDialog(this, "Thay pin thành công");   
        //     }
@@ -865,7 +858,7 @@ public class CustomerFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         tiendichvu +=100;
         dichvuyeucau +=1;
-        text_tiendichvu.setText(tiendichvu+"");
+        text_tiendichvu2.setText(tiendichvu+"");
         button_casino_uncheck.setEnabled(true);
         button_casino.setEnabled(false);
     }//GEN-LAST:event_button_casinoActionPerformed
@@ -873,7 +866,7 @@ public class CustomerFrame extends javax.swing.JFrame {
     private void button_spaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_spaActionPerformed
        tiendichvu +=200;
        dichvuyeucau +=3;
-       text_tiendichvu.setText(tiendichvu+"");
+       text_tiendichvu2.setText(tiendichvu+"");
        button_spa_uncheck.setEnabled(true);
        button_spa.setEnabled(false);
     }//GEN-LAST:event_button_spaActionPerformed
@@ -882,7 +875,7 @@ public class CustomerFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         tiendichvu +=300;
         dichvuyeucau+=5;
-        text_tiendichvu.setText(tiendichvu+"");
+        text_tiendichvu2.setText(tiendichvu+"");
         button_bar_uncheck.setEnabled(true);
         button_bar.setEnabled(false);
     }//GEN-LAST:event_button_barActionPerformed
@@ -891,7 +884,7 @@ public class CustomerFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         tiendichvu +=600;
         dichvuyeucau+=10;
-        text_tiendichvu.setText(tiendichvu+"");
+        text_tiendichvu2.setText(tiendichvu+"");
         button_nhahang_uncheck.setEnabled(true);
         button_nhahang.setEnabled(false);
     }//GEN-LAST:event_button_nhahangActionPerformed
@@ -902,10 +895,10 @@ public class CustomerFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Không có dịch vụ nào được lựa chọn");   
         }else{
         tienthuc+= tiendichvu;
-        text_tien.setText(tienthuc+"");
+        text_tien2.setText(tienthuc+"");
         text_tiencanthanhtoan.setText(tienngay+tienthuc+"");
         tiendichvu=0;
-        text_tiendichvu.setText("");
+        text_tiendichvu2.setText("");
         host.changeWallet(tienthuc+"");
         host.changeDichvuyeucau(dichvuyeucau+"");
         JOptionPane.showMessageDialog(this, "Rất vui lòng phục vụ quý khách");   
@@ -991,7 +984,7 @@ public class CustomerFrame extends javax.swing.JFrame {
         }
         else{
           // int b = tien3-tiennhapvao;
-           text_tien.setText(0+"");
+           text_tien2.setText(0+"");
            text_tiencanthanhtoan.setText(0+"");
            host.changeWallet(0+"");
            JOptionPane.showMessageDialog(this, "Thanh toán thành công");   
@@ -1203,7 +1196,7 @@ public class CustomerFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         tiendichvu -=100;
         dichvuyeucau-=1;
-        text_tiendichvu.setText(tiendichvu+"");
+        text_tiendichvu2.setText(tiendichvu+"");
         button_casino_uncheck.setEnabled(false);
         button_casino.setEnabled(true);
     }//GEN-LAST:event_button_casino_uncheckActionPerformed
@@ -1212,7 +1205,7 @@ public class CustomerFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         tiendichvu -=200;
         dichvuyeucau-=3;
-        text_tiendichvu.setText(tiendichvu+"");
+        text_tiendichvu2.setText(tiendichvu+"");
         button_spa_uncheck.setEnabled(false);
         button_spa.setEnabled(true);
     }//GEN-LAST:event_button_spa_uncheckActionPerformed
@@ -1221,7 +1214,7 @@ public class CustomerFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         tiendichvu -=300;
         dichvuyeucau-=5;
-        text_tiendichvu.setText(tiendichvu+"");
+        text_tiendichvu2.setText(tiendichvu+"");
         button_bar_uncheck.setEnabled(false);
         button_bar.setEnabled(true);
     }//GEN-LAST:event_button_bar_uncheckActionPerformed
@@ -1230,10 +1223,14 @@ public class CustomerFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         tiendichvu -=600;
         dichvuyeucau-=10;
-        text_tiendichvu.setText(tiendichvu+"");
+        text_tiendichvu2.setText(tiendichvu+"");
         button_nhahang_uncheck.setEnabled(false);
         button_nhahang.setEnabled(true);
     }//GEN-LAST:event_button_nhahang_uncheckActionPerformed
+
+    private void text_phong2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_phong2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_phong2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1317,19 +1314,19 @@ public class CustomerFrame extends javax.swing.JFrame {
     private javax.swing.JPanel panel_dichvu;
     private javax.swing.JPanel panel_mokhoaphong;
     private javax.swing.JPanel panel_thongtincanhan;
-    private javax.swing.JTextField text_cccd;
+    private javax.swing.JTextField text_cccd2;
     private javax.swing.JTextField text_dichvuyeucau;
-    private javax.swing.JTextField text_hoten;
-    private javax.swing.JTextField text_mapin;
+    private javax.swing.JTextField text_hoten2;
+    private javax.swing.JTextField text_mapin2;
     private javax.swing.JTextField text_ngaydangki;
-    private javax.swing.JTextField text_ngaydk;
+    private javax.swing.JTextField text_ngaydk2;
     private javax.swing.JTextField text_ngayhientai;
     private javax.swing.JTextField text_ngayo;
-    private javax.swing.JTextField text_phong;
+    private javax.swing.JTextField text_phong2;
     private javax.swing.JPasswordField text_pin;
-    private javax.swing.JTextField text_tien;
+    private javax.swing.JTextField text_tien2;
     private javax.swing.JTextField text_tiencanthanhtoan;
-    private javax.swing.JTextField text_tiendichvu;
+    private javax.swing.JTextField text_tiendichvu2;
     private javax.swing.JTextField text_tiennhapvao;
     // End of variables declaration//GEN-END:variables
 }

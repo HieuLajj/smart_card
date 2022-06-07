@@ -114,11 +114,11 @@ public class Customer {
     public void setDichvuyeucau(byte[] dichvuyeucau){
 	    this.dichvuyeucau = dichvuyeucau;
     }
-    public byte[] getPriKeyData(){
-	    return this.priKeyData;
+    public byte[] getPriKeyData() {
+        return this.priKeyData;
     }
-    public void setPriKeyData(byte[] priKeyData){
-	    this.priKeyData = priKeyData;
+    public void setPriKeyData(byte[] priKeyData) {
+        this.priKeyData = priKeyData;
     }
     	
 }
