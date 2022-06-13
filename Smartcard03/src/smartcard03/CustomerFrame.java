@@ -27,7 +27,7 @@ public class CustomerFrame extends javax.swing.JFrame {
     public boolean  isConnect;
     public int tiendichvu=0;
     public int tienthuc ;
-    public int dichvuyeucau = 0;
+   // public int dichvuyeucau = 0;
     public long tienngay = 0;
     /**
      * Creates new form CustomerFrame
@@ -53,6 +53,8 @@ public class CustomerFrame extends javax.swing.JFrame {
         button_connect = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         text_pin = new javax.swing.JPasswordField();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
         panel_mokhoaphong = new javax.swing.JPanel();
         button_1 = new javax.swing.JButton();
         button_2 = new javax.swing.JButton();
@@ -135,35 +137,52 @@ public class CustomerFrame extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setText("PIN:");
 
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/anh2/hotel2.png"))); // NOI18N
+
+        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/anh2/text.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(145, 145, 145)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71)
-                .addComponent(text_pin, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(110, 110, 110)
+                .addGap(126, 126, 126)
                 .addComponent(button_connect, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(button_dangnhap, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(130, 130, 130))
+                .addGap(134, 134, 134))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(210, 210, 210)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(text_pin, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(25, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(159, 159, 159))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(126, 126, 126)
+                .addContainerGap()
+                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(text_pin, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
+                .addGap(52, 52, 52)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(button_connect, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(button_dangnhap, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         Table.addTab("Đăng nhập", jPanel4);
@@ -323,6 +342,12 @@ public class CustomerFrame extends javax.swing.JFrame {
         });
 
         text_ngaydk2.setEnabled(false);
+
+        text_mapin2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                text_mapin2ActionPerformed(evt);
+            }
+        });
 
         text_tien2.setEnabled(false);
         text_tien2.addActionListener(new java.awt.event.ActionListener() {
@@ -707,174 +732,170 @@ public class CustomerFrame extends javax.swing.JFrame {
     private void button_dangnhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_dangnhapActionPerformed
     
       
-      String pin = new String(text_pin.getPassword());
-      if (pin.length() == 6) {
-            String checkPIN = host.authPIN(pin);
-            System.out.println(checkPIN+"faewfawefwa");
+    String pin = new String(text_pin.getPassword());
+    if (pin.length() == 6) {
+        String checkPIN = host.authPIN(pin);
+        System.out.println(checkPIN+"----");
             
-             switch (checkPIN) {
-                    case "9000":
-                        JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
-                        count=0;
-                        Table.setEnabled(true);             
-                        anhdaidien.setIcon(new ImageIcon( host.DownloadImage()));           
-                        String[] data = host.getData().split("@");
-                        System.out.println("-----------"+data.length);
-                        text_cccd2.setText(data[0]);
-                        text_hoten2.setText(data[1]);
-                      //  System.out.println(" dich vu yeu cau hien gio la" + data[2]);    
-                        dichvuyeucau = Integer.valueOf(data[2]);
-                        String a =(data[3]);
-                        String b =(data[4]);
-                        text_phong2.setText(data[5]);
-                        text_ngaydk2.setText(data[6]);
-                        text_tien2.setText(data[7]);     
+        switch (checkPIN) {
+            case "9000":
+                JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
+                count=0;
+                Table.setEnabled(true);             
+                anhdaidien.setIcon(new ImageIcon( host.DownloadImage()));           
+                String[] data = host.getData().split("@");
+                System.out.println("-----------"+data.length);
+                text_cccd2.setText(data[0]);
+                text_hoten2.setText(data[1]);
+                String ngaysinhh =(data[2]);
+                String sdtt =(data[3]);
+                text_phong2.setText(data[4]);
+                text_ngaydk2.setText(data[5]);
+                text_tien2.setText(data[6]);     
        
-                        tienthuc = Integer.valueOf(data[7]);
-                        if(dichvuyeucau==1){button_casino.setEnabled(false); text_dichvuyeucau.setText("Casino");}
-                        else if(dichvuyeucau==3){button_spa.setEnabled(false); text_dichvuyeucau.setText("Spa");}
-                        else if(dichvuyeucau==5){button_bar.setEnabled(false); text_dichvuyeucau.setText("Bar");}
-                        else if(dichvuyeucau==10){button_nhahang.setEnabled(false); text_dichvuyeucau.setText("Nha hang");}
-                        else if(dichvuyeucau==4){
-                            button_casino.setEnabled(false);
-                            button_spa.setEnabled(false);
-                            text_dichvuyeucau.setText("Casino --- Spa");
-                        }
-                        else if(dichvuyeucau==6){
-                            button_casino.setEnabled(false);
-                            button_bar.setEnabled(false);
-                            text_dichvuyeucau.setText("Casino --- Bar");
-                        }
-                        else if(dichvuyeucau==11){
-                            button_casino.setEnabled(false);
-                            button_nhahang.setEnabled(false);
-                            text_dichvuyeucau.setText("Casino --- Nha hang");
-                        }
-                        else if(dichvuyeucau==8){
-                            button_spa.setEnabled(false);
-                            button_bar.setEnabled(false);
-                            text_dichvuyeucau.setText("Spa --- Bar");
-                        }
-                        else if(dichvuyeucau==13){
-                            button_spa.setEnabled(false);
-                            button_nhahang.setEnabled(false);
-                            text_dichvuyeucau.setText("Spa --- Nha hang");
-                        }
-                        else if(dichvuyeucau==15){
-                            button_bar.setEnabled(false);
-                            button_nhahang.setEnabled(false);
-                            text_dichvuyeucau.setText("Bar --- Nha hang");
-                        }
-                        else if(dichvuyeucau==9){
-                            button_casino.setEnabled(false);
-                            button_spa.setEnabled(false);
-                            button_bar.setEnabled(false);
-                            text_dichvuyeucau.setText("Casino --- Spa --- Bar");
-                        }
-                        else if(dichvuyeucau==14){
-                            button_casino.setEnabled(false);
-                            button_spa.setEnabled(false);
-                            button_nhahang.setEnabled(false);
-                            text_dichvuyeucau.setText("Casino --- Spa --- Nha hang");
-                        }
-                        else if(dichvuyeucau==16){
-                            button_casino.setEnabled(false);
-                            button_bar.setEnabled(false);
-                            button_nhahang.setEnabled(false);
-                            text_dichvuyeucau.setText("Casino --- Bar --- Nha hang");
-                        }
-                        else if(dichvuyeucau==18){
-                            button_spa.setEnabled(false);
-                            button_bar.setEnabled(false);
-                            button_nhahang.setEnabled(false);
-                            text_dichvuyeucau.setText("Spa --- Bar --- Nha hang");
-                        }
-                        else if(dichvuyeucau==19){
-                            button_spa.setEnabled(false);
-                            button_casino.setEnabled(false);
-                            button_bar.setEnabled(false);
-                            button_nhahang.setEnabled(false);
-                            text_dichvuyeucau.setText("Casino --- Spa --- Bar --- Nha hang");
-                        }
-                        DateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                        Date currentDate = new Date();
-                        Date date1 = null;
-                        Date date2 = null;
-                        {
-                       try {
-                            date1 = simpleDateFormat.parse(data[6]);
-                        } catch (ParseException ex) {
-                           Logger.getLogger(CustomerFrame.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        }
-                        String endDate = simpleDateFormat.format(currentDate);
-            {
-                try {
-                    date2 = simpleDateFormat.parse(endDate);
-                } catch (ParseException ex) {
-                    Logger.getLogger(CustomerFrame.class.getName()).log(Level.SEVERE, null, ex);
+                tienthuc = Integer.valueOf(data[6]);
+                if(tienthuc==100){button_casino.setEnabled(false); text_dichvuyeucau.setText("Casino");}
+                else if(tienthuc==300){button_spa.setEnabled(false); text_dichvuyeucau.setText("Spa");}
+                else if(tienthuc==500){button_bar.setEnabled(false); text_dichvuyeucau.setText("Bar");}
+                else if(tienthuc==1000){button_nhahang.setEnabled(false); text_dichvuyeucau.setText("Nha hang");}
+                else if(tienthuc==400){
+                    button_casino.setEnabled(false);
+                    button_spa.setEnabled(false);
+                    text_dichvuyeucau.setText("Casino --- Spa");
                 }
-            }
-                        long getDiff = date2.getTime() - date1.getTime();
-
-                        long getDaysDiff = getDiff / (24 * 60 * 60 * 1000); 
-                        text_ngayhientai.setText(date2+"");
-                        text_ngaydangki.setText(date1+"");
-                        tienngay = getDaysDiff*500;
-                        text_ngayo.setText(getDaysDiff+"=> " +tienngay+" VNĐ");
-                        text_tiencanthanhtoan.setText((tienngay+tienthuc)+"");
+                else if(tienthuc==600){
+                    button_casino.setEnabled(false);
+                    button_bar.setEnabled(false);
+                    text_dichvuyeucau.setText("Casino --- Bar");
+                }
+                else if(tienthuc==1100){
+                    button_casino.setEnabled(false);
+                    button_nhahang.setEnabled(false);
+                    text_dichvuyeucau.setText("Casino --- Nha hang");
+                }
+                else if(tienthuc==800){
+                    button_spa.setEnabled(false);
+                    button_bar.setEnabled(false);
+                    text_dichvuyeucau.setText("Spa --- Bar");
+                }
+                else if(tienthuc==1300){
+                    button_spa.setEnabled(false);
+                    button_nhahang.setEnabled(false);
+                    text_dichvuyeucau.setText("Spa --- Nha hang");
+                }
+                else if(tienthuc==1500){
+                    button_bar.setEnabled(false);
+                    button_nhahang.setEnabled(false);
+                    text_dichvuyeucau.setText("Bar --- Nha hang");
+                }
+                else if(tienthuc==900){
+                    button_casino.setEnabled(false);
+                    button_spa.setEnabled(false);
+                    button_bar.setEnabled(false);
+                    text_dichvuyeucau.setText("Casino --- Spa --- Bar");
+                }
+                else if(tienthuc==1400){
+                    button_casino.setEnabled(false);
+                    button_spa.setEnabled(false);
+                    button_nhahang.setEnabled(false);
+                    text_dichvuyeucau.setText("Casino --- Spa --- Nha hang");
+                }
+                else if(tienthuc==1600){
+                    button_casino.setEnabled(false);
+                    button_bar.setEnabled(false);
+                    button_nhahang.setEnabled(false);
+                    text_dichvuyeucau.setText("Casino --- Bar --- Nha hang");
+                }
+                else if(tienthuc==1800){
+                    button_spa.setEnabled(false);
+                    button_bar.setEnabled(false);
+                    button_nhahang.setEnabled(false);
+                    text_dichvuyeucau.setText("Spa --- Bar --- Nha hang");
+                }
+                 else if(tienthuc==1900){
+                    button_spa.setEnabled(false);
+                    button_casino.setEnabled(false);
+                    button_bar.setEnabled(false);
+                    button_nhahang.setEnabled(false);
+                    text_dichvuyeucau.setText("Casino --- Spa --- Bar --- Nha hang");
+                }                
+                DateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                Date currentDate = new Date();
+                Date date1 = null;
+                Date date2 = null;
+                {
+                    try {
+                        date1 = simpleDateFormat.parse(data[5]);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(CustomerFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                String endDate = simpleDateFormat.format(currentDate);
+                {
+                    try {
+                        date2 = simpleDateFormat.parse(endDate);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(CustomerFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                long getDiff = date2.getTime() - date1.getTime();
+                long getDaysDiff = getDiff / (24 * 60 * 60 * 1000); 
+                text_ngayhientai.setText(date2+"");
+                text_ngaydangki.setText(date1+"");
+                tienngay = getDaysDiff*500;
+                text_ngayo.setText(getDaysDiff+"=> " +tienngay+" VNĐ");
+                text_tiencanthanhtoan.setText((tienngay+tienthuc)+"");
                         
-                        break;
+                break;
 
-                  case "19000":
+            case "19000":
                        // host.wrongPIN();
-                        JOptionPane.showMessageDialog(this, "Còn " + (3-count) + " nhập sai PIN");
-                        count++;
-                        break;
+                JOptionPane.showMessageDialog(this, "Còn " + (3-count) + " nhập sai PIN");
+                count++;
+                break;
                      
-                    case "09000":
-                        JOptionPane.showMessageDialog(this, "Thẻ đã bị khóa");
-                    
-                        break;
-                    default:
-                        JOptionPane.showMessageDialog(rootPane, "Lỗi đăng nhập");
-                        break;
-        }}else{
+            case "09000":
+                JOptionPane.showMessageDialog(this, "Thẻ đã bị khóa");                   
+                break;
+            default:
+                JOptionPane.showMessageDialog(rootPane, "Lỗi đăng nhập");
+                break;
+        }
+    }else{
        JOptionPane.showMessageDialog(rootPane, "Mật khẩu phải gồm 6 số");
-      }
+    }
     }//GEN-LAST:event_button_dangnhapActionPerformed
 
     private void button_doimapinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_doimapinActionPerformed
-      //  if(!text_mapin.getText().equals(mapin2)){
-            System.out.println("thay doi pin");
-            if(host.changePIN(text_mapin2.getText())){
-                System.out.println("thay doi pin  thanh cong");
-                JOptionPane.showMessageDialog(this, "Thay pin thành công");   
-       //     }
+        if (text_mapin2.getText().length() == 6) {
+        System.out.println("thay doi pin");
+        if(host.changePIN(text_mapin2.getText())){
+            System.out.println("thay doi pin  thanh cong");
+            JOptionPane.showMessageDialog(this, "Thay pin thành công");   
+        }}
+        else{
+            JOptionPane.showMessageDialog(this, "Mật khẩu phải gồm 6 kí tự");   
         }
     }//GEN-LAST:event_button_doimapinActionPerformed
 
     private void button_casinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_casinoActionPerformed
         // TODO add your handling code here:
         tiendichvu +=100;
-        dichvuyeucau +=1;
         text_tiendichvu2.setText(tiendichvu+"");
         button_casino_uncheck.setEnabled(true);
         button_casino.setEnabled(false);
     }//GEN-LAST:event_button_casinoActionPerformed
 
     private void button_spaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_spaActionPerformed
-       tiendichvu +=200;
-       dichvuyeucau +=3;
-       text_tiendichvu2.setText(tiendichvu+"");
-       button_spa_uncheck.setEnabled(true);
-       button_spa.setEnabled(false);
+        tiendichvu +=300;
+        text_tiendichvu2.setText(tiendichvu+"");
+        button_spa_uncheck.setEnabled(true);
+        button_spa.setEnabled(false);
     }//GEN-LAST:event_button_spaActionPerformed
 
     private void button_barActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_barActionPerformed
         // TODO add your handling code here:
-        tiendichvu +=300;
-        dichvuyeucau+=5;
+        tiendichvu +=500;
         text_tiendichvu2.setText(tiendichvu+"");
         button_bar_uncheck.setEnabled(true);
         button_bar.setEnabled(false);
@@ -882,97 +903,93 @@ public class CustomerFrame extends javax.swing.JFrame {
 
     private void button_nhahangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_nhahangActionPerformed
         // TODO add your handling code here:
-        tiendichvu +=600;
-        dichvuyeucau+=10;
+        tiendichvu +=1000;
         text_tiendichvu2.setText(tiendichvu+"");
         button_nhahang_uncheck.setEnabled(true);
         button_nhahang.setEnabled(false);
     }//GEN-LAST:event_button_nhahangActionPerformed
 
     private void button_okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_okActionPerformed
-        // TODO add your handling code here:
         if(tiendichvu==0){
             JOptionPane.showMessageDialog(this, "Không có dịch vụ nào được lựa chọn");   
         }else{
-        tienthuc+= tiendichvu;
-        text_tien2.setText(tienthuc+"");
-        text_tiencanthanhtoan.setText(tienngay+tienthuc+"");
-        tiendichvu=0;
-        text_tiendichvu2.setText("");
-        host.changeWallet(tienthuc+"");
-        host.changeDichvuyeucau(dichvuyeucau+"");
-        JOptionPane.showMessageDialog(this, "Rất vui lòng phục vụ quý khách");   
-        button_bar_uncheck.setEnabled(false);
-        button_casino_uncheck.setEnabled(false);
-        button_nhahang_uncheck.setEnabled(false);
-        button_spa_uncheck.setEnabled(false);
+            tienthuc+= tiendichvu;
+            text_tien2.setText(tienthuc+"");
+            text_tiencanthanhtoan.setText(tienngay+tienthuc+"");
+            tiendichvu=0;
+            text_tiendichvu2.setText("");
+            host.changeWallet(tienthuc+"");
+            JOptionPane.showMessageDialog(this, "Rất vui lòng phục vụ quý khách");   
+            button_bar_uncheck.setEnabled(false);
+            button_casino_uncheck.setEnabled(false);
+            button_nhahang_uncheck.setEnabled(false);
+            button_spa_uncheck.setEnabled(false);
         }
-                    if(dichvuyeucau==1){button_casino.setEnabled(false); text_dichvuyeucau.setText("Casino");}
-                        else if(dichvuyeucau==3){button_spa.setEnabled(false); text_dichvuyeucau.setText("Spa");}
-                        else if(dichvuyeucau==5){button_bar.setEnabled(false); text_dichvuyeucau.setText("Bar");}
-                        else if(dichvuyeucau==10){button_nhahang.setEnabled(false); text_dichvuyeucau.setText("Nha hang");}
-                        else if(dichvuyeucau==4){
-                            button_casino.setEnabled(false);
-                            button_spa.setEnabled(false);
-                            text_dichvuyeucau.setText("Casino --- Spa");
-                        }
-                        else if(dichvuyeucau==6){
-                            button_casino.setEnabled(false);
-                            button_bar.setEnabled(false);
-                            text_dichvuyeucau.setText("Casino --- Bar");
-                        }
-                        else if(dichvuyeucau==11){
-                            button_casino.setEnabled(false);
-                            button_nhahang.setEnabled(false);
-                            text_dichvuyeucau.setText("Casino --- Nha hang");
-                        }
-                        else if(dichvuyeucau==8){
-                            button_spa.setEnabled(false);
-                            button_bar.setEnabled(false);
-                            text_dichvuyeucau.setText("Spa --- Bar");
-                        }
-                        else if(dichvuyeucau==13){
-                            button_spa.setEnabled(false);
-                            button_nhahang.setEnabled(false);
-                            text_dichvuyeucau.setText("Spa --- Nha hang");
-                        }
-                        else if(dichvuyeucau==15){
-                            button_bar.setEnabled(false);
-                            button_nhahang.setEnabled(false);
-                            text_dichvuyeucau.setText("Bar --- Nha hang");
-                        }
-                        else if(dichvuyeucau==9){
-                            button_casino.setEnabled(false);
-                            button_spa.setEnabled(false);
-                            button_bar.setEnabled(false);
-                            text_dichvuyeucau.setText("Casino --- Spa --- Bar");
-                        }
-                        else if(dichvuyeucau==14){
-                            button_casino.setEnabled(false);
-                            button_spa.setEnabled(false);
-                            button_nhahang.setEnabled(false);
-                            text_dichvuyeucau.setText("Casino --- Spa --- Nha hang");
-                        }
-                        else if(dichvuyeucau==16){
-                            button_casino.setEnabled(false);
-                            button_bar.setEnabled(false);
-                            button_nhahang.setEnabled(false);
-                            text_dichvuyeucau.setText("Casino --- Bar --- Nha hang");
-                        }
-                        else if(dichvuyeucau==18){
-                            button_spa.setEnabled(false);
-                            button_bar.setEnabled(false);
-                            button_nhahang.setEnabled(false);
-                            text_dichvuyeucau.setText("Spa --- Bar --- Nha hang");
-                        }
-                        else if(dichvuyeucau==19){
-                            button_spa.setEnabled(false);
-                            button_casino.setEnabled(false);
-                            button_bar.setEnabled(false);
-                            button_nhahang.setEnabled(false);
-                            text_dichvuyeucau.setText("Casino --- Spa --- Bar --- Nha hang");
-                        }
-                        
+        if(tienthuc==100){button_casino.setEnabled(false); text_dichvuyeucau.setText("Casino");}
+        else if(tienthuc==300){button_spa.setEnabled(false); text_dichvuyeucau.setText("Spa");}
+        else if(tienthuc==500){button_bar.setEnabled(false); text_dichvuyeucau.setText("Bar");}
+        else if(tienthuc==1000){button_nhahang.setEnabled(false); text_dichvuyeucau.setText("Nha hang");}
+        else if(tienthuc==400){
+            button_casino.setEnabled(false);
+            button_spa.setEnabled(false);
+            text_dichvuyeucau.setText("Casino --- Spa");
+        }
+        else if(tienthuc==600){
+            button_casino.setEnabled(false);
+            button_bar.setEnabled(false);
+            text_dichvuyeucau.setText("Casino --- Bar");
+        }
+        else if(tienthuc==1100){
+            button_casino.setEnabled(false);
+            button_nhahang.setEnabled(false);
+            text_dichvuyeucau.setText("Casino --- Nha hang");
+        }
+        else if(tienthuc==800){
+            button_spa.setEnabled(false);
+            button_bar.setEnabled(false);
+            text_dichvuyeucau.setText("Spa --- Bar");
+        }
+        else if(tienthuc==1300){
+            button_spa.setEnabled(false);
+            button_nhahang.setEnabled(false);
+            text_dichvuyeucau.setText("Spa --- Nha hang");
+        }
+        else if(tienthuc==1500){
+            button_bar.setEnabled(false);
+            button_nhahang.setEnabled(false);
+             text_dichvuyeucau.setText("Bar --- Nha hang");
+        }
+        else if(tienthuc==900){
+            button_casino.setEnabled(false);
+            button_spa.setEnabled(false);
+            button_bar.setEnabled(false);
+            text_dichvuyeucau.setText("Casino --- Spa --- Bar");
+        }
+        else if(tienthuc==1400){
+            button_casino.setEnabled(false);
+            button_spa.setEnabled(false);
+            button_nhahang.setEnabled(false);
+            text_dichvuyeucau.setText("Casino --- Spa --- Nha hang");
+        }
+        else if(tienthuc==1600){
+            button_casino.setEnabled(false);
+            button_bar.setEnabled(false);
+            button_nhahang.setEnabled(false);
+            text_dichvuyeucau.setText("Casino --- Bar --- Nha hang");
+        }
+        else if(tienthuc==1800){
+            button_spa.setEnabled(false);
+            button_bar.setEnabled(false);
+            button_nhahang.setEnabled(false);
+            text_dichvuyeucau.setText("Spa --- Bar --- Nha hang");
+        }
+        else if(tienthuc==1900){
+            button_spa.setEnabled(false);
+            button_casino.setEnabled(false);
+            button_bar.setEnabled(false);
+            button_nhahang.setEnabled(false);
+            text_dichvuyeucau.setText("Casino --- Spa --- Bar --- Nha hang");
+        }                       
     }//GEN-LAST:event_button_okActionPerformed
 
     private void button_thanhtoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_thanhtoanActionPerformed
@@ -1018,7 +1035,7 @@ public class CustomerFrame extends javax.swing.JFrame {
 
     private void button_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_2ActionPerformed
         // TODO add your handling code here:
-         String maphong = "02";
+        String maphong = "02";
      
             String checkPIN = host.authPHONG(maphong);
             System.out.println("dang check phong");
@@ -1195,7 +1212,6 @@ public class CustomerFrame extends javax.swing.JFrame {
     private void button_casino_uncheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_casino_uncheckActionPerformed
         // TODO add your handling code here:
         tiendichvu -=100;
-        dichvuyeucau-=1;
         text_tiendichvu2.setText(tiendichvu+"");
         button_casino_uncheck.setEnabled(false);
         button_casino.setEnabled(true);
@@ -1203,8 +1219,7 @@ public class CustomerFrame extends javax.swing.JFrame {
 
     private void button_spa_uncheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_spa_uncheckActionPerformed
         // TODO add your handling code here:
-        tiendichvu -=200;
-        dichvuyeucau-=3;
+        tiendichvu -=300;
         text_tiendichvu2.setText(tiendichvu+"");
         button_spa_uncheck.setEnabled(false);
         button_spa.setEnabled(true);
@@ -1212,8 +1227,7 @@ public class CustomerFrame extends javax.swing.JFrame {
 
     private void button_bar_uncheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_bar_uncheckActionPerformed
         // TODO add your handling code here:
-        tiendichvu -=300;
-        dichvuyeucau-=5;
+        tiendichvu -=500;
         text_tiendichvu2.setText(tiendichvu+"");
         button_bar_uncheck.setEnabled(false);
         button_bar.setEnabled(true);
@@ -1221,8 +1235,7 @@ public class CustomerFrame extends javax.swing.JFrame {
 
     private void button_nhahang_uncheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_nhahang_uncheckActionPerformed
         // TODO add your handling code here:
-        tiendichvu -=600;
-        dichvuyeucau-=10;
+        tiendichvu -=1000;
         text_tiendichvu2.setText(tiendichvu+"");
         button_nhahang_uncheck.setEnabled(false);
         button_nhahang.setEnabled(true);
@@ -1231,6 +1244,10 @@ public class CustomerFrame extends javax.swing.JFrame {
     private void text_phong2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_phong2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_text_phong2ActionPerformed
+
+    private void text_mapin2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_mapin2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_mapin2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1301,7 +1318,9 @@ public class CustomerFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

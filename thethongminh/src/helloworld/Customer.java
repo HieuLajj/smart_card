@@ -7,12 +7,10 @@ public class Customer {
 	private byte[] phong;
 	private byte[] ngaydk;
 	private byte[] mapin;
-	private byte[] anhdaidien;
 	private byte[] tien;
-	private byte[] dichvuyeucau;
-	private byte[] priKeyData;
+	private byte[] anhdaidien;
 	
-	public Customer(byte[] cccd, byte[] hoten, byte[] ngaysinh, byte[] sdt, byte[] phong, byte[] ngaydk, byte[] mapin, byte[] anhdaidien, byte[] tien,byte[] dichvuyeucau,byte[] priKeyData) {
+	public Customer(byte[] cccd, byte[] hoten, byte[] ngaysinh, byte[] sdt, byte[] phong, byte[] ngaydk, byte[] mapin, byte[] tien, byte[] anhdaidien) {
         this.cccd = cccd;
         this.hoten = hoten;
         this.ngaysinh = ngaysinh;
@@ -20,22 +18,8 @@ public class Customer {
         this.phong = phong;
         this.ngaydk = ngaydk;
         this.mapin = mapin;
-        this.anhdaidien = anhdaidien;
         this.tien = tien;
-        this.dichvuyeucau = dichvuyeucau;
-        this.priKeyData = priKeyData;
-    }
-    public Customer(byte[] cccd, byte[] hoten, byte[] ngaysinh, byte[] sdt, byte[] phong, byte[] ngaydk, byte[] mapin, byte[] anhdaidien, byte[] tien,byte[] dichvuyeucau) {
-        this.cccd = cccd;
-        this.hoten = hoten;
-        this.ngaysinh = ngaysinh;
-        this.sdt = sdt;
-        this.phong = phong;
-        this.ngaydk = ngaydk;
-        this.mapin = mapin;
         this.anhdaidien = anhdaidien;
-        this.tien = tien;
-        this.dichvuyeucau = dichvuyeucau;
     }
     public Customer(){}
     public byte[] getCccd() {
@@ -92,33 +76,18 @@ public class Customer {
 
     public void setMapin(byte[] mapin) {
         this.mapin = mapin;
-    }
-    
-    public byte[] getAnhdaidien() {
-        return anhdaidien;
-    }
-
-    public void setAnhdaidien(byte[] anhdaidien) {
-        this.anhdaidien = anhdaidien;
-    }
-    
+    }  
     public byte[] getTien(){
 	    return tien;
     }
     public void setTien(byte[] tien){
 	    this.tien=tien;
     }
-    public byte[] getDichvuyeucau(){
-	    return dichvuyeucau;
+    public byte[] getAnhdaidien() {
+        return anhdaidien;
     }
-    public void setDichvuyeucau(byte[] dichvuyeucau){
-	    this.dichvuyeucau = dichvuyeucau;
-    }
-    public byte[] getPriKeyData() {
-        return this.priKeyData;
-    }
-    public void setPriKeyData(byte[] priKeyData) {
-        this.priKeyData = priKeyData;
-    }
-    	
+
+    public void setAnhdaidien(byte[] anhdaidien) {
+        this.anhdaidien = anhdaidien;
+    }	
 }

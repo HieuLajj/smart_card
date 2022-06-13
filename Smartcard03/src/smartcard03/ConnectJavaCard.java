@@ -73,8 +73,6 @@ public class ConnectJavaCard {
     
     public boolean connectapplet() {
         try {
-            
-            a=6;
            // Display the list of terminals
            factory = TerminalFactory.getDefault();
            terminals = factory.terminals().list();
@@ -94,18 +92,16 @@ public class ConnectJavaCard {
            String check = Integer.toHexString(response.getSW());
            System.out.println("answer: " + response.toString()+ "laivanhieu");
            if(check.equals(("9000"))){
-               JOptionPane.showMessageDialog(null,"Ket noi thanh cong 2");
-               System.out.println(a);
+               JOptionPane.showMessageDialog(null,"Ket noi thanh cong");
                return true;
-           }else if(check.equals(("6400"))){
+            }else if(check.equals(("6400"))){
                JOptionPane.showMessageDialog(null,"The bi vo hieu hoa");
                return true;
-           }
+            }
            else{
                JOptionPane.showMessageDialog(null,"Ket noi that bai");
                return false;
-           }
-          
+            }          
         } catch(Exception e) {
            System.out.println("Ouch: " + e.toString());
         }
@@ -135,42 +131,16 @@ public class ConnectJavaCard {
         }
             return false;
     }
-//    public void thongtin(){
-//        try{
-//            byte[] send  ={(byte) 0x11,0x22,0x33,0x44,0x55,0x00};
-//            response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x02, (byte)0x00, (byte)0x00));
-//            String pub = new String(response.getData(),StandardCharsets.UTF_8);
-//       
-//            System.out.println("answer: " + response.toString()+pub);
-//        }catch(Exception e){
-//            System.out.println("Ouch: " + e.toString());
-//        }
-//    }
-//    
-    
-    
-    
+
     public boolean transmissionData(String cccd, String hoten, String ngaysinh, String sdt,String phong, String ngay_dk,String mapin){
         try {
             System.out.println("------------------------------------------------------------------------------------------");
-            String data = cccd + "@" + hoten + "@0@"+ ngaysinh + "@" + sdt + "@" + phong + "@" + ngay_dk+ "@"+ mapin+"@0";
+            String data = cccd + "@" + hoten + "@"+ ngaysinh + "@" + sdt + "@" + phong + "@" + ngay_dk+ "@0@"+ mapin;
+            System.out.println(data);
             byte[] dataTrans = data.getBytes();                                                         
             response = channel.transmit(new CommandAPDU((byte)0x00,INS_INIT, (byte)0x11, (byte)0x00,dataTrans));
-//            //response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x00, (byte)0x11, (byte)0x00,combined));
-//            //String pub = bytesToHex(response.getData());
-//             String pub = bytesToHex(response.getData());
-//             idAndPubkey.put(cccd, pub);
-//           
-//            System.out.println(idAndPubkey);
-//            System.out.println("ooooooooooooooooo");
-//            String pub2 = new String(response.getData(),StandardCharsets.UTF_8);
-//            System.out.println("answer: "+data);
-//            System.out.println("answer: " + response.toString()+"fawef"+pub2);
             String check = Integer.toHexString(response.getSW());
             String pub = bytesToHex(response.getData());
-            idAndPubkey.put(cccd, pub);
-           
-            System.out.println(idAndPubkey);
             System.out.println(check);
             return true;
         } catch (CardException ex) {
@@ -188,27 +158,8 @@ public class ConnectJavaCard {
             return "Lỗi";
         } 
     }
-    
-//       public String authCard(String ranString){
-//        byte[] ranStringTrans = ranString.getBytes();
-//        try {
-//            response = channel.transmit(new CommandAPDU((byte) 0x00, (byte)0x06, (byte) 0x00,(byte) 0x00, ranStringTrans));
-//            String enCodeRanString = bytesToHex(response.getData());
-//            System.out.println(enCodeRanString);
-//            String check = Integer.toHexString(response.getSW());
-//            if (check.equals("9000")) {
-//                return enCodeRanString;
-//            }else{
-//                return "Lỗi";
-//            }
-//        } catch (CardException e) {
-//            System.out.println("Error :" + e);
-//            return "Lỗi";
-//        }
-//    }
-       
-       
-        public String authCard(String ranString){
+           
+     public String authCard(String ranString){
         byte[] ranStringTrans = ranString.getBytes();
         try {
             response = channel.transmit(new CommandAPDU((byte) 0x00, (byte)0x06, (byte) 0x00,(byte) 0x00, ranStringTrans));
@@ -472,13 +423,6 @@ public class ConnectJavaCard {
         }
         return null;
     }
-    
-    
-    
-    
-    
-    
-    
     
     public static String bytesToHex(byte[] bytes) {
     char[] hexChars = new char[bytes.length * 2];

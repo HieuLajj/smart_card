@@ -296,7 +296,7 @@ public class TaoTheMoi extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Mã PIN phải có độ dài 6 kí tự");
             } else {
               
-                JOptionPane.showMessageDialog(null, "Khởi tạo nội dung thẻ thành công. :)");
+                JOptionPane.showMessageDialog(null, "Khởi tạo nội dung thẻ thành công.");
                 text_cccd.setText("");
                 text_hoten.setText("");
                 text_ngaysinh.setText("");
@@ -305,6 +305,7 @@ public class TaoTheMoi extends javax.swing.JFrame {
                 text_ngaydk.setText("");
                 text_mapin.setText("");
                 text_xnmapin.setText("");
+                System.out.println("--------------------------------------");
                 System.out.println(cccd);
                 System.out.println(hoten);
                 System.out.println(ngaysinh);
@@ -316,16 +317,11 @@ public class TaoTheMoi extends javax.swing.JFrame {
                    host.transmissionData(cccd, hoten, ngaysinh, sdt, phong, ngaydk,mapin);
                 }                                        
             }
-
         }}
         this.setVisible(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }//GEN-LAST:event_button_okActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    
     private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
     public static String bytesToHex(byte[] bytes) {
         char[] hexChars = new char[bytes.length * 2];

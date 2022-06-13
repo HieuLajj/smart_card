@@ -84,12 +84,9 @@ public class MainFrame extends javax.swing.JFrame {
         text_ngaydk = new javax.swing.JTextField();
         Anhdaidien = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        btn_doiten = new javax.swing.JButton();
+        btn_capnhat = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         text_tien = new javax.swing.JTextField();
-        btn_doingaysinh = new javax.swing.JButton();
-        btn_doisodienthoai = new javax.swing.JButton();
-        btn_doiphong = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -177,7 +174,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(61, 61, 61)
                 .addComponent(testbtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -202,9 +199,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(text_checkpin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(button_ok)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(testbtn)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông Tin Thẻ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 20), new java.awt.Color(204, 0, 0))); // NOI18N
@@ -239,11 +236,11 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
         jLabel10.setText("Ảnh đại diện");
 
-        btn_doiten.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btn_doiten.setText("Đổi tên");
-        btn_doiten.addActionListener(new java.awt.event.ActionListener() {
+        btn_capnhat.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btn_capnhat.setLabel("Cập nhật thông tin");
+        btn_capnhat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_doitenActionPerformed(evt);
+                btn_capnhatActionPerformed(evt);
             }
         });
 
@@ -251,30 +248,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel11.setText("Tiền:");
 
         text_tien.setEnabled(false);
-
-        btn_doingaysinh.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btn_doingaysinh.setText("Đổi NS");
-        btn_doingaysinh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_doingaysinhActionPerformed(evt);
-            }
-        });
-
-        btn_doisodienthoai.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btn_doisodienthoai.setText("Đổi SĐT");
-        btn_doisodienthoai.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_doisodienthoaiActionPerformed(evt);
-            }
-        });
-
-        btn_doiphong.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btn_doiphong.setText("Đổi Phòng");
-        btn_doiphong.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_doiphongActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -304,7 +277,9 @@ public class MainFrame extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(text_tien, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btn_capnhat, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(text_tien, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -314,16 +289,6 @@ public class MainFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33))))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(btn_doiten, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(btn_doingaysinh, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(btn_doisodienthoai, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(btn_doiphong, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -360,16 +325,12 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(text_tien, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_doiten, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_doingaysinh, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_doisodienthoai, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_doiphong, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_capnhat, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
         );
 
-        btn_doiten.getAccessibleContext().setAccessibleName("Đổi tên");
+        btn_capnhat.getAccessibleContext().setAccessibleName("Cập nhập thông tin");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -450,21 +411,19 @@ public class MainFrame extends javax.swing.JFrame {
                            count=0;
                            
                            String[] data = host.getData().split("@");
-                           System.out.println("-----------"+data.length);
                            text_cccd.setText(data[0]);
                            text_hoten.setText(data[1]);
-                           System.out.println(" dich vu yeu cau hien gio la" + data[2]);
-                           text_ngaysinh.setText(data[3]);
-                           text_sdt.setText(data[4]);
-                           text_phong.setText(data[5]);
-                           text_ngaydk.setText(data[6]);
-                           text_tien.setText(data[7]); 
+                           text_ngaysinh.setText(data[2]);
+                           text_sdt.setText(data[3]);
+                           text_phong.setText(data[4]);
+                           text_ngaydk.setText(data[5]);
+                           text_tien.setText(data[6]); 
                            Anhdaidien.setIcon(new ImageIcon( host.DownloadImage())); 
                            hoten2=data[1];
-                           ngaysinh2=data[3];
-                           sdt2=data[4];
-                           phong2=data[5];
-                           tien2 = Integer.valueOf(data[7]);                                         
+                           ngaysinh2=data[2];
+                           sdt2=data[3];
+                           phong2=data[4];
+                           tien2 = Integer.valueOf(data[6]);                                         
                            break;
                     case "19000":
                        // host.wrongPIN();
@@ -524,35 +483,38 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_text_checkpinActionPerformed
 
     boolean resu1t = true;
-    private void btn_doitenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_doitenActionPerformed
+    private void btn_capnhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_capnhatActionPerformed
         // TODO add your handling code here:
         if(!text_hoten.getText().equals(hoten2)){
             System.out.println("thay doi ho ten");
             if(host.changeName(text_hoten.getText())){
-                 System.out.println("thay doi ho ten thanh cong");
-                  JOptionPane.showMessageDialog(this, "Cập nhập họ tên thành công");   
+                 System.out.println("thay doi ho ten thanh cong");  
             }
         }
         
-//        if(!text_sdt.getText().equals(sdt2)){
-//            System.out.println("thay doi sdt");
-//              if(host.changePhoneNumber(text_sdt.getText())){
-//                 System.out.println("thay doi sdt thanh cong");
-//            }
-//        }
-       
-                
-//        Anhdaidien.setIcon(new ImageIcon( host.DownloadImage()));           
-//        String[] data = host.getData().split("@");
-//        text_cccd.setText(data[0]);
-//        text_hoten.setText(data[1]);
-//        text_ngaysinh.setText(data[3]);
-//        text_sdt.setText(data[4]);
-//        text_phong.setText(data[5]);
-//        text_ngaydk.setText(data[6]);
-//        System.out.println("Cap nhap lai he thong");
-       
-    }//GEN-LAST:event_btn_doitenActionPerformed
+        if(!text_ngaysinh.getText().equals(ngaysinh2)){
+            System.out.println("thay doi ngay sinh");
+            if(host.changeBirth(text_ngaysinh.getText())){
+                System.out.println("thay doi ngay sinh thanh cong");                
+            }
+        }
+        
+        if(!text_sdt.getText().equals(sdt2)){
+            System.out.println("thay doi sdt");
+              if(host.changePhoneNumber(text_sdt.getText())){
+                 System.out.println("thay doi sdt thanh cong");                   
+            }
+        }
+        
+        if(!text_phong.getText().equals(phong2)){
+            System.out.println("thay doi phong");
+            if(host.changeRoom(text_phong.getText())){
+                 System.out.println("thay doi phong thanh cong");
+            }
+        }
+        
+        JOptionPane.showMessageDialog(this, "Cập nhập thành công"); 
+    }//GEN-LAST:event_btn_capnhatActionPerformed
 
      boolean result = false;
     private void testbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testbtnActionPerformed
@@ -584,38 +546,6 @@ public class MainFrame extends javax.swing.JFrame {
            
     }//GEN-LAST:event_testbtnActionPerformed
 
-    private void btn_doingaysinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_doingaysinhActionPerformed
-        if(!text_ngaysinh.getText().equals(ngaysinh2)){
-            System.out.println("thay doi ngay sinh");
-            if(host.changeBirth(text_ngaysinh.getText())){
-                System.out.println("thay doi ngay sinh thanh cong");
-                 JOptionPane.showMessageDialog(this, "Cập nhập ngày sinh thành công");   
-            }
-        }
-    }//GEN-LAST:event_btn_doingaysinhActionPerformed
-
-    private void btn_doisodienthoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_doisodienthoaiActionPerformed
-        // TODO add your handling code here:
-        if(!text_sdt.getText().equals(sdt2)){
-            System.out.println("thay doi sdt");
-              if(host.changePhoneNumber(text_sdt.getText())){
-                 System.out.println("thay doi sdt thanh cong");
-                  JOptionPane.showMessageDialog(this, "Cập nhập sdt thành công");   
-            }
-        }
-    }//GEN-LAST:event_btn_doisodienthoaiActionPerformed
-
-    private void btn_doiphongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_doiphongActionPerformed
-        // TODO add your handling code here:
-         if(!text_phong.getText().equals(phong2)){
-            System.out.println("thay doi phong");
-            if(host.changeRoom(text_phong.getText())){
-                 System.out.println("thay doi phong thanh cong");
-                  JOptionPane.showMessageDialog(this, "Cập nhập phòng thành công");   
-            }
-        }
-    }//GEN-LAST:event_btn_doiphongActionPerformed
-
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -636,10 +566,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Anhdaidien;
-    private javax.swing.JButton btn_doingaysinh;
-    private javax.swing.JButton btn_doiphong;
-    private javax.swing.JButton btn_doisodienthoai;
-    private javax.swing.JButton btn_doiten;
+    private javax.swing.JButton btn_capnhat;
     private javax.swing.JButton button_connect;
     private javax.swing.JButton button_delete;
     private javax.swing.JButton button_init;
