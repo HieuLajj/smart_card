@@ -314,7 +314,11 @@ public class TaoTheMoi extends javax.swing.JFrame {
                 System.out.println(ngaydk);
                 System.out.println(mapin);
                 if(host.UploadImage(new File(linkanh),"jpg")){
-                   host.transmissionData(cccd, hoten, ngaysinh, sdt, phong, ngaydk,mapin);
+                    try {
+                        host.transmissionData(cccd, hoten, ngaysinh, sdt, phong, ngaydk,mapin);
+                    } catch (IOException ex) {
+                        Logger.getLogger(TaoTheMoi.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }         
                 JOptionPane.showMessageDialog(null, "Khởi tạo nội dung thẻ thành công.");
             }

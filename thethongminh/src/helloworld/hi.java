@@ -46,9 +46,6 @@ public class hi extends Applet implements ExtendedLength
     private static RSAPrivateKey rsaPrivKey;
     private static RSAPublicKey rsaPubKey;
     private static RSAPublicKey rsaPubKey2;
-    private static Signature rsaSig;
-    private static short sigLen;
-    private static byte[] s1, s2, s3, sig_buffer,data4;
     
 	public static void install(byte[] bArray, short bOffset, byte bLength) 
 	{
@@ -57,13 +54,6 @@ public class hi extends Applet implements ExtendedLength
 		size = new byte[7];
 		wrong_PIN_count = JCSystem.makeTransientShortArray ((short)1, JCSystem.CLEAR_ON_RESET);
 		wrong_PIN_count[(short)0] = (short)0;	 
-	
-	    sigLen = (short)(KeyBuilder.LENGTH_RSA_1024/8);
-	    data4= new byte[]{0x01, 0x02, 0x03};
-	    s1 = new byte[]{0x01, 0x02, 0x03};
-        s2 = new byte[]{0x04, 0x05};
-        s3 = new byte[]{0x06, 0x07, 0x08};
-        sig_buffer = new byte[sigLen];
 	}
 
 	public void process(APDU apdu)
@@ -80,13 +70,6 @@ public class hi extends Applet implements ExtendedLength
 		
 		switch (buf[ISO7816.OFFSET_INS])
 		{
-		
-	    case INS_SIGN:
-          rsaSign(data4,apdu);
-          break;
-        case INS_VERIFY:
-          rsaVerify(apdu);
-          break;
         case (byte)0x06: 	
          	byte[] data5 = new byte[(short)buf[ISO7816.OFFSET_LC]];
 		    Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, data5, (short)0, (short)buf[ISO7816.OFFSET_LC]);        	
@@ -138,7 +121,8 @@ public class hi extends Applet implements ExtendedLength
 			byte[] ngay_dk      = new byte[ngaydk_len];
 			byte[] tien         = new byte[tien_len];
 			byte[] mapin        = new byte[mapin_len];
-		
+		    byte[] priKeyData = gen_RSA_key(apdu);
+		    
 			Util.arrayCopy(data, (short)infoOFFSET[OFFSET_CCCD]     , cccd     , (short)0, cccd_len);			
 			Util.arrayCopy(data, (short)infoOFFSET[OFFSET_HOTEN]    , hoten    , (short)0, hoten_len);			
 			Util.arrayCopy(data, (short)infoOFFSET[OFFSET_NGAYSINH] , ngaysinh , (short)0, ngaysinh_len);			
@@ -157,20 +141,13 @@ public class hi extends Applet implements ExtendedLength
 			phong        =  encryptAES(phong, mapin);
 			ngay_dk      =  encryptAES(ngay_dk, mapin);
 			tien         =  encryptAES(tien, mapin);
+			priKeyData   = encryptAES(priKeyData, mapin);
 			//OpImage      =  encryptAES(OpImage,mapin);
-			
-			rsaSig =Signature.getInstance(Signature.ALG_RSA_SHA_PKCS1,false);
-			rsaPrivKey = (RSAPrivateKey)KeyBuilder.buildKey(KeyBuilder.TYPE_RSA_PRIVATE,(short)(8*sigLen),false);
-			rsaPubKey = (RSAPublicKey)KeyBuilder.buildKey(KeyBuilder.TYPE_RSA_PUBLIC,(short)(8*sigLen),false);
-			KeyPair keyPair = new KeyPair(KeyPair.ALG_RSA,(short)(8*sigLen));
-			keyPair.genKeyPair();
-			rsaPrivKey = (RSAPrivateKey)keyPair.getPrivate();
-			rsaPubKey =  (RSAPublicKey)keyPair.getPublic();
 			
 			
 			JCSystem.beginTransaction();
 			//customer = new Customer(cccd,hoten,ngaysinh,sdt,phong,ngay_dk,mapin,tien,OpImage);
-			customer = new Customer(cccd,hoten,ngaysinh,sdt,phong,ngay_dk,mapin,tien,OpImage);
+			customer = new Customer(cccd,hoten,ngaysinh,sdt,phong,ngay_dk,mapin,tien,priKeyData,OpImage);
 			JCSystem.commitTransaction();
 			break;
 			 
@@ -284,6 +261,7 @@ public class hi extends Applet implements ExtendedLength
 			    phong        =  decryptAES(customer.getPhong(), customer.getMapin());
 			    ngay_dk      =  decryptAES(customer.getNgaydk(), customer.getMapin());
 			    tien         =  decryptAES(customer.getTien(), customer.getMapin());
+			    priKeyData   =  decryptAES(customer.getPriKeyData(), customer.getMapin());
 			    
 			    cccd         =  encryptAES_wontPadding(cccd, mapin);
 			    hoten        =  encryptAES_wontPadding(hoten, mapin);
@@ -292,6 +270,7 @@ public class hi extends Applet implements ExtendedLength
 			    phong        =  encryptAES_wontPadding(phong, mapin);
 			    ngay_dk      =  encryptAES_wontPadding(ngay_dk, mapin);
 			    tien         =  encryptAES_wontPadding(tien, mapin);
+			    priKeyData   =  encryptAES_wontPadding(priKeyData, mapin);
 			    
 				JCSystem.beginTransaction();
 				customer.setCccd(cccd);
@@ -301,6 +280,7 @@ public class hi extends Applet implements ExtendedLength
 			    customer.setPhong(phong);
 			    customer.setNgaydk(ngay_dk);
 			    customer.setTien(tien);
+			    customer.setPriKeyData(priKeyData);
 				customer.setMapin(mapin);
 				JCSystem.commitTransaction();
 			}
@@ -332,7 +312,7 @@ public class hi extends Applet implements ExtendedLength
 		         apdu.setOutgoingLength((short)1);
 				 apdu.sendBytesLong(WRONG_PIN_CODE, (short)0, (short)1);
 			 }			
-			break;
+			 break;
 		case (byte)0x05:
 			 short b = (short)buf[ISO7816.OFFSET_LC];
 			 inputPHONG = new byte[(short)b];
@@ -344,7 +324,7 @@ public class hi extends Applet implements ExtendedLength
 		         apdu.setOutgoingLength((short)1);
 				 apdu.sendBytesLong(WRONG_PIN_CODE, (short)0, (short)1);
 			 }		
-			break;
+			 break;
 			
 	    case INS_CREATE_IMAGE:		 
 	    	
@@ -379,37 +359,23 @@ public class hi extends Applet implements ExtendedLength
 	
    private byte[] rsaSign(byte[] data4,APDU apdu)
     {
-	  rsaSig.init(rsaPrivKey, Signature.MODE_SIGN);
-	  rsaSig.sign(data4, (short)0, (short)(data4.length), sig_buffer, (short)0);
-     // apdu.setOutgoing();
-     // apdu.setOutgoingLength(sigLen);
-     // apdu.sendBytesLong(sig_buffer, (short)0, sigLen);
+     Signature rsaSig = Signature.getInstance(Signature.ALG_RSA_SHA_PKCS1,false);	
+     byte[] sig_buffer = new byte[(short)(KeyBuilder.LENGTH_RSA_1024/8)];
+    	
+     RSAPrivateKey rsaPrivKey3 = (RSAPrivateKey) KeyBuilder.buildKey(
+			KeyBuilder.TYPE_RSA_PRIVATE, 
+			KeyBuilder.LENGTH_RSA_1024, 
+			false
+		);	
+	 byte[] priKeyData = decryptAES(customer.getPriKeyData(), customer.getMapin());
+     rsaPrivKey3.setExponent(priKeyData, (short) 0, (short)128);//do dai cua so mu =128, bat dau tu vi tri 0
+	 rsaPrivKey3.setModulus(priKeyData, (short)128, (short)128);//do dai cua modulus =128, bat dau tu vi tri 128(ngay sau so mu)   	
+    	
+	 rsaSig.init(rsaPrivKey3, Signature.MODE_SIGN);
+	 rsaSig.sign(data4, (short)0, (short)(data4.length), sig_buffer, (short)0);
      return sig_buffer;
-      
-      // rsaSig.init(rsaPrivKey, Signature.MODE_SIGN);
-		// rsaSig.sign(data, (short)0, (short)(data.length), sig_buffer, (short)0);
-		// //tra ve chuoi xac thuc da duoc ky
-		// return sig_buffer;
     }
-    private void rsaVerify(APDU apdu)
-   {
-   	
-   	 byte[] buf5 = new byte[1000];
-	 short lenExponent = rsaPubKey.getExponent(buf5,(short)0);
-	 //rsaPubKey2.setExponent(buf5, (short) 0, lenExponent);
-	 
-	 byte[] buf6 =  new byte[1000];
-	 short lenModulus = rsaPubKey.getModulus(buf6,(short)0);
-	 //rsaPubKey2.setModulus(buf6, (short)0, (short)lenModulus);
-	
-     byte [] buf = apdu.getBuffer();
-     rsaSig.init(rsaPubKey, Signature.MODE_VERIFY);
-     
-     boolean ret = rsaSig.verify (data4, (short)0,(short)(data4.length), sig_buffer, (short)0, sigLen);
-     buf[(short)0] = ret ? (byte)1 : (byte)0;
-     apdu.setOutgoingAndSend((short)0, (short)1);
-    }
-    
+   
     private void sendPublicExponent(APDU apdu){
 	    byte[] buf = apdu.getBuffer();
 	    short lenExponent = rsaPubKey.getExponent(buf,(short)0);
@@ -420,29 +386,7 @@ public class hi extends Applet implements ExtendedLength
 	    short lenModulus = rsaPubKey.getModulus(buf,(short)0);
 	    apdu.setOutgoingAndSend((short)0,lenModulus);
     }
-    
-    
-    private void rsaSign2(APDU apdu)
-    {
-      rsaSig.init(rsaPrivKey, Signature.MODE_SIGN);
-      rsaSig.update(s1, (short)0, (short)(s1.length));
-      rsaSig.update(s2, (short)0, (short)(s2.length));
-      rsaSig.sign(s3, (short)0, (short)(s3.length),
-      sig_buffer, (short)0);
-      apdu.setOutgoing();
-      apdu.setOutgoingLength(sigLen);
-      apdu.sendBytesLong(sig_buffer, (short)0, sigLen);
-    }
-	private void rsaVerify2(APDU apdu)
-   {
-     byte [] buf = apdu.getBuffer();
-     rsaSig.init(rsaPubKey, Signature.MODE_VERIFY);
-     rsaSig.update(s1, (short)0, (short)(s1.length));
-     rsaSig.update(s2, (short)0, (short)(s2.length));
-     boolean ret = rsaSig.verify (s3, (short)0,(short)(s3.length), sig_buffer, (short)0, sigLen);
-     buf[(short)0] = ret ? (byte)1 : (byte)0;
-    apdu.setOutgoingAndSend((short)0, (short)1);
-    }
+        
 	// ham bam
 	public byte[] hashMD5(byte[] data){
 		byte[] hashData = new byte[(short)16];
@@ -541,81 +485,35 @@ public class hi extends Applet implements ExtendedLength
 		return length; //tra ve do dai moi khong bao gom padding
 	 }
 	 
-	 
-	 
-	 
-	// //ham ky
-	// private byte[] rsaSign(byte[] data){
-	//	 Signature rsaSig = Signature.getInstance(Signature.ALG_RSA_SHA_PKCS1,false);
-		
-		// RSAPrivateKey rsaPrivKey = (RSAPrivateKey) KeyBuilder.buildKey(
-	//		 KeyBuilder.TYPE_RSA_PRIVATE, 
-		//	 KeyBuilder.LENGTH_RSA_1024, 
-	//		 false
-	//	 );
-		
-		// //giai ma khoa bi mat luu trong the
-		// byte[] priKeyData = decryptAES(customer.getPriKeyData(), customer.getMapin());
+	 public byte[] gen_RSA_key(APDU apdu){
+		 short sigLen = (short)(KeyBuilder.LENGTH_RSA_1024/8);
+         byte[] sig_buffer = new byte[sigLen];
+	     Signature rsaSig =Signature.getInstance(Signature.ALG_RSA_SHA_PKCS1,false);
+		 rsaPrivKey = (RSAPrivateKey)KeyBuilder.buildKey(KeyBuilder.TYPE_RSA_PRIVATE,(short)(8*sigLen),false);
+		 rsaPubKey = (RSAPublicKey)KeyBuilder.buildKey(KeyBuilder.TYPE_RSA_PUBLIC,(short)(8*sigLen),false);
+		 KeyPair keyPair = new KeyPair(KeyPair.ALG_RSA,(short)(8*sigLen));
+		 keyPair.genKeyPair();
+		 rsaPrivKey = (RSAPrivateKey)keyPair.getPrivate();
+		 rsaPubKey =  (RSAPublicKey)keyPair.getPublic();
+		 byte[] buf = apdu.getBuffer();
 
-		// //thiet lap khoa bang cach cung cap so mu va modulus
-		// rsaPrivKey.setExponent(priKeyData, (short) 0, (short)128);
-		// rsaPrivKey.setModulus(priKeyData, (short)128, (short)128);
+         short len    = (short)0;
+         short totalLen = (short)0;
+		 //copy so mu cua khoa bi mat vao mang buf tu vi tri 0, tra ve do dai cua so mu =128
+		 len = rsaPrivKey.getExponent(buf, (short)0);
+
+         totalLen += len;
+
+		 //copy module cua khoa bi mat vao mang buf tu vi tri len =128, tra ve do dai cua module =128
+         len = rsaPrivKey.getModulus(buf, (short)len);
+
+         totalLen += len; //=256
 		
-		// byte[] sig_buffer = new byte[(short)(KeyBuilder.LENGTH_RSA_1024/8)];
-		// //ky vao chuoi xac thuc bang khoa bi mat
-		// rsaSig.init(rsaPrivKey, Signature.MODE_SIGN);
-		// rsaSig.sign(data, (short)0, (short)(data.length), sig_buffer, (short)0);
-		// //tra ve chuoi xac thuc da duoc ky
-		// return sig_buffer;
-	// }
-	  
-	 // public byte[] gen_RSA_key(APDU apdu){
-		// //tao doi tuong khoa bi mat
-        // RSAPrivateKey rsaPrivKey = (RSAPrivateKey)KeyBuilder.buildKey(
-            // KeyBuilder.TYPE_RSA_PRIVATE,
-            // KeyBuilder.LENGTH_RSA_1024,
-            // false
-        // );
-		// //tao doi tuong khoa cong khai
-        // RSAPublicKey rsaPubKey = (RSAPublicKey)KeyBuilder.buildKey(
-            // KeyBuilder.TYPE_RSA_PUBLIC,
-            // KeyBuilder.LENGTH_RSA_1024, 
-            // false
-        // );
-		// //tao doi tuong dung de sinh cap khoa
-        // KeyPair keyPair = new KeyPair(KeyPair.ALG_RSA, KeyBuilder.LENGTH_RSA_1024);
-		// //sinh cap khoa
-        // keyPair.genKeyPair();
-		// //lay ra khoa bi mat va cong khai
-        // rsaPrivKey = (RSAPrivateKey)keyPair.getPrivate();
-        // rsaPubKey = (RSAPublicKey)keyPair.getPublic();
-        // //lay ra apdu buffer
-		// byte[] buf = apdu.getBuffer();
-        // short len    = (short)0;
-        // short totalLen = (short)0;
-		// //copy so mu cua khoa bi mat vao mang buf tu vi tri 0, tra ve do dai cua so mu =128
-		// len = rsaPrivKey.getExponent(buf, (short)0);
-        // totalLen += len;
-		// //copy module cua khoa bi mat vao mang buf tu vi tri len =128, tra ve do dai cua module =128
-        // len = rsaPrivKey.getModulus(buf, (short)len);
-        // totalLen += len; //=256		
-		// //tao mang luu du lieu cua khoa bi mat voi do dai chinh xac vua tinh duoc
-		// byte[] priKeyData = new byte[totalLen];
-		// //copy khoa bi mat trong mang buf vao mang vua tao
-		// Util.arrayCopy(buf, (short)0, priKeyData, (short)0, totalLen); 
-		// //thuc hien cac buoc tuong tu de lay ra data cua khoa cong khai
-		// len    = (short)0;
-        // totalLen = (short)0;
-		// //copy so mu cua khoa cong khai vao mang buf tu vi tri offset, tra ve do dai cua so mu
-		// len = rsaPubKey.getExponent(buf, (short)0);// =3
-        // totalLen += len; // =3
-		// //copy module cua khoa cong khai vao mang buf tu vi tri len =3, tra ve do dai cua module
-        // len = rsaPubKey.getModulus(buf, (short)len);// =128
-        // totalLen += len; // 3 + 128 = 131
-		// //gui khoa cong khai da copy vao mang buf len server
-		// apdu.setOutgoing();
-        // apdu.setOutgoingLength(totalLen);
-        // apdu.sendBytes((short)0, totalLen);		
-		// return priKeyData;
-    // }
+		 //tao mang luu du lieu cua khoa bi mat voi do dai chinh xac vua tinh duoc
+		 byte[] priKeyData = new byte[totalLen];
+		 //copy khoa bi mat trong mang buf vao mang vua tao
+		 Util.arrayCopy(buf, (short)0, priKeyData, (short)0, totalLen); 
+
+		 return priKeyData;	 	 
+	 }
 }

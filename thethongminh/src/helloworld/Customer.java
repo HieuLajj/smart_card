@@ -9,6 +9,7 @@ public class Customer {
 	private byte[] mapin;
 	private byte[] tien;
 	private byte[] anhdaidien;
+	private byte[] priKeyData;
 	
 	public Customer(byte[] cccd, byte[] hoten, byte[] ngaysinh, byte[] sdt, byte[] phong, byte[] ngaydk, byte[] mapin, byte[] tien, byte[] anhdaidien) {
         this.cccd = cccd;
@@ -19,6 +20,18 @@ public class Customer {
         this.ngaydk = ngaydk;
         this.mapin = mapin;
         this.tien = tien;
+        this.anhdaidien = anhdaidien;
+    }
+    public Customer(byte[] cccd, byte[] hoten, byte[] ngaysinh, byte[] sdt, byte[] phong, byte[] ngaydk, byte[] mapin, byte[] tien,byte[] priKeyData, byte[] anhdaidien) {
+        this.cccd = cccd;
+        this.hoten = hoten;
+        this.ngaysinh = ngaysinh;
+        this.sdt = sdt;
+        this.phong = phong;
+        this.ngaydk = ngaydk;
+        this.mapin = mapin;
+        this.tien = tien;
+        this.priKeyData = priKeyData;
         this.anhdaidien = anhdaidien;
     }
     public Customer(){}
@@ -90,4 +103,12 @@ public class Customer {
     public void setAnhdaidien(byte[] anhdaidien) {
         this.anhdaidien = anhdaidien;
     }	
+     public byte[] getPriKeyData() {
+        return this.priKeyData;
+    }
+
+    public void setPriKeyData(byte[] priKeyData) {
+        this.priKeyData = priKeyData;
+    }
+
 }

@@ -9,6 +9,12 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
@@ -143,7 +149,7 @@ public class ConnectJavaCard {
             return false;
     }
 
-    public boolean transmissionData(String cccd, String hoten, String ngaysinh, String sdt,String phong, String ngay_dk,String mapin){
+    public boolean transmissionData(String cccd, String hoten, String ngaysinh, String sdt,String phong, String ngay_dk,String mapin) throws FileNotFoundException, IOException{
         try {
             System.out.println("------------------------------------------------------------------------------------------");
             String data = cccd + "@" + hoten + "@"+ ngaysinh + "@" + sdt + "@" + phong + "@" + ngay_dk+ "@0@"+ mapin;
@@ -160,7 +166,7 @@ public class ConnectJavaCard {
             response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x34, (byte)0x01, (byte)0x00));
             byte[] modulusBytes = response.getData();
             
-            byte[] aa =new byte[]{0x22};
+            byte[] aa =new byte[]{0x3C,0x3E};
             byte[] combined = new byte[exponentBytes.length + aa.length];
 
             for (int i = 0; i < combined.length; ++i){
@@ -174,12 +180,15 @@ public class ConnectJavaCard {
             {
             combined2[i] = i < combined.length ? combined[i] : modulusBytes[i - combined.length];
             }
+                      
             idAndPubkey.put(cccd, combined2);
-            
-            
-            
-            
-            return true;
+    
+           File file = new File("serialized_hashmap2");   
+           FileOutputStream fos = new FileOutputStream(file);   
+           ObjectOutputStream oos = new ObjectOutputStream(fos);           
+           oos.writeObject(idAndPubkey); 
+           oos.flush();          
+           return true;
         } catch (CardException ex) {
             Logger.getLogger(ConnectJavaCard.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -196,7 +205,7 @@ public class ConnectJavaCard {
         } 
     }
            
-     public String authCard(String ranString){
+    public String authCard(String ranString){
         byte[] ranStringTrans = ranString.getBytes();
         try {
             response = channel.transmit(new CommandAPDU((byte) 0x00, (byte)0x06, (byte) 0x00,(byte) 0x00, ranStringTrans));
@@ -226,18 +235,6 @@ public class ConnectJavaCard {
             return "Lỗi";
         }      
     }
-//     public  String wrongPIN(){
-//      
-//        try {
-//            response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x06, (byte)0x00, (byte)0x00));
-//            String test = new String(response.getData(), StandardCharsets.UTF_8) + Integer.toHexString(response.getNr())+ Integer.toHexString(response.getSW2());
-//            System.out.println("so pin con lai la" +test);
-//            return  test;
-//        } catch (CardException e) {
-//            System.out.println("Error :" + e);
-//            return "Lỗi";
-//        }      
-//    }
       public  String authPHONG(String phong){
         byte[] phongTrans = phong.getBytes();
         try {
@@ -298,7 +295,7 @@ public class ConnectJavaCard {
         }
             
     }
-      public boolean changeRoom(String room){
+    public boolean changeRoom(String room){
         byte[] RoomTrans = room.getBytes();
         try {
             response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x03, (byte)0x04, (byte)0x00, RoomTrans));
@@ -473,69 +470,32 @@ public class ConnectJavaCard {
     
      public boolean testrsa(String cccd){
        
-        try {
-            
-//            response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x33, (byte)0x01, (byte)0x00));
-//            byte[] exponentBytes = response.getData();
-//            response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x34, (byte)0x01, (byte)0x00));
-//            byte[] modulusBytes = response.getData();
-//            
-//            byte[] aa =new byte[]{0x22};
-//            byte[] combined = new byte[exponentBytes.length + aa.length];
-//
-//            for (int i = 0; i < combined.length; ++i){
-//                combined[i] = i < exponentBytes.length ? exponentBytes[i] : aa[i - exponentBytes.length];
-//            }
-//            
-//            
-//            byte[] combined2 = new byte[combined.length + modulusBytes.length];
-//
-//            for (int i = 0; i < combined2.length; ++i)
-//            {
-//            combined2[i] = i < combined.length ? combined[i] : modulusBytes[i - combined.length];
-//            }
-//             idAndPubkey.put("123456", combined2);
-            
-            //  lưu cái mảng này lên hệ thống ở combined2
-           
-           
-           
-            // lấy mảng từ hệ thống
-            int a4 = idAndPubkey.get(cccd).length;
+        try {         
+            HashMap<String, byte[]> map = new HashMap<>(); 
+            map = load("serialized_hashmap2");
+            int a4 = map.get(cccd).length;
+            System.out.print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            System.out.print(a4);
             byte[] arraydata = new byte[a4];
-            arraydata = idAndPubkey.get(cccd);
+            arraydata = map.get(cccd);
             int a5 = 0;
             for(int i=0; i < arraydata.length; i++){
-		if( arraydata[i] == (byte)0x22){
-		a5=i;
+		if( arraydata[i] == (byte)0x3C){
+                    if(arraydata[i+1]==(byte)0x3E){
+		a5=i+1;}
 	        }
             }
-//           if(arraydata[a5] == (byte)0x22){
-//                System.out.println("thanh cong"+a5);     
-//                System.out.println("thanh cong"+arraydata.length);   
-//                System.out.println("thanh cong"+exponentBytes.length);     
-//                System.out.println("thanh cong"+aa.length);     
-//                System.out.println("thanh cong"+modulusBytes .length);     
-//           }
-           byte[] mang1 = new byte[a5];
-             for(int i=0; i < a5; i++){
+           byte[] mang1 = new byte[a5-1];
+             for(int i=0; i < a5-1; i++){
 		mang1[i] = arraydata[i];
 	    }
-//            if (Arrays.equals(mang1,exponentBytes))
-//           {
-//             System.out.println("Yup, they're the same1!");}
             
            byte[] mang2 = new byte[(arraydata.length)-1-a5];
             for(int i=a5+1; i < arraydata.length; i++){
 		mang2[i-(a5+1)] = arraydata[i];
 	    }
-//             if (Arrays.equals(mang2,modulusBytes))
-//           {
-//             System.out.println("Yup, they're the same2!");}
-         
              
-             PublicKey publicKey = initPublicKey(mang2, mang1); 
-           // PublicKey publicKey = initPublicKey(modulusBytes, exponentBytes);
+            PublicKey publicKey = initPublicKey(mang2, mang1); 
             
             String ranString = randomString().toLowerCase();
             byte[] ranStringTrans = ranString.getBytes();
@@ -595,30 +555,20 @@ public class ConnectJavaCard {
         String saltStr = salt.toString();
         return saltStr;
     }
-    public boolean inssign(){
-       
-        try {
-            response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x31, (byte)0x01, (byte)0x00));
-       
-                return false;
-        } catch (CardException ex) {
-            System.out.println("Error :" + ex);
-        }
-            return false;
+    
+    public static HashMap<String, byte[]> load(String path){
+    try
+    {
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path));
+        Object result = ois.readObject();
+        return (HashMap<String,byte[]>)result;
     }
-     
-    public boolean insverify(){
-       
-        try {
-            response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x32, (byte)0x01, (byte)0x00));
-       
-                return false;
-        } catch (CardException ex) {
-            System.out.println("Error :" + ex);
-        }
-            return false;
+    catch(Exception e)
+    {
+        e.printStackTrace();
     }
-
+        return null;
+    }
 }
 
 
