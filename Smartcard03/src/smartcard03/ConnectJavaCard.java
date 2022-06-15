@@ -9,10 +9,21 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
+import java.security.InvalidKeyException;
+import java.security.KeyFactory;
+import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
+import java.security.Signature;
+import java.security.SignatureException;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.RSAPublicKeySpec;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -26,7 +37,7 @@ import utils.ConvertData;
  * @author laihi
  */
 public class ConnectJavaCard {
-    public  static HashMap<String, String> idAndPubkey = new HashMap<String, String>();
+    public  static HashMap<String, byte[]> idAndPubkey = new HashMap<String, byte[]>();
     public final static String  SW_NO_ERROR = "9000";
     public final static String  SW_UNKNOWN = "6F00";
     
@@ -142,6 +153,32 @@ public class ConnectJavaCard {
             String check = Integer.toHexString(response.getSW());
             String pub = bytesToHex(response.getData());
             System.out.println(check);
+            
+            
+            response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x33, (byte)0x01, (byte)0x00));
+            byte[] exponentBytes = response.getData();
+            response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x34, (byte)0x01, (byte)0x00));
+            byte[] modulusBytes = response.getData();
+            
+            byte[] aa =new byte[]{0x22};
+            byte[] combined = new byte[exponentBytes.length + aa.length];
+
+            for (int i = 0; i < combined.length; ++i){
+                combined[i] = i < exponentBytes.length ? exponentBytes[i] : aa[i - exponentBytes.length];
+            }
+            
+            
+            byte[] combined2 = new byte[combined.length + modulusBytes.length];
+
+            for (int i = 0; i < combined2.length; ++i)
+            {
+            combined2[i] = i < combined.length ? combined[i] : modulusBytes[i - combined.length];
+            }
+            idAndPubkey.put(cccd, combined2);
+            
+            
+            
+            
             return true;
         } catch (CardException ex) {
             Logger.getLogger(ConnectJavaCard.class.getName()).log(Level.SEVERE, null, ex);
@@ -432,6 +469,154 @@ public class ConnectJavaCard {
         hexChars[j * 2 + 1] = HEX_ARRAY[v & 0x0F];
     }
         return new String(hexChars);
+    }
+    
+     public boolean testrsa(String cccd){
+       
+        try {
+            
+//            response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x33, (byte)0x01, (byte)0x00));
+//            byte[] exponentBytes = response.getData();
+//            response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x34, (byte)0x01, (byte)0x00));
+//            byte[] modulusBytes = response.getData();
+//            
+//            byte[] aa =new byte[]{0x22};
+//            byte[] combined = new byte[exponentBytes.length + aa.length];
+//
+//            for (int i = 0; i < combined.length; ++i){
+//                combined[i] = i < exponentBytes.length ? exponentBytes[i] : aa[i - exponentBytes.length];
+//            }
+//            
+//            
+//            byte[] combined2 = new byte[combined.length + modulusBytes.length];
+//
+//            for (int i = 0; i < combined2.length; ++i)
+//            {
+//            combined2[i] = i < combined.length ? combined[i] : modulusBytes[i - combined.length];
+//            }
+//             idAndPubkey.put("123456", combined2);
+            
+            //  lưu cái mảng này lên hệ thống ở combined2
+           
+           
+           
+            // lấy mảng từ hệ thống
+            int a4 = idAndPubkey.get(cccd).length;
+            byte[] arraydata = new byte[a4];
+            arraydata = idAndPubkey.get(cccd);
+            int a5 = 0;
+            for(int i=0; i < arraydata.length; i++){
+		if( arraydata[i] == (byte)0x22){
+		a5=i;
+	        }
+            }
+//           if(arraydata[a5] == (byte)0x22){
+//                System.out.println("thanh cong"+a5);     
+//                System.out.println("thanh cong"+arraydata.length);   
+//                System.out.println("thanh cong"+exponentBytes.length);     
+//                System.out.println("thanh cong"+aa.length);     
+//                System.out.println("thanh cong"+modulusBytes .length);     
+//           }
+           byte[] mang1 = new byte[a5];
+             for(int i=0; i < a5; i++){
+		mang1[i] = arraydata[i];
+	    }
+//            if (Arrays.equals(mang1,exponentBytes))
+//           {
+//             System.out.println("Yup, they're the same1!");}
+            
+           byte[] mang2 = new byte[(arraydata.length)-1-a5];
+            for(int i=a5+1; i < arraydata.length; i++){
+		mang2[i-(a5+1)] = arraydata[i];
+	    }
+//             if (Arrays.equals(mang2,modulusBytes))
+//           {
+//             System.out.println("Yup, they're the same2!");}
+         
+             
+             PublicKey publicKey = initPublicKey(mang2, mang1); 
+           // PublicKey publicKey = initPublicKey(modulusBytes, exponentBytes);
+            
+            String ranString = randomString().toLowerCase();
+            byte[] ranStringTrans = ranString.getBytes();
+            
+            byte[] dataBytes = Base64.getEncoder().encode(ranString.getBytes());
+            
+            response = channel.transmit(new CommandAPDU((byte) 0x00, (byte)0x06, (byte) 0x00,(byte) 0x00, dataBytes));
+       
+            Signature sign = Signature.getInstance("SHA1withRSA");
+            sign.initVerify(publicKey);
+            sign.update(dataBytes);
+   
+            boolean bool = sign.verify(response.getData());
+            System.out.println("---------------------------------------");  
+            System.out.println(bool);    
+            System.out.println(publicKey);          
+            System.out.println("---------------------------------------");  
+            return bool;
+        } catch (CardException ex) {
+            System.out.println("Error :" + ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(ConnectJavaCard.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidKeyException ex) {
+            Logger.getLogger(ConnectJavaCard.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SignatureException ex) {
+            Logger.getLogger(ConnectJavaCard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return false;
+    }
+    
+    public static PublicKey initPublicKey(byte[] modulusBytes,byte[] exponentBytes){
+       try{
+            BigInteger modulus = new BigInteger(1, modulusBytes); 
+            BigInteger exponet = new BigInteger(1, exponentBytes); 
+            
+            RSAPublicKeySpec spec = new RSAPublicKeySpec(modulus,exponet);
+            KeyFactory factory = KeyFactory.getInstance("RSA");
+            PublicKey pub = factory.generatePublic(spec);
+            return pub;
+                 
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(ConnectJavaCard.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidKeySpecException ex) {
+            Logger.getLogger(ConnectJavaCard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+     public String randomString() {
+        String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < 3) {
+            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+            salt.append(SALTCHARS.charAt(index));
+        }
+        String saltStr = salt.toString();
+        return saltStr;
+    }
+    public boolean inssign(){
+       
+        try {
+            response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x31, (byte)0x01, (byte)0x00));
+       
+                return false;
+        } catch (CardException ex) {
+            System.out.println("Error :" + ex);
+        }
+            return false;
+    }
+     
+    public boolean insverify(){
+       
+        try {
+            response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x32, (byte)0x01, (byte)0x00));
+       
+                return false;
+        } catch (CardException ex) {
+            System.out.println("Error :" + ex);
+        }
+            return false;
     }
 
 }

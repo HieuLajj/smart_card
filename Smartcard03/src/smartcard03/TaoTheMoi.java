@@ -296,7 +296,7 @@ public class TaoTheMoi extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Mã PIN phải có độ dài 6 kí tự");
             } else {
               
-                JOptionPane.showMessageDialog(null, "Khởi tạo nội dung thẻ thành công.");
+                
                 text_cccd.setText("");
                 text_hoten.setText("");
                 text_ngaysinh.setText("");
@@ -315,7 +315,8 @@ public class TaoTheMoi extends javax.swing.JFrame {
                 System.out.println(mapin);
                 if(host.UploadImage(new File(linkanh),"jpg")){
                    host.transmissionData(cccd, hoten, ngaysinh, sdt, phong, ngaydk,mapin);
-                }                                        
+                }         
+                JOptionPane.showMessageDialog(null, "Khởi tạo nội dung thẻ thành công.");
             }
         }}
         this.setVisible(false);

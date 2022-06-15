@@ -1,5 +1,5 @@
 // converted by version 1.3
-// on Mon Jun 13 02:39:14 VET 2022
+// on Wed Jun 15 02:08:38 VET 2022
 
 .package helloworld {
 	.aid 0x11:0x22:0x33:0x44:0x55;
@@ -55,106 +55,172 @@
 		// 17
 		staticFieldRef short[] hi/wrong_PIN_count;
 		// 18
-		virtualMethodRef 1.3.3()Z;		// selectingApplet()Z
+		staticFieldRef short hi/sigLen;
 		// 19
-		virtualMethodRef 1.10.1()[B;		// getBuffer()[B
+		staticFieldRef byte[] hi/data4;
 		// 20
-		virtualMethodRef 1.10.6()S;		// setIncomingAndReceive()S
+		staticFieldRef byte[] hi/s1;
 		// 21
-		staticMethodRef 1.16.1([BS[BSS)S;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+		staticFieldRef byte[] hi/s2;
 		// 22
-		virtualMethodRef hi/hashMD5([B)[B;
+		staticFieldRef byte[] hi/s3;
 		// 23
-		staticMethodRef hi/encryptAES([B[B)[B;
+		staticFieldRef byte[] hi/sig_buffer;
 		// 24
-		staticMethodRef 1.8.1()V;		// javacard/framework/JCSystem.beginTransaction()V
+		virtualMethodRef 1.3.3()Z;		// selectingApplet()Z
 		// 25
-		classRef Customer;
+		virtualMethodRef 1.10.1()[B;		// getBuffer()[B
 		// 26
-		staticMethodRef Customer/<init>([B[B[B[B[B[B[B[B[B)V;
+		virtualMethodRef 1.10.6()S;		// setIncomingAndReceive()S
 		// 27
-		staticFieldRef Customer hi/customer;
-		// 28
-		staticMethodRef 1.8.2()V;		// javacard/framework/JCSystem.commitTransaction()V
-		// 29
-		virtualMethodRef Customer/getCccd()[B;
-		// 30
-		virtualMethodRef Customer/getMapin()[B;
-		// 31
-		staticMethodRef hi/decryptAES([B[B)[B;
-		// 32
-		staticMethodRef hi/removePaddingM2([BS)S;
-		// 33
-		virtualMethodRef Customer/getHoten()[B;
-		// 34
-		virtualMethodRef Customer/getNgaysinh()[B;
-		// 35
-		virtualMethodRef Customer/getSdt()[B;
-		// 36
-		virtualMethodRef Customer/getPhong()[B;
-		// 37
-		virtualMethodRef Customer/getNgaydk()[B;
-		// 38
-		virtualMethodRef Customer/getTien()[B;
-		// 39
-		virtualMethodRef 1.10.7()S;		// setOutgoing()S
-		// 40
-		virtualMethodRef 1.10.9(S)V;		// setOutgoingLength(S)V
-		// 41
-		virtualMethodRef 1.10.5([BSS)V;		// sendBytesLong([BSS)V
-		// 42
-		virtualMethodRef Customer/setHoten([B)V;
-		// 43
-		virtualMethodRef Customer/setNgaysinh([B)V;
-		// 44
-		virtualMethodRef Customer/setSdt([B)V;
-		// 45
-		virtualMethodRef Customer/setPhong([B)V;
-		// 46
-		staticMethodRef hi/encryptAES_wontPadding([B[B)[B;
-		// 47
-		virtualMethodRef Customer/setCccd([B)V;
-		// 48
-		virtualMethodRef Customer/setNgaydk([B)V;
-		// 49
-		virtualMethodRef Customer/setTien([B)V;
-		// 50
-		virtualMethodRef Customer/setMapin([B)V;
-		// 51
-		staticFieldRef byte[] hi/RUN_OUT_OF_TRIES_CODE;
-		// 52
-		staticMethodRef 1.16.0([BS[BSS)B;		// javacard/framework/Util.arrayCompare([BS[BSS)B
-		// 53
-		staticFieldRef byte[] hi/WRONG_PIN_CODE;
-		// 54
-		virtualMethodRef 1.10.8(SS)V;		// setOutgoingAndSend(SS)V
-		// 55
-		virtualMethodRef Customer/getAnhdaidien()[B;
-		// 56
-		staticMethodRef 1.7.1(S)V;		// javacard/framework/ISOException.throwIt(S)V
-		// 57
-		staticMethodRef 3.11.0(BZ)Ljavacard/security/MessageDigest;;		// javacard/security/MessageDigest.getInstance(BZ)Ljavacard/security/MessageDigest;
-			.descriptor	Ljavacard/security/MessageDigest;	3.11;
+		staticMethodRef hi/rsaSign([BLjavacard/framework/APDU;)[B;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
 
-		// 58
-		virtualMethodRef 3.11.1([BSS[BS)S;		// doFinal([BSS[BS)S
-		// 59
+		// 28
+		staticMethodRef hi/rsaVerify(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 29
+		staticMethodRef 1.16.1([BS[BSS)S;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+		// 30
+		virtualMethodRef 1.10.7()S;		// setOutgoing()S
+		// 31
+		virtualMethodRef 1.10.9(S)V;		// setOutgoingLength(S)V
+		// 32
+		virtualMethodRef 1.10.5([BSS)V;		// sendBytesLong([BSS)V
+		// 33
+		staticMethodRef hi/sendPublicExponent(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 34
+		staticMethodRef hi/sendPublicModulus(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 35
+		virtualMethodRef hi/hashMD5([B)[B;
+		// 36
+		staticMethodRef hi/encryptAES([B[B)[B;
+		// 37
+		staticMethodRef 3.15.0(BZ)Ljavacard/security/Signature;;		// javacard/security/Signature.getInstance(BZ)Ljavacard/security/Signature;
+			.descriptor	Ljavacard/security/Signature;	3.15;
+
+		// 38
+		staticFieldRef 3.15 hi/rsaSig;
+		// 39
 		staticMethodRef 3.13.0(BSZ)Ljavacard/security/Key;;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
 			.descriptor	Ljavacard/security/Key;	3.0;
 
+		// 40
+		classRef 3.8;		// javacard/security/RSAPrivateKey
+		// 41
+		staticFieldRef 3.8 hi/rsaPrivKey;
+		// 42
+		classRef 3.9;		// javacard/security/RSAPublicKey
+		// 43
+		staticFieldRef 3.9 hi/rsaPubKey;
+		// 44
+		classRef 3.16;		// javacard/security/KeyPair
+		// 45
+		staticMethodRef 3.16.0(BS)V;		// javacard/security/KeyPair.<init>(BS)V
+		// 46
+		virtualMethodRef 3.16.1()V;		// genKeyPair()V
+		// 47
+		virtualMethodRef 3.16.2()Ljavacard/security/PrivateKey;;		// getPrivate()Ljavacard/security/PrivateKey;
+			.descriptor	Ljavacard/security/PrivateKey;	3.2;
+
+		// 48
+		virtualMethodRef 3.16.3()Ljavacard/security/PublicKey;;		// getPublic()Ljavacard/security/PublicKey;
+			.descriptor	Ljavacard/security/PublicKey;	3.3;
+
+		// 49
+		staticMethodRef 1.8.1()V;		// javacard/framework/JCSystem.beginTransaction()V
+		// 50
+		classRef Customer;
+		// 51
+		staticMethodRef Customer/<init>([B[B[B[B[B[B[B[B[B)V;
+		// 52
+		staticFieldRef Customer hi/customer;
+		// 53
+		staticMethodRef 1.8.2()V;		// javacard/framework/JCSystem.commitTransaction()V
+		// 54
+		virtualMethodRef Customer/getCccd()[B;
+		// 55
+		virtualMethodRef Customer/getMapin()[B;
+		// 56
+		staticMethodRef hi/decryptAES([B[B)[B;
+		// 57
+		staticMethodRef hi/removePaddingM2([BS)S;
+		// 58
+		virtualMethodRef Customer/getHoten()[B;
+		// 59
+		virtualMethodRef Customer/getNgaysinh()[B;
 		// 60
-		classRef 3.20;		// javacard/security/AESKey
+		virtualMethodRef Customer/getSdt()[B;
 		// 61
+		virtualMethodRef Customer/getPhong()[B;
+		// 62
+		virtualMethodRef Customer/getNgaydk()[B;
+		// 63
+		virtualMethodRef Customer/getTien()[B;
+		// 64
+		virtualMethodRef Customer/setHoten([B)V;
+		// 65
+		virtualMethodRef Customer/setNgaysinh([B)V;
+		// 66
+		virtualMethodRef Customer/setSdt([B)V;
+		// 67
+		virtualMethodRef Customer/setPhong([B)V;
+		// 68
+		staticMethodRef hi/encryptAES_wontPadding([B[B)[B;
+		// 69
+		virtualMethodRef Customer/setCccd([B)V;
+		// 70
+		virtualMethodRef Customer/setNgaydk([B)V;
+		// 71
+		virtualMethodRef Customer/setTien([B)V;
+		// 72
+		virtualMethodRef Customer/setMapin([B)V;
+		// 73
+		staticFieldRef byte[] hi/RUN_OUT_OF_TRIES_CODE;
+		// 74
+		staticMethodRef 1.16.0([BS[BSS)B;		// javacard/framework/Util.arrayCompare([BS[BSS)B
+		// 75
+		staticFieldRef byte[] hi/WRONG_PIN_CODE;
+		// 76
+		virtualMethodRef 1.10.8(SS)V;		// setOutgoingAndSend(SS)V
+		// 77
+		virtualMethodRef Customer/getAnhdaidien()[B;
+		// 78
+		staticMethodRef 1.7.1(S)V;		// javacard/framework/ISOException.throwIt(S)V
+		// 79
+		virtualMethodRef 3.15.3(Ljavacard/security/Key;B)V;		// init(Ljavacard/security/Key;B)V
+			.descriptor	Ljavacard/security/Key;	3.0;
+
+		// 80
+		virtualMethodRef 3.15.5([BSS[BS)S;		// sign([BSS[BS)S
+		// 81
+		virtualMethodRef 3.15.7([BSS[BSS)Z;		// verify([BSS[BSS)Z
+		// 82
+		virtualMethodRef 3.15.6([BSS)V;		// update([BSS)V
+		// 83
+		staticMethodRef 3.11.0(BZ)Ljavacard/security/MessageDigest;;		// javacard/security/MessageDigest.getInstance(BZ)Ljavacard/security/MessageDigest;
+			.descriptor	Ljavacard/security/MessageDigest;	3.11;
+
+		// 84
+		virtualMethodRef 3.11.1([BSS[BS)S;		// doFinal([BSS[BS)S
+		// 85
+		classRef 3.20;		// javacard/security/AESKey
+		// 86
 		staticMethodRef 4.1.0(BZ)Ljavacardx/crypto/Cipher;;		// javacardx/crypto/Cipher.getInstance(BZ)Ljavacardx/crypto/Cipher;
 			.descriptor	Ljavacardx/crypto/Cipher;	4.1;
 
-		// 62
+		// 87
 		staticMethodRef hi/addPaddingM2([BS)[B;
-		// 63
+		// 88
 		virtualMethodRef 4.1.3(Ljavacard/security/Key;B)V;		// init(Ljavacard/security/Key;B)V
 			.descriptor	Ljavacard/security/Key;	3.0;
 
-		// 64
+		// 89
 		virtualMethodRef 4.1.1([BSS[BS)S;		// doFinal([BSS[BS)S
 	}
 
@@ -432,8 +498,22 @@
 			private static final byte INS_CREATE_SIZEIMAGE = 84;		// B
 			private static final byte INS_OUT_SIZEIMAGE = 85;		// B
 			private static final byte INS_OUT_IMAGE = 86;		// B
+			private static final byte INS_SIGN = 49;		// B
+			private static final byte INS_VERIFY = 50;		// B
+			private static final byte EXPONETT = 51;		// B
+			private static final byte MODULUSS = 52;		// B
 			private static short dataLen2;		// S
 			private static short[] wrong_PIN_count;		// [S
+			private static 3.8 rsaPrivKey;		// Ljavacard/security/RSAPrivateKey;
+			private static 3.9 rsaPubKey;		// Ljavacard/security/RSAPublicKey;
+			private static 3.9 rsaPubKey2;		// Ljavacard/security/RSAPublicKey;
+			private static 3.15 rsaSig;		// Ljavacard/security/Signature;
+			private static short sigLen;		// S
+			private static byte[] s1;		// [B
+			private static byte[] s2;		// [B
+			private static byte[] s3;		// [B
+			private static byte[] sig_buffer;		// [B
+			private static byte[] data4;		// [B
 		}
 
 		.publicMethodTable 7 {
@@ -495,826 +575,985 @@
 					sconst_0;
 					sconst_0;
 					sastore;
+					sspush 128;
+					putstatic_s 18;		// short helloworld/hi.sigLen
+					sconst_3;
+					newarray 11;
+					dup;
+					sconst_0;
+					sconst_1;
+					bastore;
+					dup;
+					sconst_1;
+					sconst_2;
+					bastore;
+					dup;
+					sconst_2;
+					sconst_3;
+					bastore;
+					putstatic_a 19;		// reference helloworld/hi.data4
+					sconst_3;
+					newarray 11;
+					dup;
+					sconst_0;
+					sconst_1;
+					bastore;
+					dup;
+					sconst_1;
+					sconst_2;
+					bastore;
+					dup;
+					sconst_2;
+					sconst_3;
+					bastore;
+					putstatic_a 20;		// reference helloworld/hi.s1
+					sconst_2;
+					newarray 11;
+					dup;
+					sconst_0;
+					sconst_4;
+					bastore;
+					dup;
+					sconst_1;
+					sconst_5;
+					bastore;
+					putstatic_a 21;		// reference helloworld/hi.s2
+					sconst_3;
+					newarray 11;
+					dup;
+					sconst_0;
+					bspush 6;
+					bastore;
+					dup;
+					sconst_1;
+					bspush 7;
+					bastore;
+					dup;
+					sconst_2;
+					bspush 8;
+					bastore;
+					putstatic_a 22;		// reference helloworld/hi.s3
+					getstatic_s 18;		// short helloworld/hi.sigLen
+					newarray 11;
+					putstatic_a 23;		// reference helloworld/hi.sig_buffer
 					return;
 		}
 
 		.method public process(Ljavacard/framework/APDU;)V 7 {
 			.stack 11;
-			.locals 34;
+			.locals 38;
 
 			.descriptor	Ljavacard/framework/APDU;	1.10;
 
 				L0:	aload_0;
-					invokevirtual 18;		// selectingApplet()Z
+					invokevirtual 24;		// selectingApplet()Z
 					ifeq L2;
 				L1:	return;
 				L2:	aload_1;
-					invokevirtual 19;		// getBuffer()[B
+					invokevirtual 25;		// getBuffer()[B
 					astore 4;
 				L3:	aload_1;
-					invokevirtual 20;		// setIncomingAndReceive()S
+					invokevirtual 26;		// setIncomingAndReceive()S
 					sstore 5;
 				L4:	sconst_0;
 					sstore 6;
 				L5:	aload 4;
 					sconst_1;
 					baload;
-					slookupswitch L71 10 0 L6 1 L32 2 L33 3 L36 4 L53 5 L59 83 L63 84 L66 85 L67 86 L68;
-				L6:	aload 4;
+					slookupswitch L80 15 0 L14 1 L41 2 L42 3 L45 4 L62 5 L68 6 L8 49 L6 50 L7 51 L12 52 L13 83 L72 84 L75 85 L76 86 L77;
+				L6:	aload_0;
+					getstatic_a 19;		// reference helloworld/hi.data4
+					aload_1;
+					invokespecial 27;		// helloworld/hi.rsaSign([BLjavacard/framework/APDU;)[B
+					pop;
+					goto_w L81;
+				L7:	aload_0;
+					aload_1;
+					invokespecial 28;		// helloworld/hi.rsaVerify(Ljavacard/framework/APDU;)V
+					goto_w L81;
+				L8:	aload 4;
 					sconst_4;
 					baload;
 					newarray 11;
 					astore 7;
-				L7:	aload 7;
-					arraylength;
-					sstore 8;
-				L8:	aload 4;
+				L9:	aload 4;
 					sconst_5;
 					aload 7;
 					sconst_0;
 					aload 4;
 					sconst_4;
 					baload;
-					invokestatic 21;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					invokestatic 29;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_0;
+					aload 7;
+					aload_1;
+					invokespecial 27;		// helloworld/hi.rsaSign([BLjavacard/framework/APDU;)[B
+					arraylength;
+					sstore 8;
+				L10:	sload 8;
+					newarray 11;
+					astore 9;
+				L11:	aload_0;
+					aload 7;
+					aload_1;
+					invokespecial 27;		// helloworld/hi.rsaSign([BLjavacard/framework/APDU;)[B
+					astore 9;
+					aload_1;
+					invokevirtual 30;		// setOutgoing()S
+					pop;
+					aload_1;
+					aload 9;
+					arraylength;
+					invokevirtual 31;		// setOutgoingLength(S)V
+					aload_1;
+					aload 9;
+					sconst_0;
+					aload 9;
+					arraylength;
+					invokevirtual 32;		// sendBytesLong([BSS)V
+					goto_w L81;
+				L12:	aload_0;
+					aload_1;
+					invokespecial 33;		// helloworld/hi.sendPublicExponent(Ljavacard/framework/APDU;)V
+					goto_w L81;
+				L13:	aload_0;
+					aload_1;
+					invokespecial 34;		// helloworld/hi.sendPublicModulus(Ljavacard/framework/APDU;)V
+					goto_w L81;
+				L14:	aload 4;
+					sconst_4;
+					baload;
+					newarray 11;
+					astore 10;
+				L15:	aload 10;
+					arraylength;
+					sstore 11;
+				L16:	aload 4;
+					sconst_5;
+					aload 10;
+					sconst_0;
+					aload 4;
+					sconst_4;
+					baload;
+					invokestatic 29;		// javacard/framework/Util.arrayCopy([BS[BSS)S
 					pop;
 					bspush 8;
 					newarray 11;
-					astore 17;
-				L9:	aload 17;
+					astore 20;
+				L17:	aload 20;
 					sconst_0;
 					sconst_0;
 					bastore;
 					sconst_1;
-					sstore 18;
-				L10:	sconst_0;
-					sstore 19;
-				L11:	sload 19;
+					sstore 21;
+				L18:	sconst_0;
+					sstore 22;
+				L19:	sload 22;
 					aload 4;
 					sconst_4;
 					baload;
-					if_scmpge L15;
-				L12:	aload 7;
-					sload 19;
+					if_scmpge L23;
+				L20:	aload 10;
+					sload 22;
 					baload;
 					bspush 64;
-					if_scmpne L14;
-				L13:	aload 17;
-					sload 18;
-					sload 19;
+					if_scmpne L22;
+				L21:	aload 20;
+					sload 21;
+					sload 22;
 					sconst_1;
 					sadd;
 					s2b;
 					bastore;
-					sinc 18 1;
-				L14:	sinc 19 1;
-					goto L11;
-				L15:	aload 17;
+					sinc 21 1;
+				L22:	sinc 22 1;
+					goto L19;
+				L23:	aload 20;
 					sconst_1;
 					baload;
-					sconst_1;
-					ssub;
-					sstore 9;
-				L16:	aload 17;
-					sconst_2;
-					baload;
-					aload 17;
-					sconst_1;
-					baload;
-					ssub;
-					sconst_1;
-					ssub;
-					sstore 10;
-				L17:	aload 17;
-					sconst_3;
-					baload;
-					aload 17;
-					sconst_2;
-					baload;
-					ssub;
-					sconst_1;
-					ssub;
-					sstore 11;
-				L18:	aload 17;
-					sconst_4;
-					baload;
-					aload 17;
-					sconst_3;
-					baload;
-					ssub;
 					sconst_1;
 					ssub;
 					sstore 12;
-				L19:	aload 17;
-					sconst_5;
+				L24:	aload 20;
+					sconst_2;
 					baload;
-					aload 17;
-					sconst_4;
+					aload 20;
+					sconst_1;
 					baload;
 					ssub;
 					sconst_1;
 					ssub;
 					sstore 13;
-				L20:	aload 17;
-					bspush 6;
+				L25:	aload 20;
+					sconst_3;
 					baload;
-					aload 17;
-					sconst_5;
+					aload 20;
+					sconst_2;
 					baload;
 					ssub;
 					sconst_1;
 					ssub;
 					sstore 14;
-				L21:	aload 17;
-					bspush 7;
+				L26:	aload 20;
+					sconst_4;
 					baload;
-					aload 17;
-					bspush 6;
+					aload 20;
+					sconst_3;
+					baload;
+					ssub;
+					sconst_1;
+					ssub;
+					sstore 15;
+				L27:	aload 20;
+					sconst_5;
+					baload;
+					aload 20;
+					sconst_4;
 					baload;
 					ssub;
 					sconst_1;
 					ssub;
 					sstore 16;
-				L22:	aload 4;
+				L28:	aload 20;
+					bspush 6;
+					baload;
+					aload 20;
+					sconst_5;
+					baload;
+					ssub;
+					sconst_1;
+					ssub;
+					sstore 17;
+				L29:	aload 20;
+					bspush 7;
+					baload;
+					aload 20;
+					bspush 6;
+					baload;
+					ssub;
+					sconst_1;
+					ssub;
+					sstore 19;
+				L30:	aload 4;
 					sconst_4;
 					baload;
-					aload 17;
+					aload 20;
 					bspush 7;
 					baload;
 					ssub;
-					sstore 15;
-				L23:	sload 9;
-					newarray 11;
-					astore 20;
-				L24:	sload 10;
-					newarray 11;
-					astore 21;
-				L25:	sload 11;
-					newarray 11;
-					astore 22;
-				L26:	sload 12;
+					sstore 18;
+				L31:	sload 12;
 					newarray 11;
 					astore 23;
-				L27:	sload 13;
+				L32:	sload 13;
 					newarray 11;
 					astore 24;
-				L28:	sload 14;
+				L33:	sload 14;
 					newarray 11;
 					astore 25;
-				L29:	sload 16;
+				L34:	sload 15;
 					newarray 11;
 					astore 26;
-				L30:	sload 15;
+				L35:	sload 16;
 					newarray 11;
 					astore 27;
-				L31:	aload 7;
-					aload 17;
-					sconst_0;
-					baload;
+				L36:	sload 17;
+					newarray 11;
+					astore 28;
+				L37:	sload 19;
+					newarray 11;
+					astore 29;
+				L38:	sload 18;
+					newarray 11;
+					astore 30;
+				L39:	aload 10;
 					aload 20;
 					sconst_0;
-					sload 9;
-					invokestatic 21;		// javacard/framework/Util.arrayCopy([BS[BSS)S
-					pop;
-					aload 7;
-					aload 17;
-					sconst_1;
-					baload;
-					aload 21;
-					sconst_0;
-					sload 10;
-					invokestatic 21;		// javacard/framework/Util.arrayCopy([BS[BSS)S
-					pop;
-					aload 7;
-					aload 17;
-					sconst_2;
-					baload;
-					aload 22;
-					sconst_0;
-					sload 11;
-					invokestatic 21;		// javacard/framework/Util.arrayCopy([BS[BSS)S
-					pop;
-					aload 7;
-					aload 17;
-					sconst_3;
 					baload;
 					aload 23;
 					sconst_0;
 					sload 12;
-					invokestatic 21;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					invokestatic 29;		// javacard/framework/Util.arrayCopy([BS[BSS)S
 					pop;
-					aload 7;
-					aload 17;
-					sconst_4;
+					aload 10;
+					aload 20;
+					sconst_1;
 					baload;
 					aload 24;
 					sconst_0;
 					sload 13;
-					invokestatic 21;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					invokestatic 29;		// javacard/framework/Util.arrayCopy([BS[BSS)S
 					pop;
-					aload 7;
-					aload 17;
-					sconst_5;
+					aload 10;
+					aload 20;
+					sconst_2;
 					baload;
 					aload 25;
 					sconst_0;
 					sload 14;
-					invokestatic 21;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					invokestatic 29;		// javacard/framework/Util.arrayCopy([BS[BSS)S
 					pop;
-					aload 7;
-					aload 17;
-					bspush 6;
+					aload 10;
+					aload 20;
+					sconst_3;
 					baload;
 					aload 26;
 					sconst_0;
-					sload 16;
-					invokestatic 21;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					sload 15;
+					invokestatic 29;		// javacard/framework/Util.arrayCopy([BS[BSS)S
 					pop;
-					aload 7;
-					aload 17;
-					bspush 7;
+					aload 10;
+					aload 20;
+					sconst_4;
 					baload;
 					aload 27;
 					sconst_0;
-					sload 15;
-					invokestatic 21;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					sload 16;
+					invokestatic 29;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload 10;
+					aload 20;
+					sconst_5;
+					baload;
+					aload 28;
+					sconst_0;
+					sload 17;
+					invokestatic 29;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload 10;
+					aload 20;
+					bspush 6;
+					baload;
+					aload 29;
+					sconst_0;
+					sload 19;
+					invokestatic 29;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload 10;
+					aload 20;
+					bspush 7;
+					baload;
+					aload 30;
+					sconst_0;
+					sload 18;
+					invokestatic 29;		// javacard/framework/Util.arrayCopy([BS[BSS)S
 					pop;
 					aload_0;
-					aload 27;
-					invokevirtual 22;		// hashMD5([B)[B
-					astore 27;
-					aload_0;
-					aload 20;
-					aload 27;
-					invokespecial 23;		// helloworld/hi.encryptAES([B[B)[B
-					astore 20;
-					aload_0;
-					aload 21;
-					aload 27;
-					invokespecial 23;		// helloworld/hi.encryptAES([B[B)[B
-					astore 21;
-					aload_0;
-					aload 22;
-					aload 27;
-					invokespecial 23;		// helloworld/hi.encryptAES([B[B)[B
-					astore 22;
+					aload 30;
+					invokevirtual 35;		// hashMD5([B)[B
+					astore 30;
 					aload_0;
 					aload 23;
-					aload 27;
-					invokespecial 23;		// helloworld/hi.encryptAES([B[B)[B
+					aload 30;
+					invokespecial 36;		// helloworld/hi.encryptAES([B[B)[B
 					astore 23;
 					aload_0;
 					aload 24;
-					aload 27;
-					invokespecial 23;		// helloworld/hi.encryptAES([B[B)[B
+					aload 30;
+					invokespecial 36;		// helloworld/hi.encryptAES([B[B)[B
 					astore 24;
 					aload_0;
 					aload 25;
-					aload 27;
-					invokespecial 23;		// helloworld/hi.encryptAES([B[B)[B
+					aload 30;
+					invokespecial 36;		// helloworld/hi.encryptAES([B[B)[B
 					astore 25;
 					aload_0;
 					aload 26;
-					aload 27;
-					invokespecial 23;		// helloworld/hi.encryptAES([B[B)[B
+					aload 30;
+					invokespecial 36;		// helloworld/hi.encryptAES([B[B)[B
 					astore 26;
-					invokestatic 24;		// javacard/framework/JCSystem.beginTransaction()V
-					new 25;		// helloworld/Customer
+					aload_0;
+					aload 27;
+					aload 30;
+					invokespecial 36;		// helloworld/hi.encryptAES([B[B)[B
+					astore 27;
+					aload_0;
+					aload 28;
+					aload 30;
+					invokespecial 36;		// helloworld/hi.encryptAES([B[B)[B
+					astore 28;
+					aload_0;
+					aload 29;
+					aload 30;
+					invokespecial 36;		// helloworld/hi.encryptAES([B[B)[B
+					astore 29;
+					bspush 10;
+					sconst_0;
+					invokestatic 37;		// javacard/security/Signature.getInstance(BZ)Ljavacard/security/Signature;
+					putstatic_a 38;		// reference helloworld/hi.rsaSig
+					sconst_5;
+					bspush 8;
+					getstatic_s 18;		// short helloworld/hi.sigLen
+					smul;
+					sconst_0;
+					invokestatic 39;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
+					checkcast 0 40;		// T_CLASSORINTERFACE javacard/security/RSAPrivateKey
+					putstatic_a 41;		// reference helloworld/hi.rsaPrivKey
+					sconst_4;
+					bspush 8;
+					getstatic_s 18;		// short helloworld/hi.sigLen
+					smul;
+					sconst_0;
+					invokestatic 39;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
+					checkcast 0 42;		// T_CLASSORINTERFACE javacard/security/RSAPublicKey
+					putstatic_a 43;		// reference helloworld/hi.rsaPubKey
+					new 44;		// javacard/security/KeyPair
 					dup;
-					aload 20;
-					aload 21;
-					aload 22;
+					sconst_1;
+					bspush 8;
+					getstatic_s 18;		// short helloworld/hi.sigLen
+					smul;
+					invokespecial 45;		// javacard/security/KeyPair.<init>(BS)V
+					astore 31;
+				L40:	aload 31;
+					invokevirtual 46;		// genKeyPair()V
+					aload 31;
+					invokevirtual 47;		// getPrivate()Ljavacard/security/PrivateKey;
+					checkcast 0 40;		// T_CLASSORINTERFACE javacard/security/RSAPrivateKey
+					putstatic_a 41;		// reference helloworld/hi.rsaPrivKey
+					aload 31;
+					invokevirtual 48;		// getPublic()Ljavacard/security/PublicKey;
+					checkcast 0 42;		// T_CLASSORINTERFACE javacard/security/RSAPublicKey
+					putstatic_a 43;		// reference helloworld/hi.rsaPubKey
+					invokestatic 49;		// javacard/framework/JCSystem.beginTransaction()V
+					new 50;		// helloworld/Customer
+					dup;
 					aload 23;
 					aload 24;
 					aload 25;
-					aload 27;
 					aload 26;
+					aload 27;
+					aload 28;
+					aload 30;
+					aload 29;
 					getstatic_a 14;		// reference helloworld/hi.OpImage
-					invokespecial 26;		// helloworld/Customer.<init>([B[B[B[B[B[B[B[B[B)V
-					putstatic_a 27;		// reference helloworld/hi.customer
-					invokestatic 28;		// javacard/framework/JCSystem.commitTransaction()V
-					goto_w L72;
-				L32:	getstatic_a 17;		// reference helloworld/hi.wrong_PIN_count
+					invokespecial 51;		// helloworld/Customer.<init>([B[B[B[B[B[B[B[B[B)V
+					putstatic_a 52;		// reference helloworld/hi.customer
+					invokestatic 53;		// javacard/framework/JCSystem.commitTransaction()V
+					goto_w L81;
+				L41:	getstatic_a 17;		// reference helloworld/hi.wrong_PIN_count
 					sconst_0;
 					sconst_0;
 					sastore;
-					goto_w L72;
-				L33:	sconst_1;
+					goto_w L81;
+				L42:	sconst_1;
 					newarray 11;
 					dup;
 					sconst_0;
 					bspush 64;
 					bastore;
-					astore 28;
-				L34:	aload_0;
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 29;		// getCccd()[B
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 30;		// getMapin()[B
-					invokespecial 31;		// helloworld/hi.decryptAES([B[B)[B
-					astore 20;
-					aload_0;
-					aload 20;
-					aload 20;
-					arraylength;
-					invokespecial 32;		// helloworld/hi.removePaddingM2([BS)S
-					sstore 9;
-					aload_0;
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 33;		// getHoten()[B
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 30;		// getMapin()[B
-					invokespecial 31;		// helloworld/hi.decryptAES([B[B)[B
-					astore 21;
-					aload_0;
-					aload 21;
-					aload 21;
-					arraylength;
-					invokespecial 32;		// helloworld/hi.removePaddingM2([BS)S
-					sstore 10;
-					aload_0;
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 34;		// getNgaysinh()[B
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 30;		// getMapin()[B
-					invokespecial 31;		// helloworld/hi.decryptAES([B[B)[B
-					astore 22;
-					aload_0;
-					aload 22;
-					aload 22;
-					arraylength;
-					invokespecial 32;		// helloworld/hi.removePaddingM2([BS)S
-					sstore 11;
-					aload_0;
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 35;		// getSdt()[B
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 30;		// getMapin()[B
-					invokespecial 31;		// helloworld/hi.decryptAES([B[B)[B
+					astore 32;
+				L43:	aload_0;
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 54;		// getCccd()[B
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 55;		// getMapin()[B
+					invokespecial 56;		// helloworld/hi.decryptAES([B[B)[B
 					astore 23;
 					aload_0;
 					aload 23;
 					aload 23;
 					arraylength;
-					invokespecial 32;		// helloworld/hi.removePaddingM2([BS)S
+					invokespecial 57;		// helloworld/hi.removePaddingM2([BS)S
 					sstore 12;
 					aload_0;
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 36;		// getPhong()[B
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 30;		// getMapin()[B
-					invokespecial 31;		// helloworld/hi.decryptAES([B[B)[B
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 58;		// getHoten()[B
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 55;		// getMapin()[B
+					invokespecial 56;		// helloworld/hi.decryptAES([B[B)[B
 					astore 24;
 					aload_0;
 					aload 24;
 					aload 24;
 					arraylength;
-					invokespecial 32;		// helloworld/hi.removePaddingM2([BS)S
+					invokespecial 57;		// helloworld/hi.removePaddingM2([BS)S
 					sstore 13;
 					aload_0;
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 37;		// getNgaydk()[B
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 30;		// getMapin()[B
-					invokespecial 31;		// helloworld/hi.decryptAES([B[B)[B
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 59;		// getNgaysinh()[B
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 55;		// getMapin()[B
+					invokespecial 56;		// helloworld/hi.decryptAES([B[B)[B
 					astore 25;
 					aload_0;
 					aload 25;
 					aload 25;
 					arraylength;
-					invokespecial 32;		// helloworld/hi.removePaddingM2([BS)S
+					invokespecial 57;		// helloworld/hi.removePaddingM2([BS)S
 					sstore 14;
 					aload_0;
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 38;		// getTien()[B
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 30;		// getMapin()[B
-					invokespecial 31;		// helloworld/hi.decryptAES([B[B)[B
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 60;		// getSdt()[B
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 55;		// getMapin()[B
+					invokespecial 56;		// helloworld/hi.decryptAES([B[B)[B
 					astore 26;
 					aload_0;
 					aload 26;
 					aload 26;
 					arraylength;
-					invokespecial 32;		// helloworld/hi.removePaddingM2([BS)S
+					invokespecial 57;		// helloworld/hi.removePaddingM2([BS)S
+					sstore 15;
+					aload_0;
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 61;		// getPhong()[B
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 55;		// getMapin()[B
+					invokespecial 56;		// helloworld/hi.decryptAES([B[B)[B
+					astore 27;
+					aload_0;
+					aload 27;
+					aload 27;
+					arraylength;
+					invokespecial 57;		// helloworld/hi.removePaddingM2([BS)S
 					sstore 16;
-					sload 9;
-					sload 10;
-					sadd;
-					sload 11;
-					sadd;
+					aload_0;
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 62;		// getNgaydk()[B
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 55;		// getMapin()[B
+					invokespecial 56;		// helloworld/hi.decryptAES([B[B)[B
+					astore 28;
+					aload_0;
+					aload 28;
+					aload 28;
+					arraylength;
+					invokespecial 57;		// helloworld/hi.removePaddingM2([BS)S
+					sstore 17;
+					aload_0;
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 63;		// getTien()[B
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 55;		// getMapin()[B
+					invokespecial 56;		// helloworld/hi.decryptAES([B[B)[B
+					astore 29;
+					aload_0;
+					aload 29;
+					aload 29;
+					arraylength;
+					invokespecial 57;		// helloworld/hi.removePaddingM2([BS)S
+					sstore 19;
 					sload 12;
-					sadd;
 					sload 13;
 					sadd;
 					sload 14;
 					sadd;
+					sload 15;
+					sadd;
 					sload 16;
+					sadd;
+					sload 17;
+					sadd;
+					sload 19;
 					sadd;
 					bspush 6;
 					sadd;
-					sstore 29;
-				L35:	aload_1;
-					invokevirtual 39;		// setOutgoing()S
+					sstore 33;
+				L44:	aload_1;
+					invokevirtual 30;		// setOutgoing()S
 					pop;
 					aload_1;
-					sload 29;
-					invokevirtual 40;		// setOutgoingLength(S)V
-					aload_1;
-					aload 20;
-					sconst_0;
-					sload 9;
-					invokevirtual 41;		// sendBytesLong([BSS)V
-					aload_1;
-					aload 28;
-					sconst_0;
-					sconst_1;
-					invokevirtual 41;		// sendBytesLong([BSS)V
-					aload_1;
-					aload 21;
-					sconst_0;
-					sload 10;
-					invokevirtual 41;		// sendBytesLong([BSS)V
-					aload_1;
-					aload 28;
-					sconst_0;
-					sconst_1;
-					invokevirtual 41;		// sendBytesLong([BSS)V
-					aload_1;
-					aload 22;
-					sconst_0;
-					sload 11;
-					invokevirtual 41;		// sendBytesLong([BSS)V
-					aload_1;
-					aload 28;
-					sconst_0;
-					sconst_1;
-					invokevirtual 41;		// sendBytesLong([BSS)V
+					sload 33;
+					invokevirtual 31;		// setOutgoingLength(S)V
 					aload_1;
 					aload 23;
 					sconst_0;
 					sload 12;
-					invokevirtual 41;		// sendBytesLong([BSS)V
+					invokevirtual 32;		// sendBytesLong([BSS)V
 					aload_1;
-					aload 28;
+					aload 32;
 					sconst_0;
 					sconst_1;
-					invokevirtual 41;		// sendBytesLong([BSS)V
+					invokevirtual 32;		// sendBytesLong([BSS)V
 					aload_1;
 					aload 24;
 					sconst_0;
 					sload 13;
-					invokevirtual 41;		// sendBytesLong([BSS)V
+					invokevirtual 32;		// sendBytesLong([BSS)V
 					aload_1;
-					aload 28;
+					aload 32;
 					sconst_0;
 					sconst_1;
-					invokevirtual 41;		// sendBytesLong([BSS)V
+					invokevirtual 32;		// sendBytesLong([BSS)V
 					aload_1;
 					aload 25;
 					sconst_0;
 					sload 14;
-					invokevirtual 41;		// sendBytesLong([BSS)V
+					invokevirtual 32;		// sendBytesLong([BSS)V
 					aload_1;
-					aload 28;
+					aload 32;
 					sconst_0;
 					sconst_1;
-					invokevirtual 41;		// sendBytesLong([BSS)V
+					invokevirtual 32;		// sendBytesLong([BSS)V
 					aload_1;
 					aload 26;
 					sconst_0;
+					sload 15;
+					invokevirtual 32;		// sendBytesLong([BSS)V
+					aload_1;
+					aload 32;
+					sconst_0;
+					sconst_1;
+					invokevirtual 32;		// sendBytesLong([BSS)V
+					aload_1;
+					aload 27;
+					sconst_0;
 					sload 16;
-					invokevirtual 41;		// sendBytesLong([BSS)V
-					goto_w L72;
-				L36:	aload 4;
+					invokevirtual 32;		// sendBytesLong([BSS)V
+					aload_1;
+					aload 32;
+					sconst_0;
+					sconst_1;
+					invokevirtual 32;		// sendBytesLong([BSS)V
+					aload_1;
+					aload 28;
+					sconst_0;
+					sload 17;
+					invokevirtual 32;		// sendBytesLong([BSS)V
+					aload_1;
+					aload 32;
+					sconst_0;
+					sconst_1;
+					invokevirtual 32;		// sendBytesLong([BSS)V
+					aload_1;
+					aload 29;
+					sconst_0;
+					sload 19;
+					invokevirtual 32;		// sendBytesLong([BSS)V
+					goto_w L81;
+				L45:	aload 4;
 					sconst_2;
 					baload;
 					sconst_1;
-					if_scmpne L38;
-				L37:	aload 4;
+					if_scmpne L47;
+				L46:	aload 4;
 					sconst_4;
 					baload;
 					newarray 11;
-					astore 21;
+					astore 24;
 					aload 4;
 					sconst_5;
-					aload 21;
+					aload 24;
 					sconst_0;
 					aload 4;
 					sconst_4;
 					baload;
-					invokestatic 21;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					invokestatic 29;		// javacard/framework/Util.arrayCopy([BS[BSS)S
 					pop;
 					aload_0;
-					aload 21;
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 30;		// getMapin()[B
-					invokespecial 23;		// helloworld/hi.encryptAES([B[B)[B
-					astore 21;
-					invokestatic 24;		// javacard/framework/JCSystem.beginTransaction()V
-					getstatic_a 27;		// reference helloworld/hi.customer
-					aload 21;
-					invokevirtual 42;		// setHoten([B)V
-					invokestatic 28;		// javacard/framework/JCSystem.commitTransaction()V
-				L38:	aload 4;
+					aload 24;
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 55;		// getMapin()[B
+					invokespecial 36;		// helloworld/hi.encryptAES([B[B)[B
+					astore 24;
+					invokestatic 49;		// javacard/framework/JCSystem.beginTransaction()V
+					getstatic_a 52;		// reference helloworld/hi.customer
+					aload 24;
+					invokevirtual 64;		// setHoten([B)V
+					invokestatic 53;		// javacard/framework/JCSystem.commitTransaction()V
+				L47:	aload 4;
 					sconst_2;
 					baload;
 					sconst_2;
-					if_scmpne L40;
-				L39:	aload 4;
+					if_scmpne L49;
+				L48:	aload 4;
 					sconst_4;
 					baload;
 					newarray 11;
-					astore 22;
+					astore 25;
 					aload 4;
 					sconst_5;
-					aload 22;
+					aload 25;
 					sconst_0;
 					aload 4;
 					sconst_4;
 					baload;
-					invokestatic 21;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					invokestatic 29;		// javacard/framework/Util.arrayCopy([BS[BSS)S
 					pop;
 					aload_0;
-					aload 22;
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 30;		// getMapin()[B
-					invokespecial 23;		// helloworld/hi.encryptAES([B[B)[B
-					astore 22;
-					invokestatic 24;		// javacard/framework/JCSystem.beginTransaction()V
-					getstatic_a 27;		// reference helloworld/hi.customer
-					aload 22;
-					invokevirtual 43;		// setNgaysinh([B)V
-					invokestatic 28;		// javacard/framework/JCSystem.commitTransaction()V
-				L40:	aload 4;
+					aload 25;
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 55;		// getMapin()[B
+					invokespecial 36;		// helloworld/hi.encryptAES([B[B)[B
+					astore 25;
+					invokestatic 49;		// javacard/framework/JCSystem.beginTransaction()V
+					getstatic_a 52;		// reference helloworld/hi.customer
+					aload 25;
+					invokevirtual 65;		// setNgaysinh([B)V
+					invokestatic 53;		// javacard/framework/JCSystem.commitTransaction()V
+				L49:	aload 4;
 					sconst_2;
 					baload;
 					sconst_3;
-					if_scmpne L42;
-				L41:	aload 4;
-					sconst_4;
-					baload;
-					newarray 11;
-					astore 23;
-					aload 4;
-					sconst_5;
-					aload 23;
-					sconst_0;
-					aload 4;
-					sconst_4;
-					baload;
-					invokestatic 21;		// javacard/framework/Util.arrayCopy([BS[BSS)S
-					pop;
-					aload_0;
-					aload 23;
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 30;		// getMapin()[B
-					invokespecial 23;		// helloworld/hi.encryptAES([B[B)[B
-					astore 23;
-					invokestatic 24;		// javacard/framework/JCSystem.beginTransaction()V
-					getstatic_a 27;		// reference helloworld/hi.customer
-					aload 23;
-					invokevirtual 44;		// setSdt([B)V
-					invokestatic 28;		// javacard/framework/JCSystem.commitTransaction()V
-				L42:	aload 4;
-					sconst_2;
-					baload;
-					sconst_4;
-					if_scmpne L44;
-				L43:	aload 4;
-					sconst_4;
-					baload;
-					newarray 11;
-					astore 24;
-					aload 4;
-					sconst_5;
-					aload 24;
-					sconst_0;
-					aload 4;
-					sconst_4;
-					baload;
-					invokestatic 21;		// javacard/framework/Util.arrayCopy([BS[BSS)S
-					pop;
-					aload_0;
-					aload 24;
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 30;		// getMapin()[B
-					invokespecial 23;		// helloworld/hi.encryptAES([B[B)[B
-					astore 24;
-					invokestatic 24;		// javacard/framework/JCSystem.beginTransaction()V
-					getstatic_a 27;		// reference helloworld/hi.customer
-					aload 24;
-					invokevirtual 45;		// setPhong([B)V
-					invokestatic 28;		// javacard/framework/JCSystem.commitTransaction()V
-				L44:	aload 4;
-					sconst_2;
-					baload;
-					sconst_5;
-					if_scmpne_w L50;
-				L45:	aload 4;
-					sconst_4;
-					baload;
-					newarray 11;
-					astore 27;
-					aload 4;
-					sconst_5;
-					aload 27;
-					sconst_0;
-					aload 4;
-					sconst_4;
-					baload;
-					invokestatic 21;		// javacard/framework/Util.arrayCopy([BS[BSS)S
-					pop;
-					aload_0;
-					aload 27;
-					invokevirtual 22;		// hashMD5([B)[B
-					astore 27;
-					aload_0;
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 29;		// getCccd()[B
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 30;		// getMapin()[B
-					invokespecial 31;		// helloworld/hi.decryptAES([B[B)[B
-					astore 20;
-					aload_0;
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 33;		// getHoten()[B
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 30;		// getMapin()[B
-					invokespecial 31;		// helloworld/hi.decryptAES([B[B)[B
-					astore 21;
-				L46:	aload_0;
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 34;		// getNgaysinh()[B
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 30;		// getMapin()[B
-					invokespecial 31;		// helloworld/hi.decryptAES([B[B)[B
-					astore 22;
-				L47:	aload_0;
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 35;		// getSdt()[B
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 30;		// getMapin()[B
-					invokespecial 31;		// helloworld/hi.decryptAES([B[B)[B
-					astore 23;
-				L48:	aload_0;
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 36;		// getPhong()[B
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 30;		// getMapin()[B
-					invokespecial 31;		// helloworld/hi.decryptAES([B[B)[B
-					astore 24;
-				L49:	aload_0;
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 37;		// getNgaydk()[B
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 30;		// getMapin()[B
-					invokespecial 31;		// helloworld/hi.decryptAES([B[B)[B
-					astore 25;
-					aload_0;
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 38;		// getTien()[B
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 30;		// getMapin()[B
-					invokespecial 31;		// helloworld/hi.decryptAES([B[B)[B
-					astore 26;
-					aload_0;
-					aload 20;
-					aload 27;
-					invokespecial 46;		// helloworld/hi.encryptAES_wontPadding([B[B)[B
-					astore 20;
-					aload_0;
-					aload 21;
-					aload 27;
-					invokespecial 46;		// helloworld/hi.encryptAES_wontPadding([B[B)[B
-					astore 21;
-					aload_0;
-					aload 22;
-					aload 27;
-					invokespecial 46;		// helloworld/hi.encryptAES_wontPadding([B[B)[B
-					astore 22;
-					aload_0;
-					aload 23;
-					aload 27;
-					invokespecial 46;		// helloworld/hi.encryptAES_wontPadding([B[B)[B
-					astore 23;
-					aload_0;
-					aload 24;
-					aload 27;
-					invokespecial 46;		// helloworld/hi.encryptAES_wontPadding([B[B)[B
-					astore 24;
-					aload_0;
-					aload 25;
-					aload 27;
-					invokespecial 46;		// helloworld/hi.encryptAES_wontPadding([B[B)[B
-					astore 25;
-					aload_0;
-					aload 26;
-					aload 27;
-					invokespecial 46;		// helloworld/hi.encryptAES_wontPadding([B[B)[B
-					astore 26;
-					invokestatic 24;		// javacard/framework/JCSystem.beginTransaction()V
-					getstatic_a 27;		// reference helloworld/hi.customer
-					aload 20;
-					invokevirtual 47;		// setCccd([B)V
-					getstatic_a 27;		// reference helloworld/hi.customer
-					aload 21;
-					invokevirtual 42;		// setHoten([B)V
-					getstatic_a 27;		// reference helloworld/hi.customer
-					aload 22;
-					invokevirtual 43;		// setNgaysinh([B)V
-					getstatic_a 27;		// reference helloworld/hi.customer
-					aload 23;
-					invokevirtual 44;		// setSdt([B)V
-					getstatic_a 27;		// reference helloworld/hi.customer
-					aload 24;
-					invokevirtual 45;		// setPhong([B)V
-					getstatic_a 27;		// reference helloworld/hi.customer
-					aload 25;
-					invokevirtual 48;		// setNgaydk([B)V
-					getstatic_a 27;		// reference helloworld/hi.customer
-					aload 26;
-					invokevirtual 49;		// setTien([B)V
-					getstatic_a 27;		// reference helloworld/hi.customer
-					aload 27;
-					invokevirtual 50;		// setMapin([B)V
-					invokestatic 28;		// javacard/framework/JCSystem.commitTransaction()V
+					if_scmpne L51;
 				L50:	aload 4;
+					sconst_4;
+					baload;
+					newarray 11;
+					astore 26;
+					aload 4;
+					sconst_5;
+					aload 26;
+					sconst_0;
+					aload 4;
+					sconst_4;
+					baload;
+					invokestatic 29;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_0;
+					aload 26;
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 55;		// getMapin()[B
+					invokespecial 36;		// helloworld/hi.encryptAES([B[B)[B
+					astore 26;
+					invokestatic 49;		// javacard/framework/JCSystem.beginTransaction()V
+					getstatic_a 52;		// reference helloworld/hi.customer
+					aload 26;
+					invokevirtual 66;		// setSdt([B)V
+					invokestatic 53;		// javacard/framework/JCSystem.commitTransaction()V
+				L51:	aload 4;
+					sconst_2;
+					baload;
+					sconst_4;
+					if_scmpne L53;
+				L52:	aload 4;
+					sconst_4;
+					baload;
+					newarray 11;
+					astore 27;
+					aload 4;
+					sconst_5;
+					aload 27;
+					sconst_0;
+					aload 4;
+					sconst_4;
+					baload;
+					invokestatic 29;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_0;
+					aload 27;
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 55;		// getMapin()[B
+					invokespecial 36;		// helloworld/hi.encryptAES([B[B)[B
+					astore 27;
+					invokestatic 49;		// javacard/framework/JCSystem.beginTransaction()V
+					getstatic_a 52;		// reference helloworld/hi.customer
+					aload 27;
+					invokevirtual 67;		// setPhong([B)V
+					invokestatic 53;		// javacard/framework/JCSystem.commitTransaction()V
+				L53:	aload 4;
+					sconst_2;
+					baload;
+					sconst_5;
+					if_scmpne_w L59;
+				L54:	aload 4;
+					sconst_4;
+					baload;
+					newarray 11;
+					astore 30;
+					aload 4;
+					sconst_5;
+					aload 30;
+					sconst_0;
+					aload 4;
+					sconst_4;
+					baload;
+					invokestatic 29;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_0;
+					aload 30;
+					invokevirtual 35;		// hashMD5([B)[B
+					astore 30;
+					aload_0;
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 54;		// getCccd()[B
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 55;		// getMapin()[B
+					invokespecial 56;		// helloworld/hi.decryptAES([B[B)[B
+					astore 23;
+					aload_0;
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 58;		// getHoten()[B
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 55;		// getMapin()[B
+					invokespecial 56;		// helloworld/hi.decryptAES([B[B)[B
+					astore 24;
+				L55:	aload_0;
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 59;		// getNgaysinh()[B
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 55;		// getMapin()[B
+					invokespecial 56;		// helloworld/hi.decryptAES([B[B)[B
+					astore 25;
+				L56:	aload_0;
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 60;		// getSdt()[B
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 55;		// getMapin()[B
+					invokespecial 56;		// helloworld/hi.decryptAES([B[B)[B
+					astore 26;
+				L57:	aload_0;
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 61;		// getPhong()[B
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 55;		// getMapin()[B
+					invokespecial 56;		// helloworld/hi.decryptAES([B[B)[B
+					astore 27;
+				L58:	aload_0;
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 62;		// getNgaydk()[B
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 55;		// getMapin()[B
+					invokespecial 56;		// helloworld/hi.decryptAES([B[B)[B
+					astore 28;
+					aload_0;
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 63;		// getTien()[B
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 55;		// getMapin()[B
+					invokespecial 56;		// helloworld/hi.decryptAES([B[B)[B
+					astore 29;
+					aload_0;
+					aload 23;
+					aload 30;
+					invokespecial 68;		// helloworld/hi.encryptAES_wontPadding([B[B)[B
+					astore 23;
+					aload_0;
+					aload 24;
+					aload 30;
+					invokespecial 68;		// helloworld/hi.encryptAES_wontPadding([B[B)[B
+					astore 24;
+					aload_0;
+					aload 25;
+					aload 30;
+					invokespecial 68;		// helloworld/hi.encryptAES_wontPadding([B[B)[B
+					astore 25;
+					aload_0;
+					aload 26;
+					aload 30;
+					invokespecial 68;		// helloworld/hi.encryptAES_wontPadding([B[B)[B
+					astore 26;
+					aload_0;
+					aload 27;
+					aload 30;
+					invokespecial 68;		// helloworld/hi.encryptAES_wontPadding([B[B)[B
+					astore 27;
+					aload_0;
+					aload 28;
+					aload 30;
+					invokespecial 68;		// helloworld/hi.encryptAES_wontPadding([B[B)[B
+					astore 28;
+					aload_0;
+					aload 29;
+					aload 30;
+					invokespecial 68;		// helloworld/hi.encryptAES_wontPadding([B[B)[B
+					astore 29;
+					invokestatic 49;		// javacard/framework/JCSystem.beginTransaction()V
+					getstatic_a 52;		// reference helloworld/hi.customer
+					aload 23;
+					invokevirtual 69;		// setCccd([B)V
+					getstatic_a 52;		// reference helloworld/hi.customer
+					aload 24;
+					invokevirtual 64;		// setHoten([B)V
+					getstatic_a 52;		// reference helloworld/hi.customer
+					aload 25;
+					invokevirtual 65;		// setNgaysinh([B)V
+					getstatic_a 52;		// reference helloworld/hi.customer
+					aload 26;
+					invokevirtual 66;		// setSdt([B)V
+					getstatic_a 52;		// reference helloworld/hi.customer
+					aload 27;
+					invokevirtual 67;		// setPhong([B)V
+					getstatic_a 52;		// reference helloworld/hi.customer
+					aload 28;
+					invokevirtual 70;		// setNgaydk([B)V
+					getstatic_a 52;		// reference helloworld/hi.customer
+					aload 29;
+					invokevirtual 71;		// setTien([B)V
+					getstatic_a 52;		// reference helloworld/hi.customer
+					aload 30;
+					invokevirtual 72;		// setMapin([B)V
+					invokestatic 53;		// javacard/framework/JCSystem.commitTransaction()V
+				L59:	aload 4;
 					sconst_2;
 					baload;
 					bspush 6;
-					if_scmpne_w L72;
-				L51:	aload 4;
+					if_scmpne_w L81;
+				L60:	aload 4;
 					sconst_4;
 					baload;
 					newarray 11;
-					astore 26;
-				L52:	aload 4;
+					astore 29;
+				L61:	aload 4;
 					sconst_5;
-					aload 26;
+					aload 29;
 					sconst_0;
 					aload 4;
 					sconst_4;
 					baload;
-					invokestatic 21;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					invokestatic 29;		// javacard/framework/Util.arrayCopy([BS[BSS)S
 					pop;
 					aload_0;
-					aload 26;
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 30;		// getMapin()[B
-					invokespecial 23;		// helloworld/hi.encryptAES([B[B)[B
-					astore 26;
-					invokestatic 24;		// javacard/framework/JCSystem.beginTransaction()V
-					getstatic_a 27;		// reference helloworld/hi.customer
-					aload 26;
-					invokevirtual 49;		// setTien([B)V
-					invokestatic 28;		// javacard/framework/JCSystem.commitTransaction()V
-					goto_w L72;
-				L53:	getstatic_a 17;		// reference helloworld/hi.wrong_PIN_count
+					aload 29;
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 55;		// getMapin()[B
+					invokespecial 36;		// helloworld/hi.encryptAES([B[B)[B
+					astore 29;
+					invokestatic 49;		// javacard/framework/JCSystem.beginTransaction()V
+					getstatic_a 52;		// reference helloworld/hi.customer
+					aload 29;
+					invokevirtual 71;		// setTien([B)V
+					invokestatic 53;		// javacard/framework/JCSystem.commitTransaction()V
+					goto_w L81;
+				L62:	getstatic_a 17;		// reference helloworld/hi.wrong_PIN_count
 					sconst_0;
 					saload;
 					sconst_3;
-					if_scmpne L55;
-				L54:	aload_1;
-					invokevirtual 39;		// setOutgoing()S
+					if_scmpne L64;
+				L63:	aload_1;
+					invokevirtual 30;		// setOutgoing()S
 					pop;
 					aload_1;
 					sconst_1;
-					invokevirtual 40;		// setOutgoingLength(S)V
+					invokevirtual 31;		// setOutgoingLength(S)V
 					aload_1;
-					getstatic_a 51;		// reference helloworld/hi.RUN_OUT_OF_TRIES_CODE
+					getstatic_a 73;		// reference helloworld/hi.RUN_OUT_OF_TRIES_CODE
 					sconst_0;
 					sconst_1;
-					invokevirtual 41;		// sendBytesLong([BSS)V
+					invokevirtual 32;		// sendBytesLong([BSS)V
 					return;
-				L55:	aload 4;
+				L64:	aload 4;
 					sconst_4;
 					baload;
-					sstore 30;
-				L56:	sload 30;
+					sstore 34;
+				L65:	sload 34;
 					newarray 11;
 					astore_2;
-				L57:	aload 4;
+				L66:	aload 4;
 					sconst_5;
 					aload_2;
 					sconst_0;
 					aload 4;
 					sconst_4;
 					baload;
-					invokestatic 21;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					invokestatic 29;		// javacard/framework/Util.arrayCopy([BS[BSS)S
 					pop;
 					aload_0;
 					aload_2;
-					invokevirtual 22;		// hashMD5([B)[B
+					invokevirtual 35;		// hashMD5([B)[B
 					astore_2;
 					aload_2;
 					sconst_0;
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 30;		// getMapin()[B
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 55;		// getMapin()[B
 					sconst_0;
 					aload_2;
 					arraylength;
-					invokestatic 52;		// javacard/framework/Util.arrayCompare([BS[BSS)B
-					ifeq_w L72;
-				L58:	getstatic_a 17;		// reference helloworld/hi.wrong_PIN_count
+					invokestatic 74;		// javacard/framework/Util.arrayCompare([BS[BSS)B
+					ifeq_w L81;
+				L67:	getstatic_a 17;		// reference helloworld/hi.wrong_PIN_count
 					sconst_0;
 					getstatic_a 17;		// reference helloworld/hi.wrong_PIN_count
 					sconst_0;
@@ -1323,125 +1562,339 @@
 					sadd;
 					sastore;
 					aload_1;
-					invokevirtual 39;		// setOutgoing()S
+					invokevirtual 30;		// setOutgoing()S
 					pop;
 					aload_1;
 					sconst_1;
-					invokevirtual 40;		// setOutgoingLength(S)V
+					invokevirtual 31;		// setOutgoingLength(S)V
 					aload_1;
-					getstatic_a 53;		// reference helloworld/hi.WRONG_PIN_CODE
+					getstatic_a 75;		// reference helloworld/hi.WRONG_PIN_CODE
 					sconst_0;
 					sconst_1;
-					invokevirtual 41;		// sendBytesLong([BSS)V
-					goto_w L72;
-				L59:	aload 4;
+					invokevirtual 32;		// sendBytesLong([BSS)V
+					goto_w L81;
+				L68:	aload 4;
 					sconst_4;
 					baload;
-					sstore 31;
-				L60:	sload 31;
+					sstore 35;
+				L69:	sload 35;
 					newarray 11;
 					astore_3;
-				L61:	aload 4;
+				L70:	aload 4;
 					sconst_5;
 					aload_3;
 					sconst_0;
 					aload 4;
 					sconst_4;
 					baload;
-					invokestatic 21;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					invokestatic 29;		// javacard/framework/Util.arrayCopy([BS[BSS)S
 					pop;
 					aload_0;
 					aload_3;
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 30;		// getMapin()[B
-					invokespecial 23;		// helloworld/hi.encryptAES([B[B)[B
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 55;		// getMapin()[B
+					invokespecial 36;		// helloworld/hi.encryptAES([B[B)[B
 					astore_3;
 					aload_3;
 					sconst_0;
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 36;		// getPhong()[B
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 61;		// getPhong()[B
 					sconst_0;
 					aload_3;
 					arraylength;
-					invokestatic 52;		// javacard/framework/Util.arrayCompare([BS[BSS)B
-					ifeq_w L72;
-				L62:	aload_1;
-					invokevirtual 39;		// setOutgoing()S
+					invokestatic 74;		// javacard/framework/Util.arrayCompare([BS[BSS)B
+					ifeq_w L81;
+				L71:	aload_1;
+					invokevirtual 30;		// setOutgoing()S
 					pop;
 					aload_1;
 					sconst_1;
-					invokevirtual 40;		// setOutgoingLength(S)V
+					invokevirtual 31;		// setOutgoingLength(S)V
 					aload_1;
-					getstatic_a 53;		// reference helloworld/hi.WRONG_PIN_CODE
+					getstatic_a 75;		// reference helloworld/hi.WRONG_PIN_CODE
 					sconst_0;
 					sconst_1;
-					invokevirtual 41;		// sendBytesLong([BSS)V
-					goto_w L72;
-				L63:	aload 4;
+					invokevirtual 32;		// sendBytesLong([BSS)V
+					goto_w L81;
+				L72:	aload 4;
 					sconst_2;
 					baload;
 					sspush 255;
 					sand;
-					sstore 32;
-				L64:	sspush 249;
-					sload 32;
+					sstore 36;
+				L73:	sspush 249;
+					sload 36;
 					smul;
-					sstore 33;
-				L65:	aload 4;
+					sstore 37;
+				L74:	aload 4;
 					sconst_5;
 					getstatic_a 14;		// reference helloworld/hi.OpImage
-					sload 33;
+					sload 37;
 					sspush 249;
-					invokestatic 21;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					invokestatic 29;		// javacard/framework/Util.arrayCopy([BS[BSS)S
 					pop;
-					goto L72;
-				L66:	aload 4;
+					goto L81;
+				L75:	aload 4;
 					sconst_5;
 					getstatic_a 15;		// reference helloworld/hi.size
 					sconst_0;
 					bspush 7;
-					invokestatic 21;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					invokestatic 29;		// javacard/framework/Util.arrayCopy([BS[BSS)S
 					pop;
-					goto L72;
-				L67:	getstatic_a 15;		// reference helloworld/hi.size
+					goto L81;
+				L76:	getstatic_a 15;		// reference helloworld/hi.size
 					sconst_0;
 					aload 4;
 					sconst_0;
 					getstatic_a 15;		// reference helloworld/hi.size
 					arraylength;
-					invokestatic 21;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					invokestatic 29;		// javacard/framework/Util.arrayCopy([BS[BSS)S
 					pop;
 					aload_1;
 					sconst_0;
 					bspush 7;
-					invokevirtual 54;		// setOutgoingAndSend(SS)V
-					goto L72;
-				L68:	aload_1;
-					invokevirtual 39;		// setOutgoing()S
+					invokevirtual 76;		// setOutgoingAndSend(SS)V
+					goto L81;
+				L77:	aload_1;
+					invokevirtual 30;		// setOutgoing()S
 					pop;
 					aload 4;
 					sconst_2;
 					baload;
 					sspush 255;
 					sand;
-					sstore 34;
-				L69:	sspush 249;
-					sload 34;
+					sstore 38;
+				L78:	sspush 249;
+					sload 38;
 					smul;
-					sstore 35;
-				L70:	aload_1;
+					sstore 39;
+				L79:	aload_1;
 					sspush 249;
-					invokevirtual 40;		// setOutgoingLength(S)V
+					invokevirtual 31;		// setOutgoingLength(S)V
 					aload_1;
-					getstatic_a 27;		// reference helloworld/hi.customer
-					invokevirtual 55;		// getAnhdaidien()[B
-					sload 35;
+					getstatic_a 52;		// reference helloworld/hi.customer
+					invokevirtual 77;		// getAnhdaidien()[B
+					sload 39;
 					sspush 249;
-					invokevirtual 41;		// sendBytesLong([BSS)V
-					goto L72;
-				L71:	sspush 27904;
-					invokestatic 56;		// javacard/framework/ISOException.throwIt(S)V
-				L72:	return;
+					invokevirtual 32;		// sendBytesLong([BSS)V
+					goto L81;
+				L80:	sspush 27904;
+					invokestatic 78;		// javacard/framework/ISOException.throwIt(S)V
+				L81:	return;
+		}
+
+		.method private rsaSign([BLjavacard/framework/APDU;)[B {
+			.stack 6;
+			.locals 0;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	getstatic_a 38;		// reference helloworld/hi.rsaSig
+					getstatic_a 41;		// reference helloworld/hi.rsaPrivKey
+					sconst_1;
+					invokevirtual 79;		// init(Ljavacard/security/Key;B)V
+					getstatic_a 38;		// reference helloworld/hi.rsaSig
+					aload_1;
+					sconst_0;
+					aload_1;
+					arraylength;
+					getstatic_a 23;		// reference helloworld/hi.sig_buffer
+					sconst_0;
+					invokevirtual 80;		// sign([BSS[BS)S
+					pop;
+					getstatic_a 23;		// reference helloworld/hi.sig_buffer
+					areturn;
+		}
+
+		.method private rsaVerify(Ljavacard/framework/APDU;)V {
+			.stack 7;
+			.locals 6;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	sspush 1000;
+					newarray 11;
+					astore_2;
+				L1:	getstatic_a 43;		// reference helloworld/hi.rsaPubKey
+					aload_2;
+					sconst_0;
+					invokeinterface 3 42 4;		// javacard/security/RSAPublicKey
+					sstore_3;
+				L2:	sspush 1000;
+					newarray 11;
+					astore 4;
+				L3:	getstatic_a 43;		// reference helloworld/hi.rsaPubKey
+					aload 4;
+					sconst_0;
+					invokeinterface 3 42 5;		// javacard/security/RSAPublicKey
+					sstore 5;
+				L4:	aload_1;
+					invokevirtual 25;		// getBuffer()[B
+					astore 6;
+				L5:	getstatic_a 38;		// reference helloworld/hi.rsaSig
+					getstatic_a 43;		// reference helloworld/hi.rsaPubKey
+					sconst_2;
+					invokevirtual 79;		// init(Ljavacard/security/Key;B)V
+					getstatic_a 38;		// reference helloworld/hi.rsaSig
+					getstatic_a 19;		// reference helloworld/hi.data4
+					sconst_0;
+					getstatic_a 19;		// reference helloworld/hi.data4
+					arraylength;
+					getstatic_a 23;		// reference helloworld/hi.sig_buffer
+					sconst_0;
+					getstatic_s 18;		// short helloworld/hi.sigLen
+					invokevirtual 81;		// verify([BSS[BSS)Z
+					sstore 7;
+				L6:	aload 6;
+					sconst_0;
+					sload 7;
+					ifeq L8;
+				L7:	sconst_1;
+					goto L9;
+				L8:	sconst_0;
+				L9:	bastore;
+					aload_1;
+					sconst_0;
+					sconst_1;
+					invokevirtual 76;		// setOutgoingAndSend(SS)V
+					return;
+		}
+
+		.method private sendPublicExponent(Ljavacard/framework/APDU;)V {
+			.stack 3;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 25;		// getBuffer()[B
+					astore_2;
+				L1:	getstatic_a 43;		// reference helloworld/hi.rsaPubKey
+					aload_2;
+					sconst_0;
+					invokeinterface 3 42 4;		// javacard/security/RSAPublicKey
+					sstore_3;
+				L2:	aload_1;
+					sconst_0;
+					sload_3;
+					invokevirtual 76;		// setOutgoingAndSend(SS)V
+					return;
+		}
+
+		.method private sendPublicModulus(Ljavacard/framework/APDU;)V {
+			.stack 3;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 25;		// getBuffer()[B
+					astore_2;
+				L1:	getstatic_a 43;		// reference helloworld/hi.rsaPubKey
+					aload_2;
+					sconst_0;
+					invokeinterface 3 42 5;		// javacard/security/RSAPublicKey
+					sstore_3;
+				L2:	aload_1;
+					sconst_0;
+					sload_3;
+					invokevirtual 76;		// setOutgoingAndSend(SS)V
+					return;
+		}
+
+		.method private rsaSign2(Ljavacard/framework/APDU;)V {
+			.stack 6;
+			.locals 0;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	getstatic_a 38;		// reference helloworld/hi.rsaSig
+					getstatic_a 41;		// reference helloworld/hi.rsaPrivKey
+					sconst_1;
+					invokevirtual 79;		// init(Ljavacard/security/Key;B)V
+					getstatic_a 38;		// reference helloworld/hi.rsaSig
+					getstatic_a 20;		// reference helloworld/hi.s1
+					sconst_0;
+					getstatic_a 20;		// reference helloworld/hi.s1
+					arraylength;
+					invokevirtual 82;		// update([BSS)V
+					getstatic_a 38;		// reference helloworld/hi.rsaSig
+					getstatic_a 21;		// reference helloworld/hi.s2
+					sconst_0;
+					getstatic_a 21;		// reference helloworld/hi.s2
+					arraylength;
+					invokevirtual 82;		// update([BSS)V
+					getstatic_a 38;		// reference helloworld/hi.rsaSig
+					getstatic_a 22;		// reference helloworld/hi.s3
+					sconst_0;
+					getstatic_a 22;		// reference helloworld/hi.s3
+					arraylength;
+					getstatic_a 23;		// reference helloworld/hi.sig_buffer
+					sconst_0;
+					invokevirtual 80;		// sign([BSS[BS)S
+					pop;
+					aload_1;
+					invokevirtual 30;		// setOutgoing()S
+					pop;
+					aload_1;
+					getstatic_s 18;		// short helloworld/hi.sigLen
+					invokevirtual 31;		// setOutgoingLength(S)V
+					aload_1;
+					getstatic_a 23;		// reference helloworld/hi.sig_buffer
+					sconst_0;
+					getstatic_s 18;		// short helloworld/hi.sigLen
+					invokevirtual 32;		// sendBytesLong([BSS)V
+					return;
+		}
+
+		.method private rsaVerify2(Ljavacard/framework/APDU;)V {
+			.stack 7;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 25;		// getBuffer()[B
+					astore_2;
+				L1:	getstatic_a 38;		// reference helloworld/hi.rsaSig
+					getstatic_a 43;		// reference helloworld/hi.rsaPubKey
+					sconst_2;
+					invokevirtual 79;		// init(Ljavacard/security/Key;B)V
+					getstatic_a 38;		// reference helloworld/hi.rsaSig
+					getstatic_a 20;		// reference helloworld/hi.s1
+					sconst_0;
+					getstatic_a 20;		// reference helloworld/hi.s1
+					arraylength;
+					invokevirtual 82;		// update([BSS)V
+					getstatic_a 38;		// reference helloworld/hi.rsaSig
+					getstatic_a 21;		// reference helloworld/hi.s2
+					sconst_0;
+					getstatic_a 21;		// reference helloworld/hi.s2
+					arraylength;
+					invokevirtual 82;		// update([BSS)V
+					getstatic_a 38;		// reference helloworld/hi.rsaSig
+					getstatic_a 22;		// reference helloworld/hi.s3
+					sconst_0;
+					getstatic_a 22;		// reference helloworld/hi.s3
+					arraylength;
+					getstatic_a 23;		// reference helloworld/hi.sig_buffer
+					sconst_0;
+					getstatic_s 18;		// short helloworld/hi.sigLen
+					invokevirtual 81;		// verify([BSS[BSS)Z
+					sstore_3;
+				L2:	aload_2;
+					sconst_0;
+					sload_3;
+					ifeq L4;
+				L3:	sconst_1;
+					goto L5;
+				L4:	sconst_0;
+				L5:	bastore;
+					aload_1;
+					sconst_0;
+					sconst_1;
+					invokevirtual 76;		// setOutgoingAndSend(SS)V
+					return;
 		}
 
 		.method public hashMD5([B)[B 8 {
@@ -1453,7 +1906,7 @@
 					astore_2;
 				L1:	sconst_2;
 					sconst_0;
-					invokestatic 57;		// javacard/security/MessageDigest.getInstance(BZ)Ljavacard/security/MessageDigest;
+					invokestatic 83;		// javacard/security/MessageDigest.getInstance(BZ)Ljavacard/security/MessageDigest;
 					astore_3;
 				L2:	aload_3;
 					aload_1;
@@ -1462,7 +1915,7 @@
 					arraylength;
 					aload_2;
 					sconst_0;
-					invokevirtual 58;		// doFinal([BSS[BS)S
+					invokevirtual 84;		// doFinal([BSS[BS)S
 					pop;
 					aload_2;
 					areturn;
@@ -1475,27 +1928,27 @@
 				L0:	bspush 15;
 					sspush 128;
 					sconst_0;
-					invokestatic 59;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
-					checkcast 0 60;		// T_CLASSORINTERFACE javacard/security/AESKey
+					invokestatic 39;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
+					checkcast 0 85;		// T_CLASSORINTERFACE javacard/security/AESKey
 					astore_3;
 				L1:	aload_3;
 					aload_2;
 					sconst_0;
-					invokeinterface 3 60 4;		// javacard/security/AESKey
+					invokeinterface 3 85 4;		// javacard/security/AESKey
 					bspush 14;
 					sconst_0;
-					invokestatic 61;		// javacardx/crypto/Cipher.getInstance(BZ)Ljavacardx/crypto/Cipher;
+					invokestatic 86;		// javacardx/crypto/Cipher.getInstance(BZ)Ljavacardx/crypto/Cipher;
 					astore 4;
 				L2:	aload_0;
 					aload_1;
 					aload_1;
 					arraylength;
-					invokespecial 62;		// helloworld/hi.addPaddingM2([BS)[B
+					invokespecial 87;		// helloworld/hi.addPaddingM2([BS)[B
 					astore_1;
 					aload 4;
 					aload_3;
 					sconst_2;
-					invokevirtual 63;		// init(Ljavacard/security/Key;B)V
+					invokevirtual 88;		// init(Ljavacard/security/Key;B)V
 					aload 4;
 					aload_1;
 					sconst_0;
@@ -1503,7 +1956,7 @@
 					arraylength;
 					aload_1;
 					sconst_0;
-					invokevirtual 64;		// doFinal([BSS[BS)S
+					invokevirtual 89;		// doFinal([BSS[BS)S
 					pop;
 					aload_1;
 					areturn;
@@ -1516,21 +1969,21 @@
 				L0:	bspush 15;
 					sspush 128;
 					sconst_0;
-					invokestatic 59;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
-					checkcast 0 60;		// T_CLASSORINTERFACE javacard/security/AESKey
+					invokestatic 39;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
+					checkcast 0 85;		// T_CLASSORINTERFACE javacard/security/AESKey
 					astore_3;
 				L1:	aload_3;
 					aload_2;
 					sconst_0;
-					invokeinterface 3 60 4;		// javacard/security/AESKey
+					invokeinterface 3 85 4;		// javacard/security/AESKey
 					bspush 14;
 					sconst_0;
-					invokestatic 61;		// javacardx/crypto/Cipher.getInstance(BZ)Ljavacardx/crypto/Cipher;
+					invokestatic 86;		// javacardx/crypto/Cipher.getInstance(BZ)Ljavacardx/crypto/Cipher;
 					astore 4;
 				L2:	aload 4;
 					aload_3;
 					sconst_2;
-					invokevirtual 63;		// init(Ljavacard/security/Key;B)V
+					invokevirtual 88;		// init(Ljavacard/security/Key;B)V
 					aload 4;
 					aload_1;
 					sconst_0;
@@ -1538,7 +1991,7 @@
 					arraylength;
 					aload_1;
 					sconst_0;
-					invokevirtual 64;		// doFinal([BSS[BS)S
+					invokevirtual 89;		// doFinal([BSS[BS)S
 					pop;
 					aload_1;
 					areturn;
@@ -1557,21 +2010,21 @@
 				L2:	bspush 15;
 					sspush 128;
 					sconst_0;
-					invokestatic 59;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
-					checkcast 0 60;		// T_CLASSORINTERFACE javacard/security/AESKey
+					invokestatic 39;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
+					checkcast 0 85;		// T_CLASSORINTERFACE javacard/security/AESKey
 					astore 5;
 				L3:	aload 5;
 					aload_2;
 					sconst_0;
-					invokeinterface 3 60 4;		// javacard/security/AESKey
+					invokeinterface 3 85 4;		// javacard/security/AESKey
 					bspush 14;
 					sconst_0;
-					invokestatic 61;		// javacardx/crypto/Cipher.getInstance(BZ)Ljavacardx/crypto/Cipher;
+					invokestatic 86;		// javacardx/crypto/Cipher.getInstance(BZ)Ljavacardx/crypto/Cipher;
 					astore 6;
 				L4:	aload 6;
 					aload 5;
 					sconst_1;
-					invokevirtual 63;		// init(Ljavacard/security/Key;B)V
+					invokevirtual 88;		// init(Ljavacard/security/Key;B)V
 					aload 6;
 					aload_1;
 					sconst_0;
@@ -1579,7 +2032,7 @@
 					arraylength;
 					aload 4;
 					sconst_0;
-					invokevirtual 64;		// doFinal([BSS[BS)S
+					invokevirtual 89;		// doFinal([BSS[BS)S
 					pop;
 					aload 4;
 					areturn;
@@ -1610,7 +2063,7 @@
 					aload 4;
 					sconst_0;
 					sload_2;
-					invokestatic 21;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					invokestatic 29;		// javacard/framework/Util.arrayCopy([BS[BSS)S
 					pop;
 					aload 4;
 					sload_2;
@@ -1653,7 +2106,7 @@
 					bspush -128;
 					if_scmpeq L5;
 				L4:	sspush 27012;
-					invokestatic 56;		// javacard/framework/ISOException.throwIt(S)V
+					invokestatic 78;		// javacard/framework/ISOException.throwIt(S)V
 				L5:	sinc 2 -1;
 					sload_2;
 					sreturn;

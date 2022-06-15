@@ -744,6 +744,12 @@ public class CustomerFrame extends javax.swing.JFrame {
                 Table.setEnabled(true);             
                 anhdaidien.setIcon(new ImageIcon( host.DownloadImage()));           
                 String[] data = host.getData().split("@");
+                
+                
+                String cccd = data[0];
+           // if(host.testrsa(data[0]+"")){
+               // if(host.testrsa(cccd)){
+                JOptionPane.showMessageDialog(this, "Xac thuc thanh cong");
                 System.out.println("-----------"+data.length);
                 text_cccd2.setText(data[0]);
                 text_hoten2.setText(data[1]);
@@ -845,7 +851,8 @@ public class CustomerFrame extends javax.swing.JFrame {
                 tienngay = getDaysDiff*500;
                 text_ngayo.setText(getDaysDiff+"=> " +tienngay+" VNĐ");
                 text_tiencanthanhtoan.setText((tienngay+tienthuc)+"");
-                        
+            //}     
+                
                 break;
 
             case "19000":

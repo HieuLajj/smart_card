@@ -69,6 +69,9 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         text_checkpin = new javax.swing.JPasswordField();
         testbtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -152,31 +155,59 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("jButton3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(text_checkpin)
-                    .addComponent(button_connect, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(button_init, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(text_status))
-                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-                    .addComponent(button_delete, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-                    .addComponent(button_ok, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(testbtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(text_checkpin, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(button_connect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(button_init, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(text_status))
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                            .addComponent(button_delete, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                            .addComponent(button_ok, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(testbtn))
+                                .addGap(26, 26, 26)
+                                .addComponent(jButton3)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addGap(21, 21, 21))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,9 +230,14 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(text_checkpin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(button_ok)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(testbtn)
-                .addGap(25, 25, 25))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(testbtn)
+                    .addComponent(jButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông Tin Thẻ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 20), new java.awt.Color(204, 0, 0))); // NOI18N
@@ -237,6 +273,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel10.setText("Ảnh đại diện");
 
         btn_capnhat.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btn_capnhat.setEnabled(false);
         btn_capnhat.setLabel("Cập nhật thông tin");
         btn_capnhat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -277,10 +314,8 @@ public class MainFrame extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btn_capnhat, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(text_tien, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(text_tien, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 202, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -289,6 +324,10 @@ public class MainFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(113, 113, 113)
+                .addComponent(btn_capnhat, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,7 +366,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(text_tien, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_capnhat, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addGap(31, 31, 31))
         );
 
         btn_capnhat.getAccessibleContext().setAccessibleName("Cập nhập thông tin");
@@ -380,6 +419,7 @@ public class MainFrame extends javax.swing.JFrame {
                 button_delete.setEnabled(isConnect);
                 button_init.setEnabled(isConnect);
                 button_ok.setEnabled(isConnect);
+                btn_capnhat.setEnabled(false);
                 text_checkpin.setText("");
                 text_cccd.setText("");
                 text_hoten.setText("");
@@ -411,6 +451,9 @@ public class MainFrame extends javax.swing.JFrame {
                            count=0;
                            
                            String[] data = host.getData().split("@");
+                           if(host.testrsa(data[0])){
+                           JOptionPane.showMessageDialog(this, "Xac thuc thanh cong");
+                            
                            text_cccd.setText(data[0]);
                            text_hoten.setText(data[1]);
                            text_ngaysinh.setText(data[2]);
@@ -423,7 +466,12 @@ public class MainFrame extends javax.swing.JFrame {
                            ngaysinh2=data[2];
                            sdt2=data[3];
                            phong2=data[4];
-                           tien2 = Integer.valueOf(data[6]);                                         
+                           tien2 = Integer.valueOf(data[6]); 
+                           btn_capnhat.setEnabled(true);
+                           }else{
+                             JOptionPane.showMessageDialog(this, "Xac thuc that bai");
+                           }
+                                                                  
                            break;
                     case "19000":
                        // host.wrongPIN();
@@ -518,33 +566,48 @@ public class MainFrame extends javax.swing.JFrame {
 
      boolean result = false;
     private void testbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testbtnActionPerformed
-        String ranString = randomString().toLowerCase();
-        byte[] dataBytes = Base64.getEncoder().encode(ranString.getBytes());
-        String resData = host.authCard(ranString);
-        String resRanString = resData.substring(128);
-        try {
-            String expAndMod =  ConnectJavaCard.idAndPubkey.get("123456");
-            System.out.println(expAndMod); 
-            String exp = expAndMod.substring(0, 6);
-            String mod = expAndMod.substring(6);
-            RSAPublicKeySpec pubKeySpec = new RSAPublicKeySpec(new BigInteger(mod, 16), new BigInteger(exp,16));
-            KeyFactory factory = KeyFactory.getInstance("RSA");
-            PublicKey pubKey = factory.generatePublic(pubKeySpec);
-            Signature signature = Signature.getInstance("SHA1withRSA");
-            signature.initVerify(pubKey);
-            signature.update(dataBytes);
-            result = signature.verify(resRanString.getBytes());
-            if(resu1t==true){
-               JOptionPane.showMessageDialog(rootPane, "Xác thực thành công");
-            }else{
-               JOptionPane.showMessageDialog(rootPane, "Xác thực thất bại"); 
-            }
-            System.out.println(resu1t);          
-        } catch (NoSuchAlgorithmException | InvalidKeySpecException | InvalidKeyException | SignatureException  e) {
-            System.out.println("Error" + e);
-        } 
-           
+//        String ranString = randomString().toLowerCase();
+//        byte[] dataBytes = Base64.getEncoder().encode(ranString.getBytes());
+//        String resData = host.authCard(ranString);
+//        String resRanString = resData.substring(128);
+//        try {
+//            String expAndMod =  ConnectJavaCard.idAndPubkey.get("123456");
+//            System.out.println(expAndMod); 
+//            String exp = expAndMod.substring(0, 6);
+//            String mod = expAndMod.substring(6);
+//            RSAPublicKeySpec pubKeySpec = new RSAPublicKeySpec(new BigInteger(mod, 16), new BigInteger(exp,16));
+//            KeyFactory factory = KeyFactory.getInstance("RSA");
+//            PublicKey pubKey = factory.generatePublic(pubKeySpec);
+//            Signature signature = Signature.getInstance("SHA1withRSA");
+//            signature.initVerify(pubKey);
+//            signature.update(dataBytes);
+//            result = signature.verify(resRanString.getBytes());
+//            if(resu1t==true){
+//               JOptionPane.showMessageDialog(rootPane, "Xác thực thành công");
+//            }else{
+//               JOptionPane.showMessageDialog(rootPane, "Xác thực thất bại"); 
+//            }
+//            System.out.println(resu1t);          
+//        } catch (NoSuchAlgorithmException | InvalidKeySpecException | InvalidKeyException | SignatureException  e) {
+//            System.out.println("Error" + e);
+//        } 
+//           
     }//GEN-LAST:event_testbtnActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        host.inssign();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        host.insverify();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+       // host.testrsa();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -571,6 +634,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton button_delete;
     private javax.swing.JButton button_init;
     private javax.swing.JButton button_ok;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
