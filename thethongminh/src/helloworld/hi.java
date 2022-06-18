@@ -70,15 +70,22 @@ public class hi extends Applet implements ExtendedLength
 		
 		switch (buf[ISO7816.OFFSET_INS])
 		{
+				
         case (byte)0x06: 	
-         	byte[] data5 = new byte[(short)buf[ISO7816.OFFSET_LC]];
+        	JCSystem.beginTransaction();
+         	byte[] data5 = new byte[(short)buf[ISO7816.OFFSET_LC]];   
 		    Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, data5, (short)0, (short)buf[ISO7816.OFFSET_LC]);        	
-			short a1 = (short)((rsaSign(data5,apdu)).length);
-			byte[] authString = new byte[(short)a1];
-			authString = rsaSign(data5,apdu);
+			JCSystem.commitTransaction();
+			// short a1 = (short)((rsaSign(data5,apdu)).length);
+			// byte[] authString = new byte[(short)a1];
+			 
+			 byte[] authString = rsaSign(data5,apdu);
+			//authString = rsaSign(data5,apdu);
+			//JCSystem.beginTransaction();
 			apdu.setOutgoing();
 			apdu.setOutgoingLength((short)authString.length);
 		    apdu.sendBytesLong(authString, (short)0, (short)authString.length); //gui di def 
+		    //JCSystem.commitTransaction();
 			break;
         case EXPONETT:
           sendPublicExponent(apdu);
@@ -134,6 +141,7 @@ public class hi extends Applet implements ExtendedLength
 			 
 			mapin = hashMD5(mapin);
 			 
+		    JCSystem.beginTransaction(); 
 			cccd         =  encryptAES(cccd, mapin);
 			hoten        =  encryptAES(hoten, mapin);
 			ngaysinh     =  encryptAES(ngaysinh, mapin);
@@ -141,8 +149,8 @@ public class hi extends Applet implements ExtendedLength
 			phong        =  encryptAES(phong, mapin);
 			ngay_dk      =  encryptAES(ngay_dk, mapin);
 			tien         =  encryptAES(tien, mapin);
-			priKeyData   = encryptAES(priKeyData, mapin);
-			//OpImage      =  encryptAES(OpImage,mapin);
+			//priKeyData   =  encryptAES(priKeyData, mapin);
+			JCSystem.commitTransaction();
 			
 			
 			JCSystem.beginTransaction();
@@ -157,6 +165,10 @@ public class hi extends Applet implements ExtendedLength
 	    	
 		case (byte)INS_GET_ALL_INFO_0x02:
 			byte[] flag = new byte[] {0x40};
+			byte[] flag1 = new byte[] {0x3C};
+			byte[] flag2 = new byte[] {0x3E};
+			
+			
 			
 			cccd = decryptAES(customer.getCccd(),customer.getMapin());
 			cccd_len = removePaddingM2(cccd,(short)cccd.length); 
@@ -165,7 +177,7 @@ public class hi extends Applet implements ExtendedLength
 			hoten_len = removePaddingM2(hoten,(short)hoten.length);		
 			
 			ngaysinh =decryptAES(customer.getNgaysinh(),customer.getMapin());
-			ngaysinh_len = removePaddingM2(ngaysinh,(short)ngaysinh.length);
+		    ngaysinh_len = removePaddingM2(ngaysinh,(short)ngaysinh.length);
 			
 			sdt =decryptAES(customer.getSdt(),customer.getMapin());
 			sdt_len = removePaddingM2(sdt,(short)sdt.length);
@@ -178,42 +190,125 @@ public class hi extends Applet implements ExtendedLength
 			 
 			tien =decryptAES(customer.getTien(),customer.getMapin());
 			tien_len = removePaddingM2(tien,(short)tien.length);
-			 
-			short totalSendLen = (short)(cccd_len+hoten_len+ngaysinh_len+sdt_len+phong_len+ngaydk_len+tien_len+(short)6);
+			
+			
+			short totalSendLen = (short)(cccd_len+hoten_len+ngaysinh_len+sdt_len+phong_len+ngaydk_len+tien_len+(short)12);
 			
 			apdu.setOutgoing();
 			apdu.setOutgoingLength(totalSendLen);
 			
+			JCSystem.beginTransaction();
 			apdu.sendBytesLong(cccd,(short)0,cccd_len);
-			apdu.sendBytesLong(flag,(short)0,(short)1);
+			//apdu.sendBytesLong(flag,(short)0,(short)1);
+			apdu.sendBytesLong(flag1,(short)0,(short)1);
+			apdu.sendBytesLong(flag2,(short)0,(short)1);
+			JCSystem.commitTransaction();	
 			
-			
+			JCSystem.beginTransaction();			
 			apdu.sendBytesLong(hoten,(short)0,hoten_len);
-			apdu.sendBytesLong(flag,(short)0,(short)1);			
+			//apdu.sendBytesLong(flag,(short)0,(short)1);	
+			apdu.sendBytesLong(flag1,(short)0,(short)1);
+			apdu.sendBytesLong(flag2,(short)0,(short)1);		
+			JCSystem.commitTransaction();
 			
+			JCSystem.beginTransaction();
 			apdu.sendBytesLong(ngaysinh,(short)0, ngaysinh_len);
-			apdu.sendBytesLong(flag,(short)0,(short)1);
+			//apdu.sendBytesLong(flag,(short)0,(short)1);
+			apdu.sendBytesLong(flag1,(short)0,(short)1);
+			apdu.sendBytesLong(flag2,(short)0,(short)1);
+			JCSystem.commitTransaction();
 			
+			JCSystem.beginTransaction();
 			apdu.sendBytesLong(sdt,(short)0, sdt_len);
-			apdu.sendBytesLong(flag,(short)0,(short)1);
+			//apdu.sendBytesLong(flag,(short)0,(short)1);
+			apdu.sendBytesLong(flag1,(short)0,(short)1);
+			apdu.sendBytesLong(flag2,(short)0,(short)1);
+			JCSystem.commitTransaction();
 			
+			JCSystem.beginTransaction();
 			apdu.sendBytesLong(phong,(short)0, phong_len);
-			apdu.sendBytesLong(flag,(short)0,(short)1);
+			//apdu.sendBytesLong(flag,(short)0,(short)1);
+			apdu.sendBytesLong(flag1,(short)0,(short)1);
+			apdu.sendBytesLong(flag2,(short)0,(short)1);
+			JCSystem.commitTransaction();
 			
+			JCSystem.beginTransaction();
 			apdu.sendBytesLong(ngay_dk,(short)0, ngaydk_len);
-			apdu.sendBytesLong(flag,(short)0,(short)1);
+			//apdu.sendBytesLong(flag,(short)0,(short)1);
+			apdu.sendBytesLong(flag1,(short)0,(short)1);
+			apdu.sendBytesLong(flag2,(short)0,(short)1);
+			JCSystem.commitTransaction();
 			
+			JCSystem.beginTransaction();
 			apdu.sendBytesLong(tien,(short)0,tien_len);
+			JCSystem.commitTransaction();
 			
 			break;
 			
+		case (byte)0x22:
+			cccd = decryptAES(customer.getCccd(),customer.getMapin());
+			cccd_len = removePaddingM2(cccd,(short)cccd.length);
+			apdu.setOutgoing();
+			apdu.setOutgoingLength(cccd_len);
+			Util.arrayCopy(cccd, (short)0, buf, (short)0,cccd_len);
+			apdu.sendBytes((short)0, cccd_len);
+            break;
+        case (byte)0x23:
+			hoten =decryptAES(customer.getHoten(),customer.getMapin());
+			hoten_len = removePaddingM2(hoten,(short)hoten.length);	
+			apdu.setOutgoing();
+			apdu.setOutgoingLength(hoten_len);
+			Util.arrayCopy(hoten, (short)0, buf, (short)0,hoten_len);
+			apdu.sendBytes((short)0, hoten_len);
+            break;
+        case (byte)0x24:
+        	ngaysinh =decryptAES(customer.getNgaysinh(),customer.getMapin());
+		    ngaysinh_len = removePaddingM2(ngaysinh,(short)ngaysinh.length);
+		    apdu.setOutgoing();
+			apdu.setOutgoingLength(ngaysinh_len);
+			Util.arrayCopy(ngaysinh, (short)0, buf, (short)0,ngaysinh_len);
+			apdu.sendBytes((short)0, ngaysinh_len);
+            break;
+        case (byte)0x25:
+        	sdt =decryptAES(customer.getSdt(),customer.getMapin());
+			sdt_len = removePaddingM2(sdt,(short)sdt.length);
+		    apdu.setOutgoing();
+			apdu.setOutgoingLength(sdt_len);
+			Util.arrayCopy(sdt, (short)0, buf, (short)0,sdt_len);
+			apdu.sendBytes((short)0, sdt_len);
+            break;
+        case (byte)0x26:
+        	phong =decryptAES(customer.getPhong(),customer.getMapin());
+		    phong_len = removePaddingM2(phong,(short)phong.length);
+		    apdu.setOutgoing();
+			apdu.setOutgoingLength(phong_len);
+			Util.arrayCopy(phong, (short)0, buf, (short)0,phong_len);
+			apdu.sendBytes((short)0, phong_len);
+            break;
+         case (byte)0x27:
+        	ngay_dk =decryptAES(customer.getNgaydk(),customer.getMapin());
+			ngaydk_len = removePaddingM2(ngay_dk,(short)ngay_dk.length);
+		    apdu.setOutgoing();
+			apdu.setOutgoingLength(ngaydk_len);
+			Util.arrayCopy(ngay_dk, (short)0, buf, (short)0,ngaydk_len);
+			apdu.sendBytes((short)0, ngaydk_len);
+            break;
+         case (byte)0x28:
+        	tien =decryptAES(customer.getTien(),customer.getMapin());
+			tien_len = removePaddingM2(tien,(short)tien.length);
+		    apdu.setOutgoing();
+			apdu.setOutgoingLength(tien_len);
+			Util.arrayCopy(tien, (short)0, buf, (short)0,tien_len);
+			apdu.sendBytes((short)0, tien_len);
+            break;
 		case (byte) INS_CHANGE_INFO_0x03:
 		
 			// thay doi ten 0x01
 			if( buf[ISO7816.OFFSET_P1] == (byte)0x01){
 				hoten = new byte[(short)buf[ISO7816.OFFSET_LC]];
 				Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, hoten, (short)0, (short)buf[ISO7816.OFFSET_LC]);
-				hoten = encryptAES(hoten, customer.getMapin());		
+				hoten = encryptAES(hoten, customer.getMapin());	
+						
 				JCSystem.beginTransaction();
 				customer.setHoten(hoten);
 				JCSystem.commitTransaction();
@@ -252,8 +347,10 @@ public class hi extends Applet implements ExtendedLength
 	        if( buf[ISO7816.OFFSET_P1] == (byte)0x05){
 		        mapin = new byte[(short)buf[ISO7816.OFFSET_LC]];
 		        Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, mapin, (short)0, (short)buf[ISO7816.OFFSET_LC]);
+				
 				mapin = hashMD5(mapin);
 				
+				JCSystem.beginTransaction();
 				cccd         =  decryptAES(customer.getCccd(), customer.getMapin());
 			    hoten        =  decryptAES(customer.getHoten(), customer.getMapin());
 			    ngaysinh     =  decryptAES(customer.getNgaysinh(), customer.getMapin());
@@ -261,7 +358,7 @@ public class hi extends Applet implements ExtendedLength
 			    phong        =  decryptAES(customer.getPhong(), customer.getMapin());
 			    ngay_dk      =  decryptAES(customer.getNgaydk(), customer.getMapin());
 			    tien         =  decryptAES(customer.getTien(), customer.getMapin());
-			    priKeyData   =  decryptAES(customer.getPriKeyData(), customer.getMapin());
+			   // priKeyData   =  decryptAES(customer.getPriKeyData(), customer.getMapin());
 			    
 			    cccd         =  encryptAES_wontPadding(cccd, mapin);
 			    hoten        =  encryptAES_wontPadding(hoten, mapin);
@@ -270,7 +367,8 @@ public class hi extends Applet implements ExtendedLength
 			    phong        =  encryptAES_wontPadding(phong, mapin);
 			    ngay_dk      =  encryptAES_wontPadding(ngay_dk, mapin);
 			    tien         =  encryptAES_wontPadding(tien, mapin);
-			    priKeyData   =  encryptAES_wontPadding(priKeyData, mapin);
+			   // priKeyData   =  encryptAES_wontPadding(priKeyData, mapin);
+			    JCSystem.commitTransaction();
 			    
 				JCSystem.beginTransaction();
 				customer.setCccd(cccd);
@@ -280,12 +378,21 @@ public class hi extends Applet implements ExtendedLength
 			    customer.setPhong(phong);
 			    customer.setNgaydk(ngay_dk);
 			    customer.setTien(tien);
-			    customer.setPriKeyData(priKeyData);
+			   // customer.setPriKeyData(priKeyData);
 				customer.setMapin(mapin);
 				JCSystem.commitTransaction();
 			}
 			
 			if( buf[ISO7816.OFFSET_P1] == (byte)0x06){
+				
+				// phong = new byte[(short)buf[ISO7816.OFFSET_LC]];
+				// Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, phong, (short)0, (short)buf[ISO7816.OFFSET_LC]);
+				// phong = encryptAES(phong,customer.getMapin());
+				// JCSystem.beginTransaction();
+				// customer.setPhong(phong);
+				// JCSystem.commitTransaction();
+				
+				
 				tien = new byte[(short)buf[ISO7816.OFFSET_LC]];
 				Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, tien, (short)0, (short)buf[ISO7816.OFFSET_LC]);
 				tien = encryptAES(tien,customer.getMapin());
@@ -297,20 +404,35 @@ public class hi extends Applet implements ExtendedLength
 		
 		case (byte) INS_AUTHENTICATE_PIN_0x04:
 			 if( wrong_PIN_count[(short)0] == (short)3){
-			 	 apdu.setOutgoing();
-		         apdu.setOutgoingLength((short)1);
-				 apdu.sendBytesLong(RUN_OUT_OF_TRIES_CODE, (short)0, (short)1);
-				 return;
+			 	
+			 	
+			 	 // apdu.setOutgoing();
+		         // apdu.setOutgoingLength((short)1);
+				 // apdu.sendBytesLong(RUN_OUT_OF_TRIES_CODE, (short)0, (short)1);
+				 // return;
+							 
+				  apdu.setOutgoing();
+			      apdu.setOutgoingLength((short)1);
+			      Util.arrayCopy(RUN_OUT_OF_TRIES_CODE, (short)0, buf, (short)0,(short)1);
+			      apdu.sendBytes((short)0, (short)1);
+			      return;
 			 }
 			 short a = (short)buf[ISO7816.OFFSET_LC];
 			 inputPIN = new byte[(short)a];
 			 Util.arrayCopy(buf, (short)ISO7816.OFFSET_CDATA, inputPIN, (short)0, (short)buf[ISO7816.OFFSET_LC]);		 
 			 inputPIN = hashMD5(inputPIN);	 
+			 
 			 if( Util.arrayCompare(inputPIN, (short)0, customer.getMapin(), (short)0, (short)inputPIN.length) != (byte)0){
 				 wrong_PIN_count[(short)0] = (short)(wrong_PIN_count[(short)0] + 1);
+							 
+				 // apdu.setOutgoing();
+		         // apdu.setOutgoingLength((short)1);
+				 // apdu.sendBytesLong(WRONG_PIN_CODE, (short)0, (short)1);
 				 apdu.setOutgoing();
-		         apdu.setOutgoingLength((short)1);
-				 apdu.sendBytesLong(WRONG_PIN_CODE, (short)0, (short)1);
+			     apdu.setOutgoingLength((short)1);
+			     Util.arrayCopy(WRONG_PIN_CODE, (short)0, buf, (short)0,(short)1);
+			     apdu.sendBytes((short)0, (short)1);
+			      return;
 			 }			
 			 break;
 		case (byte)0x05:
@@ -367,12 +489,15 @@ public class hi extends Applet implements ExtendedLength
 			KeyBuilder.LENGTH_RSA_1024, 
 			false
 		);	
-	 byte[] priKeyData = decryptAES(customer.getPriKeyData(), customer.getMapin());
+	 JCSystem.beginTransaction();
+	 byte[] priKeyData = customer.getPriKeyData();
+	// byte[] priKeyData = decryptAES(customer.getPriKeyData(), customer.getMapin());
      rsaPrivKey3.setExponent(priKeyData, (short) 0, (short)128);//do dai cua so mu =128, bat dau tu vi tri 0
 	 rsaPrivKey3.setModulus(priKeyData, (short)128, (short)128);//do dai cua modulus =128, bat dau tu vi tri 128(ngay sau so mu)   	
     	
 	 rsaSig.init(rsaPrivKey3, Signature.MODE_SIGN);
 	 rsaSig.sign(data4, (short)0, (short)(data4.length), sig_buffer, (short)0);
+	 JCSystem.commitTransaction();
      return sig_buffer;
     }
    
@@ -435,7 +560,7 @@ public class hi extends Applet implements ExtendedLength
 	
 	// ham giai ma AES
 	//du lieu sau khi giai ma van con padding
-	private byte[] decryptAES(byte[] data, byte[] keyData){
+	private byte[] decryptAES(byte[] data, byte[] keyData){		
 		short data3_len = (short)data.length;
 		byte[] data3 =  new byte[data3_len];
 		AESKey aesKey= (AESKey)KeyBuilder.buildKey(
@@ -443,14 +568,17 @@ public class hi extends Applet implements ExtendedLength
 			KeyBuilder.LENGTH_AES_128, 
 			false
 		);
+		
 		aesKey.setKey(keyData, (short)0);
 		Cipher cipher = Cipher.getInstance(
 			Cipher.ALG_AES_BLOCK_128_ECB_NOPAD, 
 			false
 		);
+		//JCSystem.beginTransaction();
 		cipher.init(aesKey, Cipher.MODE_DECRYPT);
 		cipher.doFinal(data, (short)0, (short)data.length, data3, (short)0);
 		return data3;
+		//JCSystem.commitTransaction();
 	}
 
 	// ISO 9797 Padding Method 2.

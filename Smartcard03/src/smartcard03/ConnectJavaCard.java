@@ -204,6 +204,75 @@ public class ConnectJavaCard {
             return "Lỗi";
         } 
     }
+    
+    
+    public  String getCCCD(){
+        try {
+            response = channel.transmit(new CommandAPDU((byte) 0x00,(byte)0x22, (byte) 0x00,(byte) 0x00));
+            return new String(response.getData(), StandardCharsets.UTF_8);
+        } catch (CardException e) {
+            System.out.println("Error :" + e);
+            return "Lỗi";
+        } 
+    }
+    public  String getHOTEN(){
+        try {
+            response = channel.transmit(new CommandAPDU((byte) 0x00,(byte)0x23, (byte) 0x00,(byte) 0x00));
+            return new String(response.getData(), StandardCharsets.UTF_8);
+        } catch (CardException e) {
+            System.out.println("Error :" + e);
+            return "Lỗi";
+        } 
+    }
+    public  String getNGAYSINH(){
+        try {
+            response = channel.transmit(new CommandAPDU((byte) 0x00,(byte)0x24, (byte) 0x00,(byte) 0x00));
+            return new String(response.getData(), StandardCharsets.UTF_8);
+        } catch (CardException e) {
+            System.out.println("Error :" + e);
+            return "Lỗi";
+        } 
+    }
+    
+    public  String getSDT(){
+        try {
+            response = channel.transmit(new CommandAPDU((byte) 0x00,(byte)0x25, (byte) 0x00,(byte) 0x00));
+            return new String(response.getData(), StandardCharsets.UTF_8);
+        } catch (CardException e) {
+            System.out.println("Error :" + e);
+            return "Lỗi";
+        } 
+    }
+    
+    public  String getPHONG(){
+        try {
+            response = channel.transmit(new CommandAPDU((byte) 0x00,(byte)0x26, (byte) 0x00,(byte) 0x00));
+            return new String(response.getData(), StandardCharsets.UTF_8);
+        } catch (CardException e) {
+            System.out.println("Error :" + e);
+            return "Lỗi";
+        } 
+    }
+    
+    public  String getNGAYDK(){
+        try {
+            response = channel.transmit(new CommandAPDU((byte) 0x00,(byte)0x27, (byte) 0x00,(byte) 0x00));
+            return new String(response.getData(), StandardCharsets.UTF_8);
+        } catch (CardException e) {
+            System.out.println("Error :" + e);
+            return "Lỗi";
+        } 
+    }
+    
+    public  String getTIEN(){
+        try {
+            response = channel.transmit(new CommandAPDU((byte) 0x00,(byte)0x28, (byte) 0x00,(byte) 0x00));
+            return new String(response.getData(), StandardCharsets.UTF_8);
+        } catch (CardException e) {
+            System.out.println("Error :" + e);
+            return "Lỗi";
+        } 
+    }
            
     public String authCard(String ranString){
         byte[] ranStringTrans = ranString.getBytes();
@@ -473,11 +542,11 @@ public class ConnectJavaCard {
         try {         
             HashMap<String, byte[]> map = new HashMap<>(); 
             map = load("serialized_hashmap2");
-            int a4 = map.get(cccd).length;
-            System.out.print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-            System.out.print(a4);
-            byte[] arraydata = new byte[a4];
+            System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            byte[] arraydata;
             arraydata = map.get(cccd);
+             System.out.println(cccd);
+              System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
             int a5 = 0;
             for(int i=0; i < arraydata.length; i++){
 		if( arraydata[i] == (byte)0x3C){
@@ -494,25 +563,36 @@ public class ConnectJavaCard {
             for(int i=a5+1; i < arraydata.length; i++){
 		mang2[i-(a5+1)] = arraydata[i];
 	    }
-             
+            
+            
+//            response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x33, (byte)0x01, (byte)0x00));
+//            byte[] exponentBytes = response.getData();
+//            response = channel.transmit(new CommandAPDU((byte)0x00, (byte)0x34, (byte)0x01, (byte)0x00));
+//            byte[] modulusBytes = response.getData();
+//            PublicKey publicKey = initPublicKey( modulusBytes,  exponentBytes);  
+            
+            
             PublicKey publicKey = initPublicKey(mang2, mang1); 
             
             String ranString = randomString().toLowerCase();
             byte[] ranStringTrans = ranString.getBytes();
             
-            byte[] dataBytes = Base64.getEncoder().encode(ranString.getBytes());
+            //byte[] dataBytes = Base64.getEncoder().encode(ranString.getBytes());
             
-            response = channel.transmit(new CommandAPDU((byte) 0x00, (byte)0x06, (byte) 0x00,(byte) 0x00, dataBytes));
+            response = channel.transmit(new CommandAPDU((byte) 0x00, (byte)0x06, (byte) 0x00,(byte) 0x00, ranStringTrans));
        
             Signature sign = Signature.getInstance("SHA1withRSA");
             sign.initVerify(publicKey);
-            sign.update(dataBytes);
-   
-            boolean bool = sign.verify(response.getData());
+            sign.update(ranStringTrans);
+            byte[] mangsosanh = response.getData();
+            boolean bool = false;
+            if(mangsosanh.length!=0){
+            bool = sign.verify(mangsosanh);
             System.out.println("---------------------------------------");  
             System.out.println(bool);    
             System.out.println(publicKey);          
-            System.out.println("---------------------------------------");  
+            System.out.println("---------------------------------------");} 
+            map.clear();
             return bool;
         } catch (CardException ex) {
             System.out.println("Error :" + ex);

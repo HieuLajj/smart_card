@@ -383,40 +383,50 @@ public class MainFrame extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_button_connectActionPerformed
     
+    public String cccd2;
     public String hoten2;
     public String ngaysinh2;
     public String sdt2;
     public String phong2;
-    public int tien2;
+    public String ngaydk2;
+    public String tien2;
     int count=0;
     private void button_okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_okActionPerformed
         String pin = new String(text_checkpin.getPassword());
         if (pin.length() == 6) {
             String checkPIN = host.authPIN(pin);
             System.out.println(checkPIN+"faewfawefwa");
-            
+            //String a="9000";
              switch (checkPIN) {
                     case "9000":
                            JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
                            count=0;
                            
-                           String[] data = host.getData().split("@");
-                           if(host.testrsa(data[0])){
+                          // String[] data = host.getData().split("<>");
+                           cccd2 =host.getCCCD();
+                           hoten2 = host.getHOTEN();
+                           ngaysinh2 = host.getNGAYSINH();
+                           sdt2 = host.getSDT();
+                           phong2 = host.getPHONG();
+                           ngaydk2 = host.getNGAYDK();
+                           tien2 = host.getTIEN(); 
+                           System.out.println("cccd "+cccd2);
+                           if(host.testrsa(cccd2)){
                            JOptionPane.showMessageDialog(this, "Xac thuc thanh cong");
                             
-                           text_cccd.setText(data[0]);
-                           text_hoten.setText(data[1]);
-                           text_ngaysinh.setText(data[2]);
-                           text_sdt.setText(data[3]);
-                           text_phong.setText(data[4]);
-                           text_ngaydk.setText(data[5]);
-                           text_tien.setText(data[6]); 
+                           text_cccd.setText(cccd2);
+                           text_hoten.setText(hoten2);
+                           text_ngaysinh.setText(ngaysinh2);
+                           text_sdt.setText(sdt2);
+                           text_phong.setText(phong2);
+                           text_ngaydk.setText(ngaydk2);
+                           text_tien.setText(tien2); 
                            Anhdaidien.setIcon(new ImageIcon( host.DownloadImage())); 
-                           hoten2=data[1];
-                           ngaysinh2=data[2];
-                           sdt2=data[3];
-                           phong2=data[4];
-                           tien2 = Integer.valueOf(data[6]); 
+//                           hoten2=data[1];
+//                           ngaysinh2=data[2];
+//                           sdt2=data[3];
+//                           phong2=data[4];
+//                           tien2 = Integer.valueOf(data[6]); 
                            btn_capnhat.setEnabled(true);
                            }else{
                              JOptionPane.showMessageDialog(this, "Xac thuc that bai");
@@ -454,9 +464,9 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void button_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_deleteActionPerformed
-       if(host.disconnect()){
-            isConnect = false;
-            button_connect.setText("Kết nối đến thẻ");
+  //     if(host.disconnect()){
+           // isConnect = false;
+           // button_connect.setText("Kết nối đến thẻ");
             text_cccd.setText("");
             text_hoten.setText("");
             text_ngaysinh.setText("");
@@ -464,12 +474,12 @@ public class MainFrame extends javax.swing.JFrame {
             text_phong.setText("");
             text_ngaydk.setText("");
             text_status.setText("");
-            button_delete.setEnabled(isConnect);
-            button_init.setEnabled(isConnect);
+//            button_delete.setEnabled(isConnect);
+//            button_init.setEnabled(isConnect);
             text_checkpin.setText("");
-            button_ok.setEnabled(isConnect);
+           // button_ok.setEnabled(isConnect);
             Anhdaidien.setIcon(null);
-       }
+   //    }
     }//GEN-LAST:event_button_deleteActionPerformed
 
     private void text_ngaydkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_ngaydkActionPerformed
